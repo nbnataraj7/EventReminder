@@ -17,5 +17,4 @@ xtype: 'main'
 }
 Ext.Viewport.animateActiveItem(main, {type: 'slide', direction: 'right'});
 }
-
 });
