@@ -1,16 +1,17 @@
-Ext.define('EventReminder.controller.Upcoming', {
+Ext.define('EventReminder.controller.Past', {
 extend: 'Ext.app.Controller',
 config: {
 refs: {
-upcoming: 'upcoming'
+past: 'past'
 },
 control: {
-upcoming: {
+past: {
 backCommand: 'onBack'
 }
 }
 },
 onBack: function(){
+console.log("Returned to Main");
 var main = {
 xtype: 'main'
 }

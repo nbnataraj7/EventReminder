@@ -6,16 +6,21 @@ main: 'main'
 },
 control: {
     main: {
-    upComingCommand: 'onUpComing'
+    upComingCommand: 'onUpComing',
+    pastCommand: 'onPast'
     }
 }
 },
 onUpComing: function(){
-    console.log("Upcoming Events Command Received");
-    var upcoming = {
-    xtype: 'upcoming'
-    };
-    Ext.Viewport.animateActiveItem(upcoming, {type: 'slide', direction: 'left'});
-    console.log("Upcoming Events");
+        var upcoming = {
+        xtype: 'upcoming'
+        };
+        Ext.Viewport.animateActiveItem(upcoming, {type: 'slide', direction: 'left'});
+    },
+onPast:function(){
+        var past = {
+        xtype: 'past'
+        };
+        Ext.Viewport.animateActiveItem(past, {type: 'slide', direction: 'left'});
     }
 });

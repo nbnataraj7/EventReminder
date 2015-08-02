@@ -1,6 +1,6 @@
-Ext.define('EventReminder.view.Upcoming', {
+Ext.define('EventReminder.view.Past', {
 extend: 'Ext.Container',
-xtype: 'upcoming',
+xtype: 'past',
 config: {
 layout: {
     type: 'vbox'
@@ -8,7 +8,7 @@ layout: {
 items: [
 {
 xtype: 'titlebar',
-title: 'Upcoming Reminders',
+title: 'Past Reminders',
 items: [
 {
 xtype: 'button',
@@ -38,6 +38,7 @@ fn: 'back'
 ]
 },
 back:function(){
+console.log("Back");
 this.fireEvent("backCommand", this);
 }
 });

@@ -58,6 +58,11 @@ Ext.define('EventReminder.view.Main', {
             delegate: '#new',
             event: 'tap',
             fn: 'newEvent'
+        },
+        {
+            delegate: '#past',
+            event:'tap',
+            fn: 'past'
         }
         ]
     },
@@ -68,5 +73,9 @@ Ext.define('EventReminder.view.Main', {
     newEvent: function(){
         console.log("New Events");
         this.fireEvent('newEventCommand', this);
+    },
+    past: function(){
+          console.log("Past Events");
+          this.fireEvent('pastCommand', this);
     }
 });
