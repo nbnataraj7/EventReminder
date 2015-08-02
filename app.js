@@ -14,10 +14,10 @@ Ext.application({
     name: 'EventReminder',
 
     views: [
-        'Main', 'Upcoming', 'Past'
+        'Main', 'Upcoming', 'Past', 'NewEvent'
     ],
     controllers: [
-        'Main', 'Upcoming', 'Past'
+        'Main', 'Upcoming', 'Past', 'NewEvent'
     ],
 
     icon: {

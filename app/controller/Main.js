@@ -7,7 +7,8 @@ main: 'main'
 control: {
     main: {
     upComingCommand: 'onUpComing',
-    pastCommand: 'onPast'
+    pastCommand: 'onPast',
+    newEventCommand: 'onNew'
     }
 }
 },
@@ -22,5 +23,11 @@ onPast:function(){
         xtype: 'past'
         };
         Ext.Viewport.animateActiveItem(past, {type: 'slide', direction: 'left'});
-    }
+    },
+onNew: function(){
+        var newEvent = {
+        xtype: 'newEvent'
+        };
+        Ext.Viewport.animateActiveItem(newEvent, {type: 'slide', direction: 'left'});
+}
 });
