@@ -17,7 +17,7 @@ Ext.application({
         'Main', 'Upcoming'
     ],
     controllers: [
-        'Main'
+        'Main', 'Upcoming'
     ],
 
     icon: {
