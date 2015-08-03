@@ -14,10 +14,10 @@ Ext.application({
     name: 'EventReminder',
 
     views: [
-        'Main', 'Upcoming', 'Past', 'NewEvent', 'EventReminderMain'
+        'Main', 'Upcoming', 'Past', 'NewEvent'
     ],
     controllers: [
-        'Main', 'Upcoming', 'Past', 'NewEvent'
+        'Main', 'Upcoming', 'Past', 'NewEvent', 'Strings'
     ],
 
     icon: {
@@ -46,9 +46,19 @@ Ext.application({
             title: 'Event Reminder',
             docked: 'top'
         };
+        var bottomBar = {
+            xtype: 'titlebar',
+            docked: 'bottom'
+        };
+
+        //Creating objects for some views
         var EventReminderMain = Ext.create('EventReminder.view.Main');
+        var Upcoming = Ext.create('EventReminder.view.Upcoming');
+        var Past = Ext.create('EventReminder.view.Past');
+        var newEvent = Ext.create('EventReminder.view.NewEvent');
+
         // Initialize the main view
-        Ext.Viewport.add(titleBar, EventReminderMain);
+        Ext.Viewport.add(titleBar, EventReminderMain, Upcoming, Past, bottomBar);
     },
 
     onUpdated: function() {

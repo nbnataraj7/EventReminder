@@ -1,6 +1,7 @@
 Ext.define('EventReminder.view.Main', {
     extend: 'Ext.Container',
     xtype: 'main',
+    scrollable: true,
     config: {
         layout: {
             type: 'vbox'

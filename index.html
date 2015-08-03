@@ -52,6 +52,26 @@
     <link rel="stylesheet" type="text/css" href="resources\css\custom.css" />
     <!-- The line below must be kept intact for Sencha Command to build your application -->
     <script id="microloader" type="text/javascript" src=".sencha/app/microloader/development.js"></script>
+    <script type="text/template" id="events">
+        <div>
+            {category}
+        </div>
+        <div>
+            On: {date} at : {time}
+        </div>
+        <div>
+            People: {people}
+        </div>
+        <div>
+            {message}
+        </div>
+        <div>
+            {priority}
+        </div>
+        <div>
+            {activities}
+        </div>
+    </script>
 </head>
 <body>
     <div id="appLoadingIndicator">

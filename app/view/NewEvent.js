@@ -8,7 +8,7 @@ layout: {
 items: [
 {
 xtype: 'titlebar',
-title: 'Past Reminders',
+title: 'Create New Reminder',
 items: [
 {
 xtype: 'button',

@@ -20,12 +20,26 @@ itemId: 'back'
 {
 xtype: 'list',
 flex: 1,
-itemTpl: '<div>{event}</div>',
+itemTpl: document.getElementById('events').innerHTML,
     data: [
-    {event: 'Birthday'},
-    {event: 'Meeting'},
-    {event: 'Call'},
-    {event: 'Mail'},
+    {
+        category: 'Birthday',
+        date: '15-08-2015',
+        time: '5:00 AM',
+        people: ['Dracula', 'Arthur', 'Blob'],
+        message: 'Bleh Bleh Bleh',
+        priority: 'Medium',
+        activities: ['Call', 'Text']
+    },
+    {
+        category: 'Meeting',
+        date: '05-08-2015',
+        time: '03:00 PM',
+        people: ['Arthur'],
+        message: "Prepare Presentation",
+        priority: 'High',
+        activities: ['Call']
+    }
     ]
 }
 ],

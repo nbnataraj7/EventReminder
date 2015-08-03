@@ -2,7 +2,10 @@ Ext.define('EventReminder.controller.Main',{
 extend: 'Ext.app.Controller',
 config: {
 refs: {
-main: 'main'
+main: 'main',
+upcoming: 'upcoming',
+newEvent: 'newEvent',
+past: 'past'
 },
 control: {
     main: {
@@ -12,16 +15,17 @@ control: {
     }
 }
 },
+launch: function(){
+this.callParent();
+console.log("Main controller");
+},
 onUpComing: function(){
-        var upcoming = Ext.create('EventReminder.view.Upcoming');
-        Ext.Viewport.animateActiveItem(upcoming, {type: 'slide', direction: 'left'});
+        Ext.Viewport.animateActiveItem(this.getUpcoming(), {type: 'slide', direction: 'left'});
     },
 onPast:function(){
-        var past = Ext.create('EventReminder.view.Past');
-        Ext.Viewport.animateActiveItem(past, {type: 'slide', direction: 'left'});
+        Ext.Viewport.animateActiveItem(this.getPast(), {type: 'slide', direction: 'left'});
     },
 onNew: function(){
-        var newEvent = Ext.create('EventReminder.view.NewEvent');
-        Ext.Viewport.animateActiveItem(newEvent, {type: 'slide', direction: 'left'});
+        Ext.Viewport.animateActiveItem(this.getNewEvent(), {type: 'slide', direction: 'left'});
 }
 });
