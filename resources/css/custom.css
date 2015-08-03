@@ -2,3 +2,23 @@
     width: 90%;
     margin:5%;
 }
+.event-category{
+    font-weight: bolder;
+    font-size: 30px;
+}
+.event-people{
+    font-weight: bold;
+}
+.event-message{
+    font-size: 20px;
+    padding: 2%;
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+.event-priority{
+    font-style: italic;
+}
+.x-form-label{
+    text-align: center;
+    font-size: 30px;
+}

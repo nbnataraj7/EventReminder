@@ -18,15 +18,10 @@ itemId: 'back'
 ]
 },
 {
-xtype: 'list',
-flex: 1,
-itemTpl: '<div>{event}</div>',
-    data: [
-    {event: 'Birthday'},
-    {event: 'Meeting'},
-    {event: 'Call'},
-    {event: 'Mail'},
-    ]
+    xtype: 'list',
+    flex: 1,
+    itemTpl: document.getElementById('events').innerHTML,
+    store : 'Past'
 }
 ],
 listeners: [
