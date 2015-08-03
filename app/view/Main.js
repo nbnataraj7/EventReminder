@@ -10,7 +10,6 @@ Ext.define('EventReminder.view.Main', {
             {
                 xtype: 'button',
                 itemId: 'upcoming',
-                text: 'Upcoming Reminders',
                 layout:{
                     pack: 'center'
                 },
@@ -20,7 +19,6 @@ Ext.define('EventReminder.view.Main', {
             {
                 xtype: 'button',
                 itemId: 'past',
-                text: 'Past Reminders',
                     layout:{
                     pack: 'center'
                     },
@@ -30,7 +28,6 @@ Ext.define('EventReminder.view.Main', {
             {
                 xtype: 'button',
                 itemId: 'new',
-                text: 'Create New Reminder',
                   layout:{
                         pack: 'center'
                        },
@@ -39,7 +36,6 @@ Ext.define('EventReminder.view.Main', {
             },
             {
                 xtype: 'togglefield',
-                label: 'DND MODE',
                 name: 'DND',
                 itemId: 'dndmode',
                 labelWidth: '50%'

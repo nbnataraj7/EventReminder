@@ -8,11 +8,11 @@ layout: {
 items: [
 {
 xtype: 'titlebar',
-title: 'Upcoming Reminders',
+itemId: 'title',
 items: [
 {
 xtype: 'button',
-text: 'Back',
+itemId: 'back',
 itemId: 'back'
 }
 ]
