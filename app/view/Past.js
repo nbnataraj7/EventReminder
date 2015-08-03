@@ -21,7 +21,8 @@ itemId: 'back'
     xtype: 'list',
     flex: 1,
     itemTpl: document.getElementById('events').innerHTML,
-    store : 'Past'
+    store : 'Past',
+    onItemDisclosure: true
 }
 ],
 listeners: [

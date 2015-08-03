@@ -4,5 +4,11 @@ upcoming: 'Upcoming Reminders',
 past: 'Past Reminders',
 dnd: 'DND MODE',
 back: 'Back',
-newEvent: 'New Event'
+newEvent: 'New Event',
+addPeople: 'Add People',
+selectCategory: 'Select Category',
+selectDate: 'Select Date',
+alertOn: 'Alert On',
+eventTime: 'Event Time',
+chooseOne: 'Choose One'
 });

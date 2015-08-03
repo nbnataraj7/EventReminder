@@ -18,7 +18,6 @@
 .event-priority{
     font-style: italic;
 }
-.x-form-label{
-    text-align: center;
-    font-size: 30px;
+.x-list.event-list.x-list-item-tpl.x-list-disclosure{
+top: 35%;
 }

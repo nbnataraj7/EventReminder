@@ -1,11 +1,11 @@
 Ext.define('EventReminder.view.Main', {
     extend: 'Ext.Container',
     xtype: 'main',
-    scrollable: true,
     config: {
         layout: {
             type: 'vbox'
         },
+        scrollable: true,
         items: [
             {
                 xtype: 'button',
@@ -38,7 +38,8 @@ Ext.define('EventReminder.view.Main', {
                 xtype: 'togglefield',
                 name: 'DND',
                 itemId: 'dndmode',
-                labelWidth: '50%'
+                labelWidth: '50%',
+                cls: 'dnd'
             }
         ],
         listeners: [

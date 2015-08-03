@@ -23,8 +23,8 @@ items: [
     itemId: 'upcomingEventList',
     itemTpl: document.getElementById('events').innerHTML,
     onItemDisclosure: true,
-    store: 'Upcoming'
-
+    store: 'Upcoming',
+    cls: 'event-list'
 }
 ],
 listeners: [

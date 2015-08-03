@@ -1,6 +1,8 @@
 Ext.define('EventReminder.controller.Strings', {
 extend: 'Ext.app.Controller',
 config: {
+
+//All the item references from across views
 refs: {
 main: 'main',
 upcoming: 'upcoming',
@@ -17,13 +19,21 @@ upcomingBack: 'upcoming #back',
 pastTitle: 'past #title',
 pastBack: 'past #back',
 newEventTitle: 'newEvent #title',
-newEventBack: 'newEvent #back'
+newEventBack: 'newEvent #back',
+newEventAddPeople: 'newEvent #addPeople',
+newEventSelectCategory: 'newEvent #selectCategory',
+newEventSelectDate: 'newEvent #selectDate',
+newEventChooseOne: 'newEvent #chooseOne'
 }
 },
 launch: function(){
 this.callParent();
-console.log("Setting the Strings");
+
+//console.log("Setting the Strings");
+//Creating an instance of Strings file of a particular language
 var strings = Ext.create('EventReminder.utils.StringEN');
+
+//Setting the strings from the String utilities
 this.getMainUpcoming().setText(strings.upcoming);
 this.getMainPast().setText(strings.past);
 this.getMainNew().setText(strings.newEvent);
@@ -34,5 +44,9 @@ this.getPastTitle().setTitle(strings.past);
 this.getPastBack().setText(strings.back);
 this.getNewEventTitle().setTitle(strings.newEvent);
 this.getNewEventBack().setText(strings.back);
+this.getNewEventAddPeople().setText(strings.addPeople);
+this.getNewEventSelectCategory().setLabel(strings.selectCategory);
+this.getNewEventSelectDate().setLabel(strings.selectDate);
+//this.getNewEventChooseOne().setText(strings.chooseOne);
 }
 });
