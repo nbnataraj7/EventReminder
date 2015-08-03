@@ -11,8 +11,8 @@ enumerateOptions: function(limit, item){
         };
         optionItems.push(optionItem);
     }
-    console.log(optionList);
-    console.log(optionItems);
+    //console.log(optionList);
+    //console.log(optionItems);
     optionList.setOptions(optionItems);
 
 }

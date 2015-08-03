@@ -19,8 +19,8 @@ Ext.application({
     controllers: [
         'Main', 'Upcoming', 'Past', 'NewEvent', 'Strings'
     ],
-    models: ['Event'],
-    stores: ['Upcoming', 'Past'],
+    models: ['Event', 'Person'],
+    stores: ['Upcoming', 'Past', 'NewEventPerson'],
     icon: {
         '57': 'resources/icons/Icon.png',
         '72': 'resources/icons/Icon~ipad.png',
