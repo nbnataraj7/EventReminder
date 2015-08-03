@@ -14,7 +14,7 @@ Ext.application({
     name: 'EventReminder',
 
     views: [
-        'Main', 'Upcoming', 'Past', 'NewEvent'
+        'Main', 'Upcoming', 'Past', 'NewEvent', 'EventReminderMain'
     ],
     controllers: [
         'Main', 'Upcoming', 'Past', 'NewEvent'
@@ -41,9 +41,14 @@ Ext.application({
     launch: function() {
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
-
+        var titleBar = {
+            xtype: 'titlebar',
+            title: 'Event Reminder',
+            docked: 'top'
+        };
+        var EventReminderMain = Ext.create('EventReminder.view.Main');
         // Initialize the main view
-        Ext.Viewport.add(Ext.create('EventReminder.view.Main'));
+        Ext.Viewport.add(titleBar, EventReminderMain);
     },
 
     onUpdated: function() {

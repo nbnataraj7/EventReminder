@@ -7,14 +7,9 @@ Ext.define('EventReminder.view.Main', {
         },
         items: [
             {
-                xtype: 'titlebar',
-                title: 'Event Reminder',
-                docked: 'top'
-            },
-            {
                 xtype: 'button',
-                text: 'Upoming Reminders',
                 itemId: 'upcoming',
+                text: 'Upcoming Reminders',
                 layout:{
                     pack: 'center'
                 },
@@ -23,8 +18,8 @@ Ext.define('EventReminder.view.Main', {
             },
             {
                 xtype: 'button',
-                text: 'Past Reminders',
                 itemId: 'past',
+                text: 'Past Reminders',
                     layout:{
                     pack: 'center'
                     },
@@ -32,20 +27,21 @@ Ext.define('EventReminder.view.Main', {
              cls: 'launch-button'
             },
             {
-                xtype: 'togglefield',
-                name: 'DND',
-                label: 'DND MODE',
-                labelWidth: '50%'
-            },
-            {
                 xtype: 'button',
-                text: 'Create New Reminder',
                 itemId: 'new',
+                text: 'Create New Reminder',
                   layout:{
                         pack: 'center'
                        },
                  ui: 'action',
                  cls: 'launch-button'
+            },
+            {
+                xtype: 'togglefield',
+                label: 'DND MODE',
+                name: 'DND',
+                itemId: 'dndmode',
+                labelWidth: '50%'
             }
         ],
         listeners: [
@@ -65,6 +61,11 @@ Ext.define('EventReminder.view.Main', {
             fn: 'past'
         }
         ]
+    },
+    initialize: function(){
+        this.callParent();
+        this.fireEvent('initMainCommand', this);
+        console.log("Main Initialized");
     },
     upcoming: function(){
         console.log("Upcoming Events Command fired");

@@ -13,21 +13,15 @@ control: {
 }
 },
 onUpComing: function(){
-        var upcoming = {
-        xtype: 'upcoming'
-        };
+        var upcoming = Ext.create('EventReminder.view.Upcoming');
         Ext.Viewport.animateActiveItem(upcoming, {type: 'slide', direction: 'left'});
     },
 onPast:function(){
-        var past = {
-        xtype: 'past'
-        };
+        var past = Ext.create('EventReminder.view.Past');
         Ext.Viewport.animateActiveItem(past, {type: 'slide', direction: 'left'});
     },
 onNew: function(){
-        var newEvent = {
-        xtype: 'newEvent'
-        };
+        var newEvent = Ext.create('EventReminder.view.NewEvent');
         Ext.Viewport.animateActiveItem(newEvent, {type: 'slide', direction: 'left'});
 }
 });

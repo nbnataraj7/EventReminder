@@ -10,7 +10,6 @@ backCommand: 'onBack'
 }
 }
 },
-
 onBack: function(){
 var main = {
 xtype: 'main'
