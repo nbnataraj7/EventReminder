@@ -1,8 +1,7 @@
 Ext.define('EventReminder.utils.Utilities', {
 
 //Enumerates the Options of a selectfield with a limited numbers
-enumerateOptions: function(limit, item){
-    var optionList = Ext.ComponentQuery.query(item)[0];
+enumerateOptions: function(limit){
     var optionItems = new Array();
     for(var i=1; i<=limit; i++){
         var optionItem = {
@@ -11,9 +10,32 @@ enumerateOptions: function(limit, item){
         };
         optionItems.push(optionItem);
     }
-    //console.log(optionList);
-    //console.log(optionItems);
-    optionList.setOptions(optionItems);
-
+    return optionItems;
+},
+createTimePicker: function(){
+    var picker = Ext.create('Ext.Picker', {
+        slots: [
+         {
+            name: 'Hours',
+            title: 'Hours',
+            data: this.enumerateOptions(12)
+         },
+         {
+            name:'Minutes',
+            title: 'Minutes',
+            data: this.enumerateOptions(59)
+         },
+         {
+            name: 'AMPM',
+            title: 'AM/PM',
+            data: [
+                {text: 'AM', value: 'AM'},
+                {text: 'PM', value: 'PM'}
+            ]
+         }
+         ]
+    });
+    return picker;
 }
+
 });
