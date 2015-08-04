@@ -1,5 +1,6 @@
 Ext.define('EventReminder.controller.NewEvent', {
 extend: 'Ext.app.Controller',
+xtype: 'neweventctr',
 requires: 'Ext.LoadMask',
 config: {
 refs: {
@@ -46,7 +47,7 @@ onPriorityChange:function(newValue){
 //and Validating them
 onAddEvent:function(){
 
-
+/*
 console.log("Creating a new event");
 console.log("Validating the Event fields");
 console.log(this.getNewEventCategory().getValue());
@@ -55,7 +56,7 @@ console.log(this.getNewEventSelectDate().getFormattedValue());
 console.log(this.getNewEventTimeSelect().getValue());
 console.log(this.getNewAlertTimeSelect().getValue());
 console.log(this.getNewEventMessage().getValue());
-
+*/
 
 //setting the values to the NewEvent Store
 var event = Ext.create('EventReminder.model.Event', {
@@ -74,11 +75,11 @@ var errors = event.validate();
 
 if(!errors.isValid()){
     console.log("one or more Errors");
-    console.log(errors);
+    //console.log(errors);
 }
 else{
     console.log("No errors");
+    this.fireEvent("insertEventCommand", event, this);
 }
-
 }
 });
