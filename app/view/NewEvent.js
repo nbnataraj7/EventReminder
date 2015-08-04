@@ -44,8 +44,8 @@ items: [
         },
         {
             xtype: 'button',
-            ui: 'action',
-            itemId: 'addPeople'
+            itemId: 'addPeople',
+            ui: 'confirm'
         },
         {
             itemId: 'selectDate',
@@ -57,21 +57,75 @@ items: [
             xtype: 'fieldset',
             itemId: 'time',
             items: [
-                        //Select Event Time
-                          {
-                            xtype: 'textfield',
-                            itemId: 'eventTimeSelect',
-                            label: 'Select Event Time',
-                            placeHolder: 'Tap to select alert time'
-                          },
-                        //Select Alert Time
-                          {
-                              xtype: 'textfield',
-                              itemId: 'alertTimeSelect',
-                              label: 'Select Alert Time',
-                              placeHolder: 'Tap to select alert time'
-                          }
-                      ]
+                //Select Event Time
+                  {
+                    xtype: 'textfield',
+                    itemId: 'eventTimeSelect',
+                    label: 'Event Time',
+                    placeHolder: 'Tap to select alert time'
+                  },
+                //Select Alert Time
+                  {
+                      xtype: 'textfield',
+                      itemId: 'alertTimeSelect',
+                      label: 'Alert Time',
+                      placeHolder: 'Tap to select alert time'
+                  }
+              ]
+        },
+        {
+            xtype: 'textareafield',
+            placeHolder: 'Write your customized message here...',
+            itemId: 'message',
+            label: 'Message'
+        },
+        {
+            xtype: 'sliderfield',
+            label: 'Priority',
+            itemId: 'priority',
+            minValue: 0,
+            maxValue: 100,
+            value: 50
+        },
+        /*
+        //Unblock this comment if we want multiple activites to be added to an event
+        {
+           xtype: 'list',
+           height: '100px',
+           label: 'Activity List',
+           itemId: 'ActivityList',
+           itemTpl: document.getElementById("activity-list").innerHTML,
+           data: [
+            {name: 'call'},
+            {name: 'text'}
+           ]
+        },
+        {
+            xtype: 'button',
+            label: 'Add Activity',
+            itemId: 'addActivity',
+            text: 'Add Activity',
+            ui: 'confirm'
+        }*/
+
+        //Selecting an Activity for the event
+        //Comment the below config and unblock the previous block
+        //in case multiple activities are needed for an event
+        {
+            xtype: 'selectfield',
+            label: 'Activity',
+            options: [
+                {text: 'Call', value: 'call'},
+                {text: 'Text', value: 'sms'},
+                {text: 'Email', value: 'email'}
+            ],
+            itemId: 'activity'
+        },
+        {
+            xtype: 'button',
+            ui: 'confirm',
+            text: 'Create Event',
+            itemId: 'addEvent'
         }
      ]
     }
@@ -96,6 +150,23 @@ items: [
         delegate: '#alertTimeSelect',
         event: 'focus',
         fn: 'alertTimeSelected'
+    },
+    {
+        delegate: '#priority',
+        event: 'change',
+        fn: 'priorityChanged'
+    },
+    /*
+    //unblock this comment if event handling for multiple activities is required
+    {
+        delegate: '#addActivity',
+        event: 'tap',
+        fn: 'addActivity'
+    }*/
+    {
+        delegate: '#addEvent',
+        event: 'tap',
+        fn: 'addEvent'
     }
     ]
 },
@@ -135,6 +206,17 @@ alertTimeSelected:function(){
 },
 initialize: function(){
     console.log("New Event Init");
-    var util = Ext.create("EventReminder.utils.Utilities");
+   //var util = Ext.create("EventReminder.utils.Utilities");
+},
+//Fire the priority change event
+priorityChanged:function(me, s1, thumb, newValue, oldValue, eOpts){
+    //console.log(newValue);
+    this.fireEvent("priorityChangeCommand", newValue,  this);
+},
+addActivity: function(){
+    this.fireEvent("activityChangeCommand", this);
+},
+addEvent: function(){
+    this.fireEvent("addEventCommand", this);
 }
 });

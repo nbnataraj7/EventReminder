@@ -1,5 +1,6 @@
 Ext.define('EventReminder.view.People', {
     extend: 'Ext.Panel',
+    xtype: 'people',
     config: {
     height: '70%',
     width: '60%',
@@ -32,13 +33,15 @@ Ext.define('EventReminder.view.People', {
                 data: [
                     {name: 'Nataraj', contact: '9943051988'},
                     {name: 'Raju', contact: '8143621415'}
-                ]
+                ],
+                itemId: 'PeopleList'
             },
             {
                 xtype: 'button',
                 docked: 'bottom',
                 text: 'Add',
-                ui: 'confirm'
+                ui: 'confirm',
+                itemId: 'addPeople'
             }
         ],
         listeners: [
@@ -46,10 +49,19 @@ Ext.define('EventReminder.view.People', {
                 delegate: '#close',
                 event: 'tap',
                 fn: 'closePopup'
+            },
+            {
+                delegate: '#addPeople',
+                event: 'tap',
+                fn: 'addPeople'
             }
         ]
     },
     closePopup: function(){
         this.hide();
+    },
+    addPeople: function(){
+        //console.log("Add Person Command");
+        this.fireEvent('addPersonCommand', this);
     }
 });

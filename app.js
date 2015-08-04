@@ -17,7 +17,7 @@ Ext.application({
         'Main', 'Upcoming', 'Past', 'NewEvent', 'People'
     ],
     controllers: [
-        'Main', 'Upcoming', 'Past', 'NewEvent', 'Strings'
+        'Main', 'Upcoming', 'Past', 'NewEvent', 'Strings', 'People'
     ],
     models: ['Event', 'Person'],
     stores: ['Upcoming', 'Past', 'NewEventPerson'],
