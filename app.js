@@ -14,7 +14,7 @@ Ext.application({
     name: 'EventReminder',
 
     views: [
-        'Main', 'Upcoming', 'Past', 'NewEvent'
+        'Main', 'Upcoming', 'Past', 'NewEvent', 'People'
     ],
     controllers: [
         'Main', 'Upcoming', 'Past', 'NewEvent', 'Strings'
