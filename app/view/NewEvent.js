@@ -26,12 +26,12 @@ items: [
             xtype: 'selectfield',
             itemId: 'selectCategory',
             options: [
-                {text: 'Choose One', value: 'none'},
-                {text: 'Birthday', value: 'none'},
-                {text: 'Meeting', value: 'none'},
-                {text: 'Call', value: 'none'},
-                {text: 'Email', value: 'none'},
-                {text: 'Shopping', value: 'none'}
+                {text: 'Choose One'},
+                {text: 'Birthday', value: 'Birthday'},
+                {text: 'Meeting', value: 'Meeting'},
+                {text: 'Call', value: 'Call'},
+                {text: 'Email', value: 'Email'},
+                {text: 'Shopping', value: 'Shopping'}
             ],
         },
         {
@@ -115,6 +115,7 @@ items: [
             xtype: 'selectfield',
             label: 'Activity',
             options: [
+                {text: 'Select'},
                 {text: 'Call', value: 'call'},
                 {text: 'Text', value: 'sms'},
                 {text: 'Email', value: 'email'}
@@ -125,7 +126,8 @@ items: [
             xtype: 'button',
             ui: 'confirm',
             text: 'Create Event',
-            itemId: 'addEvent'
+            itemId: 'addEvent',
+            docked: 'bottom'
         }
      ]
     }

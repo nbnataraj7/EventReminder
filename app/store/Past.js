@@ -14,7 +14,7 @@ data: [
         people: 'Blob',
         message: 'Bleh Bleh Bleh',
         priority: 'Medium',
-        activities: ['Call']
+        activities: 'Call'
     },
     {
         category: 'Meeting',
@@ -23,7 +23,7 @@ data: [
         people: ['Arthur'],
         message: "Prepare Presentation",
         priority: 'High',
-        activities: ['Call']
+        activities: 'Call'
     }
     ]
 });

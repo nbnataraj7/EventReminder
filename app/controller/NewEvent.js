@@ -5,7 +5,14 @@ config: {
 refs: {
     newevent : 'newEvent',
     main: 'main',
-    newEventPriority: 'newEvent #priority'
+    newEventCategory: 'newEvent #selectCategory',
+    newEventPeopleList: 'newEvent #peopleList',
+    newEventSelectDate: 'newEvent #selectDate',
+    newEventTimeSelect: 'newEvent #eventTimeSelect',
+    newAlertTimeSelect: 'newEvent #alertTimeSelect',
+    newEventMessage: 'newEvent #message',
+    newEventPriority: 'newEvent #priority',
+    newEventActivity: 'newEvent #activity'
 },
 control: {
     newevent: {
@@ -35,11 +42,43 @@ onPriorityChange:function(newValue){
     else
         this.getNewEventPriority().setLabel("High");
 },
+//Creating a New Event Based on the entered Field Values
+//and Validating them
 onAddEvent:function(){
+
+
 console.log("Creating a new event");
-Ext.Viewport.add({
-    message: 'Creating a new Event',
-    xtype: 'loadmask'
+console.log("Validating the Event fields");
+console.log(this.getNewEventCategory().getValue());
+console.log(this.getNewEventPeopleList().getData());
+console.log(this.getNewEventSelectDate().getFormattedValue());
+console.log(this.getNewEventTimeSelect().getValue());
+console.log(this.getNewAlertTimeSelect().getValue());
+console.log(this.getNewEventMessage().getValue());
+
+
+//setting the values to the NewEvent Store
+var event = Ext.create('EventReminder.model.Event', {
+    category: this.getNewEventCategory().getValue(),
+    date: this.getNewEventSelectDate().getFormattedValue(),
+    eventTime: this.getNewEventTimeSelect().getValue(),
+    alertTime: this.getNewAlertTimeSelect().getValue(),
+    message: this.getNewEventMessage().getValue(),
+    people: (this.getNewEventPeopleList().getData()),
+    priority: this.getNewEventPriority().getValue(),
+    activities: this.getNewEventActivity().getValue()
 });
+
+//Validating against the Event model
+var errors = event.validate();
+
+if(!errors.isValid()){
+    console.log("one or more Errors");
+    console.log(errors);
+}
+else{
+    console.log("No errors");
+}
+
 }
 });
