@@ -59,15 +59,17 @@ items: [
             items: [
                         //Select Event Time
                           {
-                            xtype: 'selectfield',
+                            xtype: 'textfield',
                             itemId: 'eventTimeSelect',
-                            label: 'Select Event Time'
+                            label: 'Select Event Time',
+                            placeHolder: 'Tap to select alert time'
                           },
                         //Select Alert Time
                           {
-                              xtype: 'selectfield',
+                              xtype: 'textfield',
                               itemId: 'alertTimeSelect',
-                              label: 'Select Alert Time'
+                              label: 'Select Alert Time',
+                              placeHolder: 'Tap to select alert time'
                           }
                       ]
         }
@@ -97,21 +99,39 @@ items: [
     }
     ]
 },
+//Adding back functionality
 back:function(){
     console.log("Back");
     this.fireEvent("backCommand", this);
 },
+//Adding Popup for people
 addPeople:function(){
     console.log("Add People");
     this.fireEvent("addPeopleCommand", this);
 },
+//Adding Picker for selecting event time
 eventTimeSelected:function(){
-    console.log("Event Time Selected");
+    //console.log("Event Time Selected");
     var utils = Ext.create('EventReminder.utils.Utilities');
     var eventTimePicker = utils.createTimePicker();
+    Ext.Viewport.add(eventTimePicker);
+    eventTimePicker.show();
+    eventTimePicker.addListener('change', function(scope, value, eOpts){
+        console.log(value);
+        Ext.ComponentQuery.query('#eventTimeSelect')[0].setValue(value.Hours+":"+value.Minutes+" "+value.AMPM);
+    });
 },
+//Adding Picker for Selecting alert time
 alertTimeSelected:function(){
-console.log("Alert Time Selected");
+    //console.log("Alert Time Selected");
+    var utils = Ext.create('EventReminder.utils.Utilities');
+    var alertTimePicker = utils.createTimePicker();
+    Ext.Viewport.add(alertTimePicker);
+    alertTimePicker.show();
+    alertTimePicker.addListener('change', function(scope, value, eOpts){
+        console.log(value);
+        Ext.ComponentQuery.query('#alertTimeSelect')[0].setValue(value.Hours+":"+value.Minutes+" "+value.AMPM);
+    });
 },
 initialize: function(){
     console.log("New Event Init");
