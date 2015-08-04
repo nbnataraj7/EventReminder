@@ -79,7 +79,7 @@ if(!errors.isValid()){
 }
 else{
     console.log("No errors");
-    this.fireEvent("insertEventCommand", event, this);
+    this.fireEvent("insertEventCommand", event,  this);
 }
 }
 });

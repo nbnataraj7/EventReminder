@@ -174,12 +174,12 @@ items: [
 },
 //Adding back functionality
 back:function(){
-    console.log("Back");
+    //console.log("Back");
     this.fireEvent("backCommand", this);
 },
 //Adding Popup for people
 addPeople:function(){
-    console.log("Add People");
+    //console.log("Add People");
     this.fireEvent("addPeopleCommand", this);
 },
 //Adding Picker for selecting event time
@@ -190,7 +190,7 @@ eventTimeSelected:function(){
     Ext.Viewport.add(eventTimePicker);
     eventTimePicker.show();
     eventTimePicker.addListener('change', function(scope, value, eOpts){
-        console.log(value);
+      //  console.log(value);
         Ext.ComponentQuery.query('#eventTimeSelect')[0].setValue(value.Hours+":"+value.Minutes+" "+value.AMPM);
     });
 },
@@ -202,12 +202,12 @@ alertTimeSelected:function(){
     Ext.Viewport.add(alertTimePicker);
     alertTimePicker.show();
     alertTimePicker.addListener('change', function(scope, value, eOpts){
-        console.log(value);
+      //  console.log(value);
         Ext.ComponentQuery.query('#alertTimeSelect')[0].setValue(value.Hours+":"+value.Minutes+" "+value.AMPM);
     });
 },
 initialize: function(){
-    console.log("New Event Init");
+    //console.log("New Event Init");
    //var util = Ext.create("EventReminder.utils.Utilities");
 },
 //Fire the priority change event

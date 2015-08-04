@@ -6,6 +6,7 @@ storeId: 'Upcoming',
 proxy: {
     type: 'sql'
 },
+/*
 data: [
     {
         category: 'Birthday',
@@ -25,5 +26,5 @@ data: [
         priority: 'High',
         activities: ['Call']
     }
-    ]
+    ]*/
 });
