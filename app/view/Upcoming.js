@@ -25,6 +25,20 @@ items: [
     itemTpl: document.getElementById('events').innerHTML,
     onItemDisclosure: true,
     store: 'Upcoming',
+    /*
+    data: [
+    {
+        category: 'Call',
+        date: '21/21/21',
+        eventTime: '1:1 AM',
+        alertTime: '1:1 AM',
+        people: '8143621415',
+        message: 'Hello',
+        priority: 'High',
+        activities: 'Text'
+    }
+    ],*/
+
     cls: 'event-list'
 }
 ],
@@ -33,10 +47,18 @@ listeners: [
     delegate: '#back',
     event: 'tap',
     fn: 'back'
+},
+{
+    delegate: '#upcomingEventList',
+    event: 'disclose',
+    fn: 'editEvent'
 }
 ]
 },
 back:function(){
-this.fireEvent("backCommand", this);
+    this.fireEvent("backCommand", this);
+},
+editEvent:function(list, record, target, index, e, eOpts){
+    this.fireEvent("editEventCommand", record,  this);
 }
 });

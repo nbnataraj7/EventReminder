@@ -7,11 +7,17 @@ refs: {
 },
 control: {
     upcoming: {
-    backCommand: 'onBack'
+    backCommand: 'onBack',
+    editEventCommand: 'onEditEvent'
 }
 }
 },
 onBack: function(){
-Ext.Viewport.animateActiveItem(this.getMain(), {type: 'slide', direction: 'right'});
+    Ext.Viewport.animateActiveItem(this.getMain(), {type: 'slide', direction: 'right'});
+},
+
+onEditEvent: function(record){
+    //console.log("Record : ");
+    //console.log(record);
 }
 });

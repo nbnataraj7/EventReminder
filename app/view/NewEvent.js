@@ -1,4 +1,4 @@
-Ext.define('EventReminder.view.NewEvent', {
+                              Ext.define('EventReminder.view.NewEvent', {
 extend: 'Ext.Container',
 xtype: 'newEvent',
 config: {
