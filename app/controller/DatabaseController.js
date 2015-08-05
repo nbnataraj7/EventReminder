@@ -4,12 +4,6 @@ Ext.define('EventReminder.controller.DatabaseController', {
 
     //On launch of this controller the database and tables should be created if they are not present
     launch: function(){
-        //console.log("Database Controller Launched!");
-       //var dbutils = Ext.create('EventReminder.utils.Dbutils');
-        //dbutils.createTables();
-        console.log("Tables Created");
-        //dbutils.insertEvent(1, 2, 3, 4, 5, 6, 7, 8, 9);
-
         //Getting the NewEvent controller reference
         var newEvent = EventReminder.app.getController('NewEvent');
         newEvent.on({
@@ -24,7 +18,5 @@ Ext.define('EventReminder.controller.DatabaseController', {
         var upcomingEvents = Ext.create("EventReminder.store.Upcoming");
         upcomingEvents.add(event);
         upcomingEvents.sync();
-
-        //dbutils.insertEvent(id, category, date, people, alertTime, eventTime, message, priority, activities);
     }
 });

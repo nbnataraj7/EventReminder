@@ -1,4 +1,4 @@
-                              Ext.define('EventReminder.view.NewEvent', {
+Ext.define('EventReminder.view.NewEvent', {
 extend: 'Ext.Container',
 xtype: 'newEvent',
 config: {
@@ -212,7 +212,6 @@ initialize: function(){
 },
 //Fire the priority change event
 priorityChanged:function(me, s1, thumb, newValue, oldValue, eOpts){
-    //console.log(newValue);
     this.fireEvent("priorityChangeCommand", newValue,  this);
 },
 addActivity: function(){

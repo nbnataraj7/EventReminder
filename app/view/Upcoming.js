@@ -13,7 +13,6 @@ items: [
 items: [
 {
     xtype: 'button',
-    itemId: 'back',
     itemId: 'back'
 }
 ]
@@ -28,6 +27,7 @@ items: [
     /*
     data: [
     {
+        id: '3245345',
         category: 'Call',
         date: '21/21/21',
         eventTime: '1:1 AM',

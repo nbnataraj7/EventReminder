@@ -3,8 +3,11 @@ extend: 'Ext.data.Store',
 requires: ['Ext.data.proxy.SQL'],
 model: 'EventReminder.model.Event',
 autoLoad: true,
+//uniqueIdStrategy: true,
 storeId: 'Upcoming',
 proxy: {
-    type: 'sql'
+    type: 'sql',
+    database: 'EventReminder',
+    table: 'NewEvents'
 }
 });

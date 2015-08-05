@@ -23,7 +23,11 @@ newEventBack: 'newEvent #back',
 newEventAddPeople: 'newEvent #addPeople',
 newEventSelectCategory: 'newEvent #selectCategory',
 newEventSelectDate: 'newEvent #selectDate',
-newEventChooseOne: 'newEvent #chooseOne'
+newEventChooseOne: 'newEvent #chooseOne',
+editEvent: 'editevent',
+editeventTitle: 'editevent #title',
+editeventBack: 'editevent #back',
+editeventSaveChanges: 'editevent #save'
 }
 },
 launch: function(){

@@ -3,7 +3,8 @@ extend: 'Ext.app.Controller',
 config: {
 refs: {
     upcoming: 'upcoming',
-    main: 'main'
+    main: 'main',
+    editEvent: 'editevent'
 },
 control: {
     upcoming: {
@@ -19,5 +20,7 @@ onBack: function(){
 onEditEvent: function(record){
     //console.log("Record : ");
     //console.log(record);
+    var editEventScreen = this.getEditEvent();
+    Ext.Viewport.animateActiveItem(editEventScreen, {type: 'slide', direction: 'left'});
 }
 });
