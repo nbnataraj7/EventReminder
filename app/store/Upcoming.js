@@ -1,6 +1,6 @@
 Ext.define('EventReminder.store.Upcoming', {
 extend: 'Ext.data.Store',
-requires: ['Ext.data.proxy.Sql'],
+requires: ['Ext.data.proxy.SQL'],
 model: 'EventReminder.model.Event',
 storeId: 'Upcoming',
 proxy: {
@@ -26,5 +26,6 @@ data: [
         priority: 'High',
         activities: ['Call']
     }
-    ]*/
+    ]
+    */
 });
