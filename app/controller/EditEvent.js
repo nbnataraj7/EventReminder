@@ -70,7 +70,7 @@ Ext.define('EventReminder.controller.EditEvent', {
     //Deleting the Event from Upcoming Events List
     onTrashEvent: function(){
 
-    this.getUpComingEventList().getSelectionCount();
+    //this.getUpComingEventList().getSelectionCount();
 
     //Deleting this record
     var back = this.getUpcoming();
