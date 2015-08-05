@@ -84,6 +84,16 @@ if(!errors.isValid()){
 else{
     console.log("No errors");
     this.fireEvent("insertEventCommand", event,  this);
+
+    //Flush the contents of the new Event form
+    this.getNewEventCategory().reset();
+    this.getNewEventSelectDate().setValue("");
+    this.getNewEventTimeSelect().setValue("");
+    this.getNewAlertTimeSelect().setValue("");
+    this.getNewEventMessage().setValue("");
+    this.getNewEventPeopleList().removeAll(true, true);
+    this.getNewEventPriority().setValue("");
+    this.getNewEventActivity().setValue("");
 }
 }
 });

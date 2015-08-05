@@ -5,6 +5,7 @@ config: {
 layout: {
     type: 'vbox'
 },
+autoLoad: true,
 items: [
 {
     xtype: 'titlebar',
