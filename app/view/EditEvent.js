@@ -17,13 +17,21 @@ Ext.define('EventReminder.view.EditEvent', {
             xtype: 'button',
             itemId: 'back',
             text: 'Back'
+        },
+        {
+            xtype: 'spacer'
+        },
+        {
+            xtype: 'button',
+            iconCls: 'trash',
+            itemId: 'trashEvent'
         }
         ]
     },
     //Form for Entering the Details of the Event
     {
         xtype: 'fieldset',
-        itemId: 'newEventForm',
+        itemId: 'eventForm',
             items: [
             {
                 xtype: 'selectfield',
@@ -108,7 +116,8 @@ Ext.define('EventReminder.view.EditEvent', {
                 ui: 'confirm',
                 itemId: 'save',
                 docked: 'bottom',
-                text: 'Save Changes'
+                text: 'Save Changes',
+                docked: 'bottom'
             }
    ]
    }],
@@ -142,6 +151,11 @@ Ext.define('EventReminder.view.EditEvent', {
            delegate: '#saveEvent',
            event: 'tap',
            fn: 'saveEvent'
+       },
+       {
+        delegate: '#trashEvent',
+        event:'tap',
+        fn: 'trashEvent'
        }
    ]
    },
@@ -162,5 +176,8 @@ Ext.define('EventReminder.view.EditEvent', {
    },
    saveEvent:function(){
     this.fireEvent("saveChangesCommand", this);
+   },
+   trashEvent: function(){
+    this.fireEvent("trashEventCommand", this);
    }
 });

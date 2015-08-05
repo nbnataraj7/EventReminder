@@ -1,11 +1,12 @@
 Ext.define('EventReminder.controller.NewEvent', {
 extend: 'Ext.app.Controller',
 xtype: 'neweventctr',
-requires: 'Ext.LoadMask',
+requires: ['Ext.LoadMask', 'Ext.MessageBox'],
 config: {
 refs: {
     newevent : 'newEvent',
     main: 'main',
+    people: 'people',
     newEventCategory: 'newEvent #selectCategory',
     newEventPeopleList: 'newEvent #peopleList',
     newEventSelectDate: 'newEvent #selectDate',
@@ -17,20 +18,50 @@ refs: {
 },
 control: {
     newevent: {
-    backCommand: 'onBack',
-    addPeopleCommand: 'onAddPeople',
-    priorityChangeCommand: 'onPriorityChange',
-    addEventCommand: 'onAddEvent'
+        backCommand: 'onBack',
+        addPeopleCommand: 'onAddPeople',
+        priorityChangeCommand: 'onPriorityChange',
+        addEventCommand: 'onAddEvent',
+        eventTimeSelectCommand: 'onEventTimeSelect',
+        alertTimeSelectCommand: 'onAlertTimeSelect',
+        removePersonCommand: 'onRemovePerson'
 }
 }
 },
+
 //Back button handling
 onBack: function(){
     Ext.Viewport.animateActiveItem(this.getMain(), {type: 'slide', direction: 'right'});
 },
+
+//Adding an Event Time
+onEventTimeSelect:function(){
+    var utils = Ext.create('EventReminder.utils.Utilities');
+    var eventTimePicker = utils.createTimePicker();
+    Ext.Viewport.add(eventTimePicker);
+    eventTimePicker.show();
+    var me = this;
+    eventTimePicker.addListener('change', function(scope, value, eOpts){
+    me.getNewEventTimeSelect().setValue(value.Hours+":"+value.Minutes+" "+value.AMPM);
+    });
+},
+
+//Adding an alert time
+onAlertTimeSelect:function(){
+    var utils = Ext.create('EventReminder.utils.Utilities');
+    var eventTimePicker = utils.createTimePicker();
+    Ext.Viewport.add(eventTimePicker);
+    eventTimePicker.show();
+    var me = this;
+    eventTimePicker.addListener('change', function(scope, value, eOpts){
+    me.getNewAlertTimeSelect().setValue(value.Hours+":"+value.Minutes+" "+value.AMPM);
+    });
+},
+
 //Function for adding people to the event list
 onAddPeople: function(){
-    var peoplePopup = Ext.create('EventReminder.view.People');
+    //var peoplePopup = Ext.create('EventReminder.view.People');
+    var peoplePopup = this.getPeople();
     peoplePopup.show();
 },
 //Function for changing the priority of the event
@@ -43,23 +74,16 @@ onPriorityChange:function(newValue){
     else
         this.getNewEventPriority().setLabel("High");
 },
+
+
 //Creating a New Event Based on the entered Field Values
 //and Validating them
 onAddEvent:function(){
 
-/*
-console.log("Creating a new event");
-console.log("Validating the Event fields");
-console.log(this.getNewEventCategory().getValue());
-console.log(this.getNewEventPeopleList().getData());
-console.log(this.getNewEventSelectDate().getFormattedValue());
-console.log(this.getNewEventTimeSelect().getValue());
-console.log(this.getNewAlertTimeSelect().getValue());
-console.log(this.getNewEventMessage().getValue());
-*/
-
 //Adding the contact number to the person
-var person =  (this.getNewEventPeopleList().getData()[0]).getData().contact;
+var person;
+if(this.getNewEventPeopleList().getData() != null)
+    person =  (this.getNewEventPeopleList().getData()[0]).getData().contact;
 console.log(person);
 
 //setting the values to the NewEvent Store
@@ -78,13 +102,23 @@ var event = Ext.create('EventReminder.model.Event', {
 var errors = event.validate();
 
 if(!errors.isValid()){
-    console.log("one or more Errors");
-    //console.log(errors);
+//Some errors are present
+    //console.log("one or more Errors");
+    Ext.Msg.alert("One or more errors");
 }
 else{
+//No errors
+
+/*
+//Adding a loader mask
+    var loader = {
+        xtype: 'loadmask',
+        message: 'Saving Event'
+        };
+    Ext.Viewport.add(loader);
+*/
     console.log("No errors");
     this.fireEvent("insertEventCommand", event,  this);
-
     //Flush the contents of the new Event form
     this.getNewEventCategory().reset();
     this.getNewEventSelectDate().setValue("");
@@ -94,6 +128,13 @@ else{
     this.getNewEventPeopleList().removeAll(true, true);
     this.getNewEventPriority().setValue("");
     this.getNewEventActivity().setValue("");
+
+    //Destroying the loader mask
+    //loader.destroy();
+    Ext.Msg.alert("Event Saved");
 }
+},
+onRemovePerson:function(){
+   this.getNewEventPeopleList().removeAll(true, true);
 }
 });

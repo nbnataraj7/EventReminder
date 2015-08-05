@@ -58,9 +58,10 @@ Ext.application({
         var Past = Ext.create('EventReminder.view.Past');
         var newEvent = Ext.create('EventReminder.view.NewEvent');
         var EditEvent = Ext.create('EventReminder.view.EditEvent');
+        var peoplePopup = Ext.create('EventReminder.view.People');
 
         // Initialize the main view
-        Ext.Viewport.add(titleBar, EventReminderMain, Upcoming, Past, bottomBar, EditEvent);
+        Ext.Viewport.add(titleBar, EventReminderMain, Upcoming, Past, bottomBar, EditEvent, peoplePopup);
     },
 
     onUpdated: function() {

@@ -11,6 +11,7 @@ Ext.define('EventReminder.view.People', {
         centered: true,
         modal: true,
         styleHtmlContent: true,
+        hidden: true,
         items: [
             {
                 xtype: 'titlebar',
@@ -25,6 +26,11 @@ Ext.define('EventReminder.view.People', {
                     text: 'close',
                     itemId: 'close'
                 }]
+            },
+            {
+                xtype: 'searchfield',
+                placeHolder: 'Search or Enter a Name',
+                itemId: 'personName'
             },
             {
                 xtype: 'list',

@@ -6,7 +6,9 @@ Ext.define('EventReminder.controller.EditEvent', {
             editEvent: 'editevent',
             editTimeSelect: 'editevent #eventTimeSelect',
             alertTimeSelect: 'editevent #alertTimeSelect',
-            editEventPriority: 'editevent #priority'
+            editEventPriority: 'editevent #priority',
+            upcoming: 'upcoming',
+            upcomingEventList: 'upcoming #upcomingEventList'
         },
         control: {
             editEvent: {
@@ -14,14 +16,16 @@ Ext.define('EventReminder.controller.EditEvent', {
                 addPeopleCommand: 'onAddPeople',
                 eventTimeCommand: 'onEventTime',
                 alertTimeCommand: 'onAlertTime',
-                priorityChangeCommand: 'onPriorityChange'
+                priorityChangeCommand: 'onPriorityChange',
+                saveChangesCommand: 'saveChanges',
+                trashEventCommand: 'onTrashEvent'
             }
         }
     },
     onBack: function(){
         //console.log("Back Command");
-        var main = this.getMain();
-        Ext.Viewport.animateActiveItem(main, {type: 'slide', direction: 'right'});
+        var back = this.getUpcoming();
+        Ext.Viewport.animateActiveItem(back, {type: 'slide', direction: 'right'});
     },
     onAddPeople:function(){
         var peoplePopup = Ext.create('EventReminder.view.People');
@@ -56,5 +60,20 @@ Ext.define('EventReminder.controller.EditEvent', {
           this.getEditEventPriority().setLabel("Medium");
         else
           this.getEditEventPriority().setLabel("High");
+    },
+
+    //Saving the edits in the database table
+    saveChanges: function(){
+        //Code for Editing the record in the database table
+    },
+
+    //Deleting the Event from Upcoming Events List
+    onTrashEvent: function(){
+
+    this.getUpComingEventList().getSelectionCount();
+
+    //Deleting this record
+    var back = this.getUpcoming();
+    Ext.Viewport.animateActiveItem(back, {type: 'slide', direction: 'right'});
     }
 });

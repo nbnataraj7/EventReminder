@@ -10,12 +10,12 @@ items: [
 {
     xtype: 'titlebar',
     itemId: 'title',
-items: [
-{
-    xtype: 'button',
-    itemId: 'back'
-}
-]
+    items: [
+    {
+        xtype: 'button',
+        itemId: 'back'
+    }
+    ]
 },
 {
     xtype: 'list',

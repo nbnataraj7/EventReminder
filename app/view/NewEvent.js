@@ -10,6 +10,7 @@ items: [
 {
     xtype: 'titlebar',
     itemId: 'title',
+    docked: 'top',
 items: [
 {
     xtype: 'button',
@@ -169,47 +170,35 @@ items: [
         delegate: '#addEvent',
         event: 'tap',
         fn: 'addEvent'
+    },
+    {
+        delegate: '#peopleList',
+        event: 'disclose',
+        fn: 'removePerson'
     }
     ]
 },
+
 //Adding back functionality
 back:function(){
-    //console.log("Back");
     this.fireEvent("backCommand", this);
 },
+
 //Adding Popup for people
 addPeople:function(){
-    //console.log("Add People");
     this.fireEvent("addPeopleCommand", this);
 },
+
 //Adding Picker for selecting event time
 eventTimeSelected:function(){
-    //console.log("Event Time Selected");
-    var utils = Ext.create('EventReminder.utils.Utilities');
-    var eventTimePicker = utils.createTimePicker();
-    Ext.Viewport.add(eventTimePicker);
-    eventTimePicker.show();
-    eventTimePicker.addListener('change', function(scope, value, eOpts){
-      //  console.log(value);
-        Ext.ComponentQuery.query('#eventTimeSelect')[0].setValue(value.Hours+":"+value.Minutes+" "+value.AMPM);
-    });
+    this.fireEvent("eventTimeSelectCommand", this);
 },
+
 //Adding Picker for Selecting alert time
 alertTimeSelected:function(){
-    //console.log("Alert Time Selected");
-    var utils = Ext.create('EventReminder.utils.Utilities');
-    var alertTimePicker = utils.createTimePicker();
-    Ext.Viewport.add(alertTimePicker);
-    alertTimePicker.show();
-    alertTimePicker.addListener('change', function(scope, value, eOpts){
-      //  console.log(value);
-        Ext.ComponentQuery.query('#alertTimeSelect')[0].setValue(value.Hours+":"+value.Minutes+" "+value.AMPM);
-    });
+    this.fireEvent("alertTimeSelectCommand", this);
 },
-initialize: function(){
-    //console.log("New Event Init");
-   //var util = Ext.create("EventReminder.utils.Utilities");
-},
+
 //Fire the priority change event
 priorityChanged:function(me, s1, thumb, newValue, oldValue, eOpts){
     this.fireEvent("priorityChangeCommand", newValue,  this);
@@ -219,5 +208,8 @@ addActivity: function(){
 },
 addEvent: function(){
     this.fireEvent("addEventCommand", this);
+},
+removePerson:function(){
+    this.fireEvent("removePersonCommand", this)
 }
 });
