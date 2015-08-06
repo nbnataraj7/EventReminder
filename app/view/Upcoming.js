@@ -27,10 +27,17 @@ items: [
     store: 'Upcoming',
     cls: 'event-list',
     grouper: {
+        sortProperty: 'date',
+        direction: 'DESC',
         groupFn: function(record){
-            return record.get('category');
+            if(record && record.data.date){
+                return record.data.date.toDateString();
+            }
+            else{
+                return '';
+            }
         }
-    }
+        }
 }
 ],
 listeners: [
