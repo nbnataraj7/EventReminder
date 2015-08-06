@@ -24,7 +24,7 @@ items: [
     itemId: 'upcomingEventList',
     itemTpl: document.getElementById('events').innerHTML,
     onItemDisclosure: true,
-    store: 'Upcoming',
+    store: 'Past',
     cls: 'event-list',
     grouper: {
         sortProperty: 'date',
