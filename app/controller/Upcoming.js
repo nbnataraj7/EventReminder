@@ -38,7 +38,7 @@ onEditEvent: function(record){
     //console.log(data);
 
     this.getEditCategory().setValue(data.category);
-    this.getEditDate().setValue(data.date);
+    this.getEditDate().setValue(new Date(data.date));
     this.getEditMessage().setValue(data.message);
     this.getEditEventPriority().setValue(data.priority);
     this.getEditActivity().setValue(data.activities);

@@ -9,5 +9,6 @@ proxy: {
     type: 'sql',
     database: 'EventReminder',
     table: 'NewEvents'
-}
+},
+sorters: [{property: 'date', direction: 'ASC'}]
 });

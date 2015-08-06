@@ -1,5 +1,5 @@
 Ext.define('EventReminder.view.EditEvent', {
-    extend: 'Ext.Container',
+    extend: 'Ext.form.Panel',
     xtype: 'editevent',
     config: {
         layout: {
@@ -8,7 +8,7 @@ Ext.define('EventReminder.view.EditEvent', {
         scrollable: true,
     items: [
     {
-        xtype: 'titlebar',
+        xtype: 'toolbar',
         itemId: 'title',
         title: 'Edit Event',
         docked: 'top',

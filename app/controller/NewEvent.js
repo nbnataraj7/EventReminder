@@ -83,18 +83,18 @@ onAddEvent:function(){
 //Adding the contact number to the person
 var person;
 if(this.getNewEventPeopleList().getData() != null)
-    person =  (this.getNewEventPeopleList().getData()[0]).getData().contact;
+    person =  (this.getNewEventPeopleList().getData()[0]).getData().name;
 console.log(person);
 
 //setting the values to the NewEvent Store
 var event = Ext.create('EventReminder.model.Event', {
     category: this.getNewEventCategory().getValue(),
-    date: this.getNewEventSelectDate().getFormattedValue(),
+    date: this.getNewEventSelectDate().getValue(),
     eventTime: this.getNewEventTimeSelect().getValue(),
     alertTime: this.getNewAlertTimeSelect().getValue(),
     message: this.getNewEventMessage().getValue(),
     people: person,
-    priority: this.getNewEventPriority().getValue(),
+    priority: this.getNewEventPriority().getLabel(),
     activities: this.getNewEventActivity().getValue()
 });
 

@@ -20,7 +20,7 @@ Ext.define('EventReminder.controller.People', {
         console.log("Adding selected person");
         var selected = this.getPeopleList().getSelection();
         console.log(selected);
-        //if the user does'nt select any
+        //if the user doesn't select any
         //place a new name in the list
         //and with a dummy contact
         if(selected.length == 0){

@@ -186,6 +186,7 @@ back:function(){
 
 //Adding Popup for people
 addPeople:function(){
+    var me = this;
     this.fireEvent("addPeopleCommand", this);
 },
 
