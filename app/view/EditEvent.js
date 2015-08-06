@@ -34,6 +34,10 @@ Ext.define('EventReminder.view.EditEvent', {
         itemId: 'eventForm',
             items: [
             {
+                xtype: 'hiddenfield',
+                itemId: 'hiddenField'
+            },
+            {
                 xtype: 'selectfield',
                 itemId: 'selectCategory',
                 label: 'Select Category',
@@ -114,7 +118,7 @@ Ext.define('EventReminder.view.EditEvent', {
             {
                 xtype: 'button',
                 ui: 'confirm',
-                itemId: 'save',
+                itemId: 'saveEvent',
                 docked: 'bottom',
                 text: 'Save Changes',
                 docked: 'bottom'
@@ -164,6 +168,7 @@ Ext.define('EventReminder.view.EditEvent', {
    },
    addPeople: function(){
     this.fireEvent("addPeopleCommand", this);
+    console.log("AddPeopleCommand from Edit Event");
    },
    eventTimeSelected:function(){
     this.fireEvent("eventTimeCommand", this)

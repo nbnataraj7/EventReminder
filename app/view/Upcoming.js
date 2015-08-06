@@ -13,7 +13,8 @@ items: [
     items: [
     {
         xtype: 'button',
-        itemId: 'back'
+        itemId: 'back',
+        ui:'back'
     }
     ]
 },

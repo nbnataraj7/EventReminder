@@ -14,17 +14,18 @@ refs: {
     newAlertTimeSelect: 'newEvent #alertTimeSelect',
     newEventMessage: 'newEvent #message',
     newEventPriority: 'newEvent #priority',
-    newEventActivity: 'newEvent #activity'
+    newEventActivity: 'newEvent #activity',
+    newEventHidden: 'newEvent #hiddenField'
 },
 control: {
     newevent: {
         backCommand: 'onBack',
-        addPeopleCommand: 'onAddPeople',
         priorityChangeCommand: 'onPriorityChange',
         addEventCommand: 'onAddEvent',
         eventTimeSelectCommand: 'onEventTimeSelect',
         alertTimeSelectCommand: 'onAlertTimeSelect',
-        removePersonCommand: 'onRemovePerson'
+        removePersonCommand: 'onRemovePerson',
+        addPeopleCommand: 'onAddPeople'
 }
 }
 },
@@ -32,6 +33,12 @@ control: {
 //Back button handling
 onBack: function(){
     Ext.Viewport.animateActiveItem(this.getMain(), {type: 'slide', direction: 'right'});
+},
+
+//Adding people Popup
+onAddPeople:function(){
+    var peoplePopup = this.getPeople();
+    peoplePopup.show();
 },
 
 //Adding an Event Time
@@ -58,12 +65,6 @@ onAlertTimeSelect:function(){
     });
 },
 
-//Function for adding people to the event list
-onAddPeople: function(){
-    //var peoplePopup = Ext.create('EventReminder.view.People');
-    var peoplePopup = this.getPeople();
-    peoplePopup.show();
-},
 //Function for changing the priority of the event
 onPriorityChange:function(newValue){
     //console.log(newValue);
@@ -82,12 +83,15 @@ onAddEvent:function(){
 
 //Adding the contact number to the person
 var person;
-if(this.getNewEventPeopleList().getData() != null)
-    person =  (this.getNewEventPeopleList().getData()[0]).getData().name;
-console.log(person);
+if(this.getNewEventPeopleList().getData() != null){
+    person = new Array();
+    person.push((this.getNewEventPeopleList().getData()[0]).getData().name);
+    console.log(this.getNewEventPeopleList().getData());
+}
 
 //setting the values to the NewEvent Store
 var event = Ext.create('EventReminder.model.Event', {
+    EventID: (new Date()).getTime(),
     category: this.getNewEventCategory().getValue(),
     date: this.getNewEventSelectDate().getValue(),
     eventTime: this.getNewEventTimeSelect().getValue(),
@@ -108,15 +112,6 @@ if(!errors.isValid()){
 }
 else{
 //No errors
-
-/*
-//Adding a loader mask
-    var loader = {
-        xtype: 'loadmask',
-        message: 'Saving Event'
-        };
-    Ext.Viewport.add(loader);
-*/
     console.log("No errors");
     this.fireEvent("insertEventCommand", event,  this);
     //Flush the contents of the new Event form

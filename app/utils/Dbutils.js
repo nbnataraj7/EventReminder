@@ -17,5 +17,36 @@ Ext.define('EventReminder.utils.Dbutils', {
             tx.executeSql('CREATE TABLE IF NOT EXISTS EVENTS (id unique, category, date, people, eventTime, alertTime, message, priority, activities)');
             tx.executeSql('INSERT INTO EVENTS VALUES('+id+','+category+','+date+', '+people+', '+eventTime+', '+alertTime+', '+message+', '+priority+', '+activities+')');
          });
-    }
-});
+    },
+
+    //Function for Updating Event Record in the Database
+    updateEvent: function(event){
+        var db = openDatabase('EventReminder', '1.0', 'Database for Events', 2*1024*1024);
+        db.transaction(function(tx){
+            var query = "UPDATE NewEvents SET category=\'"+event.category+"\',";
+            query += " date = \'"+event.date+"\',";
+            query += " eventTime = \'"+event.eventTime+"\',";
+            query += " alertTime = \'"+event.alertTime+"\',";
+            query += " people = \'"+event.people+"\',";
+            query += " message = \'"+event.message+"\',";
+            query += " priority = \'"+event.priority+"\',";
+            query += " activities = \'"+event.activities+"\',";
+            query += " WHERE EventID = \'"+event.EventID+"\';"
+            console.log(query);
+            tx.executeSql(query, [], function(tx, result){
+                console.log("Query executed");
+                console.log(result);
+            });
+        });
+    },
+    deleteRecord: function(eventId){
+        var db = openDatabase('EventReminder', '1.0', 'Database for Events', 2*1024*1024);
+        db.transaction(function(tx){
+                var query = 'DELETE FROM NewEvents WHERE EventID = '+eventId;
+                tx.executeSql(query, [], function(tx, result){
+                       console.log("Record Deleted");
+                       console.log(result);
+                });
+            });
+        }
+    });

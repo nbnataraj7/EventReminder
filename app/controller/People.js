@@ -5,21 +5,31 @@ Ext.define('EventReminder.controller.People', {
         refs: {
             people: 'people',
             peopleList: 'people #PeopleList',
+            newEvent: 'newEvent',
+            editEvent: 'editevent',
             newEventList: 'newEvent #peopleList',
-            enteredName: 'people #personName'
+            enteredName: 'people #personName',
+            upcomingEventList: 'upcoming #peopleList'
         },
         control: {
             people: {
-                addPersonCommand: 'onAddPersonCommand',
-                removeContactCommand: 'onRemoveContact'
+                closeCommand: 'onClose',
+                addPersonCommand: 'onAddPersonCommand'
             }
         }
     },
     //Adding people to the list in the New Event View List
     onAddPersonCommand: function(){
+
+        //Adding the selected people to the respective view List
         console.log("Adding selected person");
         var selected = this.getPeopleList().getSelection();
-        console.log(selected);
+
+        //Getting the list handle
+        var updateList = Ext.Viewport.getActiveItem().down("#peopleList");
+        console.log(Ext.Viewport.getActiveItem());
+        console.log(updateList);
+
         //if the user doesn't select any
         //place a new name in the list
         //and with a dummy contact
@@ -27,15 +37,14 @@ Ext.define('EventReminder.controller.People', {
             var person = {
                 name: this.getEnteredName().getValue(),
             }
-             this.getNewEventList().setData(person);
+             updateList.setData(person);
         }
         else{
-            this.getNewEventList().setData(selected);
+            updateList.setData(selected);
         }
       this.getPeople().hide();
     },
-    onRemoveContact:function(record){
-       // console.log(record);
-        this.getPeopleList().remove(record);
+    onClose: function(){
+        this.getPeople().hide();
     }
 });

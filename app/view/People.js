@@ -64,10 +64,10 @@ Ext.define('EventReminder.view.People', {
         ]
     },
     closePopup: function(){
-        this.hide();
+        this.fireEvent('closeCommand', this);
     },
     addPeople: function(){
-        //console.log("Add Person Command");
+        console.log("Add Person Command");
         this.fireEvent('addPersonCommand', this);
     }
 });

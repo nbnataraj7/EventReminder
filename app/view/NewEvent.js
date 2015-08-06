@@ -2,7 +2,7 @@ Ext.define('EventReminder.view.NewEvent', {
 extend: 'Ext.Container',
 xtype: 'newEvent',
 config: {
-scrollable: true,
+    scrollable: true,
 layout: {
     type: 'vbox'
 },
@@ -14,7 +14,8 @@ items: [
 items: [
 {
     xtype: 'button',
-    itemId: 'back'
+    itemId: 'back',
+    ui: 'back'
 }
 ]
 },
@@ -23,6 +24,10 @@ items: [
     xtype: 'fieldset',
     itemId: 'newEventForm',
         items: [
+        {
+            xtype: 'hiddenfield',
+            itemId: 'ID'
+        },
         {
             xtype: 'selectfield',
             itemId: 'selectCategory',
@@ -186,8 +191,8 @@ back:function(){
 
 //Adding Popup for people
 addPeople:function(){
-    var me = this;
     this.fireEvent("addPeopleCommand", this);
+    console.log("AddPeopleCommand from New Event");
 },
 
 //Adding Picker for selecting event time

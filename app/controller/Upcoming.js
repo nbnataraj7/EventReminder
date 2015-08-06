@@ -12,7 +12,8 @@ refs: {
     editDate: 'editevent #selectDate',
     editList: 'editevent #peopleList',
     editMessage: 'editevent #message',
-    editActivity: 'editevent #activity'
+    editActivity: 'editevent #activity',
+    editHidden: 'editevent #hiddenField'
 
 },
 control: {
@@ -37,13 +38,24 @@ onEditEvent: function(record){
     //console.log("Data: ");
     //console.log(data);
 
+    //Hidden field value (to be used as an identifier)
+    console.log(data.EventID);
+
+    this.getEditHidden().setValue(data.EventID);
     this.getEditCategory().setValue(data.category);
     this.getEditDate().setValue(new Date(data.date));
     this.getEditMessage().setValue(data.message);
-    this.getEditEventPriority().setValue(data.priority);
+    this.getEditEventPriority().setLabel(data.priority);
     this.getEditActivity().setValue(data.activities);
     this.getEditTimeSelect().setValue(data.alertTime);
     this.getAlertTimeSelect().setValue(data.eventTime);
+    var people = {
+        name: data.people
+    };
+    //remove garbage from the list
+    if(this.getEditList().getData() != null)
+      this.getEditList().removeAll(true, true);
+    this.getEditList().setData(people);
 
      //Setting the Edit Event Screen to the viewport
      Ext.Viewport.animateActiveItem(editEventScreen, {type: 'slide', direction: 'left'});
