@@ -35,11 +35,6 @@ onEditEvent: function(record){
     //Setting the Default values of the form fields
     //Saving data in a variable
     var data = record.getData();
-    //console.log("Data: ");
-    //console.log(data);
-
-    //Hidden field value (to be used as an identifier)
-    console.log(data.EventID);
 
     this.getEditHidden().setValue(data.EventID);
     this.getEditCategory().setValue(data.category);

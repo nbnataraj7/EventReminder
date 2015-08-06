@@ -18,7 +18,7 @@ Ext.define('EventReminder.utils.Dbutils', {
             tx.executeSql('INSERT INTO EVENTS VALUES('+id+','+category+','+date+', '+people+', '+eventTime+', '+alertTime+', '+message+', '+priority+', '+activities+')');
          });
     },
-
+/*
     //Function for Updating Event Record in the Database
     updateEvent: function(event){
         var db = openDatabase('EventReminder', '1.0', 'Database for Events', 2*1024*1024);
@@ -39,6 +39,24 @@ Ext.define('EventReminder.utils.Dbutils', {
             });
         });
     },
+*/
+    updateEvent: function(event){
+            //Get the store
+            var store = Ext.getStore("Upcoming");
+            var index = store.findExact('EventID', event.EventID);
+            var record = store.getAt(index);
+            record.set('category', event.category);
+            record.set('date', event.date);
+            record.set('eventTime', event.eventTime);
+            record.set('alertTime', event.alertTime);
+            record.set('people', event.people);
+            record.set('message', event.message);
+            record.set('priority', event.priority);
+            record.set('activities', event.activities);
+            store.sync();
+        },
+
+
     deleteRecord: function(eventId){
         var db = openDatabase('EventReminder', '1.0', 'Database for Events', 2*1024*1024);
         db.transaction(function(tx){

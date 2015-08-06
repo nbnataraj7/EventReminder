@@ -77,23 +77,46 @@ Ext.define('EventReminder.controller.EditEvent', {
 
         console.log(this.getEditEventPeopleList());
 
-        //Creating an Updated event Object to pass
-        var event = {
-            category : this.getEditEventCategory().getValue(),
-            date : this.getEditEventDate().getValue(),
-            eventTime : this.getEditTimeSelect().getValue(),
-            alertTime : this.getAlertTimeSelect().getValue(),
-            people : this.getEditEventPeopleList().getData().name,
-            message : this.getEditEventMessage().getValue(),
-            priority : this.getEditEventPriority().getLabel(),
-            activities : this.getEditEventActivities().getValue(),
-            EventID : this.getEditEventID().getValue()
-        };
-        console.log(event);
+        //Validating the current Event Note
+        var eventModel = Ext.create('EventReminder.model.Event', {
+            EventID: this.getEditEventID().getValue(),
+            category: this.getEditEventCategory().getValue(),
+            date:  this.getEditEventDate().getValue(),
+            eventTime: this.getEditTimeSelect().getValue(),
+            alertTime: this.getAlertTimeSelect().getValue(),
+            message: this.getEditEventMessage().getValue(),
+            people: this.getEditEventPeopleList().getData().name,
+            priority: this.getEditEventPriority().getLabel(),
+            activities: this.getEditEventActivities().getValue()
+        });
 
-        //Passing the Updated Event Object to be updated
-        dbutils.updateEvent(event);
+        var errors = eventModel.validate();
+        if(!errors.isValid())
+        {
+            console.log("One or more errors");
+            Ext.Msg.alert("One or more errors");
+        }
+        else{
+            //Creating an Updated event Object to pass
+            var event = {
+                category : this.getEditEventCategory().getValue(),
+                date : this.getEditEventDate().getValue(),
+                eventTime : this.getEditTimeSelect().getValue(),
+                alertTime : this.getAlertTimeSelect().getValue(),
+                people : this.getEditEventPeopleList().getData().name,
+                message : this.getEditEventMessage().getValue(),
+                priority : this.getEditEventPriority().getLabel(),
+                activities : this.getEditEventActivities().getValue(),
+                EventID : this.getEditEventID().getValue()
+            };
+            console.log(event);
 
+            //Passing the Updated Event Object to be updated
+            dbutils.updateEvent(event);
+
+            //Event Edited Successfully
+             Ext.Msg.alert("Changes Saved");
+        }
     },
 
     //Deleting the Event from Upcoming Events List

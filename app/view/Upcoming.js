@@ -25,22 +25,12 @@ items: [
     itemTpl: document.getElementById('events').innerHTML,
     onItemDisclosure: true,
     store: 'Upcoming',
-    /*
-    data: [
-    {
-        id: '3245345',
-        category: 'Call',
-        date: '21/21/21',
-        eventTime: '1:1 AM',
-        alertTime: '1:1 AM',
-        people: '8143621415',
-        message: 'Hello',
-        priority: 'High',
-        activities: 'Text'
+    cls: 'event-list',
+    grouper: {
+        groupFn: function(record){
+            return record.get('category');
+        }
     }
-    ],*/
-
-    cls: 'event-list'
 }
 ],
 listeners: [

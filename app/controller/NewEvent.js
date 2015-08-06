@@ -86,8 +86,11 @@ var person;
 if(this.getNewEventPeopleList().getData() != null){
     person = new Array();
     person.push((this.getNewEventPeopleList().getData()[0]).getData().name);
-    console.log(this.getNewEventPeopleList().getData());
+    //console.log(this.getNewEventPeopleList().getData());
 }
+
+//Setting the default value of the activity
+var activity = this.getNewEventActivity().getValue()?this.getNewEventActivity().getValue():"none";
 
 //setting the values to the NewEvent Store
 var event = Ext.create('EventReminder.model.Event', {
@@ -99,7 +102,7 @@ var event = Ext.create('EventReminder.model.Event', {
     message: this.getNewEventMessage().getValue(),
     people: person,
     priority: this.getNewEventPriority().getLabel(),
-    activities: this.getNewEventActivity().getValue()
+    activities: activity
 });
 
 //Validating against the Event model
@@ -122,14 +125,15 @@ else{
     this.getNewEventMessage().setValue("");
     this.getNewEventPeopleList().removeAll(true, true);
     this.getNewEventPriority().setValue("");
-    this.getNewEventActivity().setValue("");
+    this.getNewEventActivity().setValue("none");
 
     //Destroying the loader mask
     //loader.destroy();
     Ext.Msg.alert("Event Saved");
 }
 },
-onRemovePerson:function(){
-   this.getNewEventPeopleList().removeAll(true, true);
+onRemovePerson:function(record){
+    //console.log(record);
+   this.getNewEventPeopleList().remove(record);
 }
 });

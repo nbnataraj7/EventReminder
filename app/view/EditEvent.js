@@ -16,7 +16,8 @@ Ext.define('EventReminder.view.EditEvent', {
         {
             xtype: 'button',
             itemId: 'back',
-            text: 'Back'
+            text: 'Back',
+            ui: 'back'
         },
         {
             xtype: 'spacer'
@@ -108,12 +109,13 @@ Ext.define('EventReminder.view.EditEvent', {
                 xtype: 'selectfield',
                 label: 'Activity',
                 options: [
-                    {text: 'Select'},
+                    {text: 'Select', value: 'none'},
                     {text: 'Call', value: 'call'},
                     {text: 'Text', value: 'sms'},
                     {text: 'Email', value: 'email'}
                 ],
-                itemId: 'activity'
+                itemId: 'activity',
+                autoSelect: true
             },
             {
                 xtype: 'button',
