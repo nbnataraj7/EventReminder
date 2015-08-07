@@ -22,14 +22,17 @@ Ext.define('EventReminder.controller.DateFilter', {
        store.clearFilter();
 
        //Add A new Past Filter
-       store.filterBy(function(record){
+       store.filterBy(function(record, id){
+            console.log("Record : ");
+            console.log(record);
             var recordDate = new Date(record.getData().date);
             var now = new Date();
-            if(now > recordDate)
-                return true;
-            else
-                return false;
-       });
+            return (now > recordDate);
+       }, this);
+
+        //Reloading the Store
+        console.log("Reloading the Store");
+        store.load();
     },
 
     //This function filters out all the Past events from the store
@@ -38,16 +41,19 @@ Ext.define('EventReminder.controller.DateFilter', {
         var store = Ext.getStore("Upcoming");
 
         //First clear any previously applied filters
-        store.clearFilter();
+        //store.clearFilter();
 
            //Add A new Past Filter
-       store.filterBy(function(record){
+       store.filterBy(function(record, id){
+            console.log(record);
             var recordDate = new Date(record.getData().date);
             var now = new Date();
-            if(now > recordDate)
-                return false;
-            else
-                return true;
-           });
+            return (now < recordDate);
+       }, this);
+
+
+       //Reloading the Store
+       console.log("Reloading the Store");
+       store.load();
     }
-})
+});
