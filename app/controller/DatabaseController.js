@@ -18,7 +18,7 @@ Ext.define('EventReminder.controller.DatabaseController', {
     onInsertEvent:function(event){
         //Create the Upcoming Event Store
         //and Sync it
-        var upcomingEvents = Ext.create("EventReminder.store.Upcoming");
+        var upcomingEvents = Ext.getStore("Upcoming");
         upcomingEvents.add(event);
         upcomingEvents.sync();
     }

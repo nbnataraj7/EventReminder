@@ -20,7 +20,7 @@ Ext.application({
         'Main', 'Upcoming', 'Past', 'NewEvent', 'Strings', 'People', 'DatabaseController', 'EditEvent', 'DateFilter'
     ],
     models: ['Event', 'Person'],
-    stores: ['Upcoming', 'Past', 'NewEventPerson'],
+    stores: ['Upcoming', 'Past', 'NewEventPerson', 'AdhocPeople'],
     icon: {
         '57': 'resources/icons/Icon.png',
         '72': 'resources/icons/Icon~ipad.png',

@@ -1,5 +1,6 @@
 Ext.define('EventReminder.controller.People', {
     extend: 'Ext.app.Controller',
+    requires: 'Ext.MessageBox',
     //A Controller for adding People from the Contacts
     config: {
         refs: {
@@ -9,6 +10,7 @@ Ext.define('EventReminder.controller.People', {
             editEvent: 'editevent',
             newEventList: 'newEvent #peopleList',
             enteredName: 'people #personName',
+            enteredContact: 'people #personContact',
             upcomingEventList: 'upcoming #peopleList'
         },
         control: {
@@ -34,18 +36,34 @@ Ext.define('EventReminder.controller.People', {
         //place a new name in the list
         //and with a dummy contact
         if(selected.length == 0){
-            var person = {
+            var person = Ext.create('EventReminder.model.Person', {
                 name: this.getEnteredName().getValue(),
+                contact: this.getEnteredContact().getValue()
+            });
+            var personStore = Ext.getStore("Person");
+
+            //Validation for the person
+            var errors = person.validate()
+            if(person.name != "" && errors.isValid()){
+                console.log("Adding the person");
+                personStore.add(person);
+                personStore.sync();
+                updateList.add(person.getData());
+                Ext.Msg.alert("Person Added");
             }
-            if(person.name != "")
-             updateList.setData(person);
-            else
-                Ext.Msg.alert("No Person added");
+            else{
+               Ext.Msg.alert("None Added");
+            }
         }
-        else{
+        else {
+        //Person is Selected from the List
             updateList.setData(selected);
+            this.getPeopleList().deselectAll();
+            Ext.Msg.alert("Selected Person Added");
         }
-      this.getPeople().hide();
+
+        //Hide the popup
+        this.getPeople().hide();
     },
     onClose: function(){
         this.getPeople().hide();

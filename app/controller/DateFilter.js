@@ -41,7 +41,7 @@ Ext.define('EventReminder.controller.DateFilter', {
         var store = Ext.getStore("Upcoming");
 
         //First clear any previously applied filters
-        //store.clearFilter();
+        store.clearFilter();
 
            //Add A new Past Filter
        store.filterBy(function(record, id){

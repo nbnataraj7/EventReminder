@@ -50,7 +50,8 @@ onEditEvent: function(record){
     //remove garbage from the list
     if(this.getEditList().getData() != null)
       this.getEditList().removeAll(true, true);
-    this.getEditList().setData(people);
+    this.getEditList().add(people);
+    console.log(people);
 
      //Setting the Edit Event Screen to the viewport
      Ext.Viewport.animateActiveItem(editEventScreen, {type: 'slide', direction: 'left'});

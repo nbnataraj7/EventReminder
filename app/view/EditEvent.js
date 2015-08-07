@@ -56,7 +56,6 @@ Ext.define('EventReminder.view.EditEvent', {
                 itemId: 'peopleList',
                 height: '100px',
                 itemTpl: document.getElementById('people-list').innerHTML,
-                store: 'Person',
                 onItemDisclosure: true
             },
             {

@@ -45,8 +45,9 @@ items: [
             itemId: 'peopleList',
             height: '100px',
             itemTpl: document.getElementById('people-list').innerHTML,
-            store: 'Person',
-            onItemDisclosure: true
+            onItemDisclosure: true,
+            scrollable: true,
+            store: 'AdhocPeople'
         },
         {
             xtype: 'button',

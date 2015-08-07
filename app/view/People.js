@@ -48,7 +48,7 @@ Ext.define('EventReminder.view.People', {
                 ],
                 */
                 itemId: 'PeopleList',
-                store: 'NewEventPerson'
+                store: 'Person'
             },
             {
                 xtype: 'button',
