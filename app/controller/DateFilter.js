@@ -48,7 +48,7 @@ Ext.define('EventReminder.controller.DateFilter', {
             console.log(record);
             var recordDate = new Date(record.getData().date);
             var now = new Date();
-            return (now < recordDate);
+            return (now <= recordDate);
        }, this);
 
 

@@ -37,7 +37,10 @@ Ext.define('EventReminder.controller.People', {
             var person = {
                 name: this.getEnteredName().getValue(),
             }
+            if(person.name != "")
              updateList.setData(person);
+            else
+                Ext.Msg.alert("No Person added");
         }
         else{
             updateList.setData(selected);

@@ -80,7 +80,7 @@ Ext.define('EventReminder.view.EditEvent', {
                         xtype: 'textfield',
                         itemId: 'eventTimeSelect',
                         label: 'Event Time',
-                        placeHolder: 'Tap to select alert time'
+                        placeHolder: 'Tap to select event time'
                       },
                     //Select Alert Time
                       {

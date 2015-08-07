@@ -33,14 +33,22 @@ Ext.define('EventReminder.view.People', {
                 itemId: 'personName'
             },
             {
+                xtype: 'searchfield',
+                placeHolder: 'Search or Enter a Contact Number',
+                itemId: 'personContact'
+            },
+            {
                 xtype: 'list',
                 flex: 1,
                 itemTpl: document.getElementById('people-list').innerHTML,
+                /*
                 data: [
                     {name: 'Nataraj', contact: '9943051988'},
                     {name: 'Raju', contact: '8143621415'}
                 ],
-                itemId: 'PeopleList'
+                */
+                itemId: 'PeopleList',
+                store: 'NewEventPerson'
             },
             {
                 xtype: 'button',
