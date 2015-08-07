@@ -67,6 +67,7 @@ Ext.define('EventReminder.view.Main', {
     },
     upcoming: function(){
         console.log("Upcoming Events Command fired");
+        this.fireEvent('filterUpcomingCommand', this);
         this.fireEvent('upComingCommand', this);
     },
     newEvent: function(){
@@ -74,7 +75,8 @@ Ext.define('EventReminder.view.Main', {
         this.fireEvent('newEventCommand', this);
     },
     past: function(){
-          console.log("Past Events");
-          this.fireEvent('pastCommand', this);
+      console.log("Past Events");
+      this.fireEvent('filterPastCommand', this);
+      this.fireEvent('pastCommand', this);
     }
 });

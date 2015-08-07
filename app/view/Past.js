@@ -24,7 +24,7 @@ items: [
     itemId: 'upcomingEventList',
     itemTpl: document.getElementById('events').innerHTML,
     onItemDisclosure: true,
-    store: 'Past',
+    store: 'Upcoming',
     cls: 'event-list',
     grouper: {
         sortProperty: 'date',
@@ -53,6 +53,7 @@ listeners: [
 }
 ]
 },
+
 back:function(){
     this.fireEvent("backCommand", this);
 },
