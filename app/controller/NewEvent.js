@@ -132,8 +132,9 @@ else{
     Ext.Msg.alert("Event Saved");
 }
 },
-onRemovePerson:function(record){
-    //console.log(record);
-   this.getNewEventPeopleList().remove(record);
+onRemovePerson:function(index){
+    console.log("Removing the record");
+    console.log(index);
+   this.getNewEventPeopleList().removeAt(index);
 }
 });

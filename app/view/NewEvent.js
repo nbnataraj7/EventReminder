@@ -216,7 +216,7 @@ addActivity: function(){
 addEvent: function(){
     this.fireEvent("addEventCommand", this);
 },
-removePerson:function(list, record){
-    this.fireEvent("removePersonCommand", record, this)
+removePerson:function(scope, list, record, index){
+    this.fireEvent("removePersonCommand", index, this)
 }
 });

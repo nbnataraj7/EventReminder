@@ -58,6 +58,7 @@ Ext.define('EventReminder.controller.People', {
         else {
         //Person is Selected from the List
             updateList.setData(selected);
+            console.log(selected);
             this.getPeopleList().deselectAll();
             Ext.Msg.alert("Selected Person Added");
         }

@@ -68,6 +68,8 @@ Ext.define('EventReminder.view.EditEvent', {
                 itemId: 'selectDate',
                 xtype: 'datepickerfield',
                 label: 'Select date',
+                yearFrom: 2015,
+                yearTo: 2030,
                 value: new Date()
             },
             {

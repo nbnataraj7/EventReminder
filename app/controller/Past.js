@@ -3,7 +3,18 @@ extend: 'Ext.app.Controller',
 config: {
 refs: {
 past: 'past',
-main: 'main'
+main: 'main',
+editEvent: 'editevent',
+editTimeSelect: 'editevent #eventTimeSelect',
+alertTimeSelect: 'editevent #alertTimeSelect',
+editEventPriority: 'editevent #priority',
+editCategory: 'editevent #selectCategory',
+editDate: 'editevent #selectDate',
+editList: 'editevent #peopleList',
+editMessage: 'editevent #message',
+editActivity: 'editevent #activity',
+editHidden: 'editevent #hiddenField'
+
 },
 control: {
 past: {
@@ -16,7 +27,7 @@ onBack: function(){
 console.log("Returned to Main");
 Ext.Viewport.animateActiveItem(this.getMain(), {type: 'slide', direction: 'right'});
 },
-onEditEvent: function(){
+onEditEvent: function(record){
     var editEventScreen = this.getEditEvent();
 
     //Setting the Default values of the form fields
@@ -25,7 +36,7 @@ onEditEvent: function(){
 
     this.getEditHidden().setValue(data.EventID);
     this.getEditCategory().setValue(data.category);
-    this.getEditDate().setValue(new Date(data.date));
+    this.getEditDate().setValue(new Date());
     this.getEditMessage().setValue(data.message);
     this.getEditEventPriority().setLabel(data.priority);
     this.getEditActivity().setValue(data.activities);
@@ -37,7 +48,7 @@ onEditEvent: function(){
     //remove garbage from the list
     if(this.getEditList().getData() != null)
       this.getEditList().removeAll(true, true);
-    this.getEditList().setData(people);
+    this.getEditList().add(people);
 
      //Setting the Edit Event Screen to the viewport
      Ext.Viewport.animateActiveItem(editEventScreen, {type: 'slide', direction: 'left'});
