@@ -20,4 +20,20 @@
 }
 .x-list.event-list.x-list-item-tpl.x-list-disclosure{
 top: 35%;
+border-radius: 0px;
+width: 25%;
+}
+.x-list.past-event-list .x-list-disclosure:before{
+content: 'Reschedule';
+font-family: 'Comic Sans MS';
+font-size: 15px;
+}
+.x-list.event-list .x-list-disclosure:before{
+content: 'Edit';
+font-family: 'Comic Sans MS';
+font-size: 15px;
+}
+.x-list .x-list-item-tpl .x-list-disclosure{
+border-radius: 0px;
+width: 25%;
 }

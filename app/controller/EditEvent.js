@@ -30,8 +30,6 @@ Ext.define('EventReminder.controller.EditEvent', {
         }
     },
     onBack: function(){
-        //this.getUpcoming().destroy();
-
         var back = this.getUpcoming();
         Ext.Viewport.animateActiveItem(back, {type: 'slide', direction: 'right'});
     },

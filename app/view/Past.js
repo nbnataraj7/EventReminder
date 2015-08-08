@@ -21,11 +21,11 @@ items: [
 {
     xtype: 'list',
     flex: 1,
-    itemId: 'upcomingEventList',
+    itemId: 'pastEventList',
     itemTpl: document.getElementById('events').innerHTML,
     onItemDisclosure: true,
     store: 'Upcoming',
-    cls: 'event-list',
+    cls: 'past-event-list',
     grouper: {
         sortProperty: 'date',
         direction: 'DESC',
@@ -47,7 +47,7 @@ listeners: [
     fn: 'back'
 },
 {
-    delegate: '#upcomingEventList',
+    delegate: '#pastEventList',
     event: 'disclose',
     fn: 'editEvent'
 }
