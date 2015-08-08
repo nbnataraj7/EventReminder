@@ -39,6 +39,10 @@ Ext.define('EventReminder.view.EditEvent', {
                 itemId: 'hiddenField'
             },
             {
+                xtype: 'hiddenfield',
+                itemId: 'prev'
+            },
+            {
                 xtype: 'selectfield',
                 itemId: 'selectCategory',
                 label: 'Select Category',

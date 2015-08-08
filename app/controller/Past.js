@@ -13,7 +13,8 @@ editDate: 'editevent #selectDate',
 editList: 'editevent #peopleList',
 editMessage: 'editevent #message',
 editActivity: 'editevent #activity',
-editHidden: 'editevent #hiddenField'
+editHidden: 'editevent #hiddenField',
+editPrev : 'editevent #prev'
 
 },
 control: {
@@ -45,10 +46,17 @@ onEditEvent: function(record){
     var people = {
         name: data.people
     };
+
+
     //remove garbage from the list
     if(this.getEditList().getData() != null)
       this.getEditList().removeAll(true, true);
     this.getEditList().add(people);
+
+
+     //Setting the value of previous screen
+     this.getEditPrev().setValue("Past");
+
 
      //Setting the Edit Event Screen to the viewport
      Ext.Viewport.animateActiveItem(editEventScreen, {type: 'slide', direction: 'left'});

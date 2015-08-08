@@ -54,9 +54,12 @@ listeners: [
 ]
 },
 
+//Fire a Back Command
 back:function(){
     this.fireEvent("backCommand", this);
 },
+
+//Fire an Edit Event Command
 editEvent:function(list, record, target, index, e, eOpts){
     this.fireEvent("editEventCommand", record,  this);
 }

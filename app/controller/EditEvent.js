@@ -15,7 +15,9 @@ Ext.define('EventReminder.controller.EditEvent', {
             editEventPriority: 'editevent #priority',
             upcoming: 'upcoming',
             upcomingEventList: 'upcoming #upcomingEventList',
-            people: 'people'
+            people: 'people',
+            editPrev : 'editevent #prev',
+            past: 'past'
         },
         control: {
             editEvent: {
@@ -30,7 +32,13 @@ Ext.define('EventReminder.controller.EditEvent', {
         }
     },
     onBack: function(){
-        var back = this.getUpcoming();
+
+    //Set the value of Back with the appropriate view
+        var back;
+        if(this.getEditPrev().getValue() == "Past")
+            back = this.getPast();
+        else
+            back = this.getUpcoming();
         Ext.Viewport.animateActiveItem(back, {type: 'slide', direction: 'right'});
     },
     onAddPeople: function(){
@@ -131,8 +139,8 @@ Ext.define('EventReminder.controller.EditEvent', {
     //Syncing the store
     Ext.getStore("Upcoming").sync();
 
-    //Code for traversing back to the previous view
-    var back = this.getUpcoming();
-    Ext.Viewport.animateActiveItem(back, {type: 'slide', direction: 'right'});
+    //Code for traversing back to the Main View
+    Ext.Msg.alert("Event Deleted");
+    this.onBack();
     }
 });

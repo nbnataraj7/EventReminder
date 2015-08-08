@@ -13,7 +13,8 @@ refs: {
     editList: 'editevent #peopleList',
     editMessage: 'editevent #message',
     editActivity: 'editevent #activity',
-    editHidden: 'editevent #hiddenField'
+    editHidden: 'editevent #hiddenField',
+    editPrev : 'editevent #prev'
 
 },
 control: {
@@ -52,6 +53,11 @@ onEditEvent: function(record){
       this.getEditList().removeAll(true, true);
     this.getEditList().add(people);
     console.log(people);
+
+
+    //Setting the value of previous screen
+     this.getEditPrev().setValue("Upcoming");
+
 
      //Setting the Edit Event Screen to the viewport
      Ext.Viewport.animateActiveItem(editEventScreen, {type: 'slide', direction: 'left'});

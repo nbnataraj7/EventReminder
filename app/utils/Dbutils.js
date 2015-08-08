@@ -66,5 +66,8 @@ Ext.define('EventReminder.utils.Dbutils', {
                        console.log(result);
                 });
             });
+
+            //Sync the store
+            Ext.getStore("Upcoming").sync();
         }
     });
