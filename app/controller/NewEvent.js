@@ -82,9 +82,10 @@ onPriorityChange:function(newValue){
 onAddEvent:function(){
 
 //Adding the contact number to the person
-var person = Ext.getStore('EventPeople').getData().getAt(0).getData().name;
-if(person == null)
-    person = Ext.create('EventReminder.model.Person', {name: 'none', contact: ''});
+if(Ext.getStore('EventPeople').getData().getAt(0) == null)
+    var person = Ext.create('EventReminder.model.Person', {name: 'none', contact: ''});
+else
+    var person = Ext.getStore('EventPeople').getData().getAt(0).getData().name;
 
 //Setting the default value of the activity
 var activity = this.getNewEventActivity().getValue()?this.getNewEventActivity().getValue():"none";
