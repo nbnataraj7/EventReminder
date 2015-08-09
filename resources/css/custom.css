@@ -41,3 +41,6 @@ width: 25%;
 border-radius: 0px;
 width: 25%;
 }
+.x-list.people-list .x-list-disclosure:before{
+content: '*';
+}

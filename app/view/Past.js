@@ -35,6 +35,7 @@ items: [
     onItemDisclosure: true,
     store: 'Upcoming',
     cls: 'past-event-list',
+    scrollable: true,
     grouper: {
         sortProperty: 'date',
         direction: 'DESC',

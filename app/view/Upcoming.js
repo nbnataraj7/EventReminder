@@ -26,6 +26,7 @@ items: [
     onItemDisclosure: true,
     store: 'Upcoming',
     cls: 'event-list',
+    scrollable: true,
     grouper: {
         sortProperty: 'date',
         direction: 'DESC',

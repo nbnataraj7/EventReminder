@@ -44,10 +44,12 @@ items: [
             xtype: 'list',
             flex: 1,
             itemId: 'peopleList',
+            cls: 'people-list',
             itemTpl: document.getElementById('people-list').innerHTML,
             onItemDisclosure: true,
             store: 'EventPeople',
-            autoDestroy: true
+            autoDestroy: true,
+            scrollable: false
         },
         {
             xtype: 'button',
