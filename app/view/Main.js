@@ -57,6 +57,11 @@ Ext.define('EventReminder.view.Main', {
             delegate: '#past',
             event:'tap',
             fn: 'past'
+        },
+        {
+            delegate: '#dndmode',
+            event: 'change',
+            fn: 'dndswitch'
         }
         ]
     },
@@ -78,5 +83,8 @@ Ext.define('EventReminder.view.Main', {
       console.log("Past Events");
       this.fireEvent('filterPastCommand', this);
       this.fireEvent('pastCommand', this);
+    },
+    dndswitch: function(field, newvalue, oldvalue){
+        this.fireEvent('dndcommand', newvalue,  this);
     }
 });

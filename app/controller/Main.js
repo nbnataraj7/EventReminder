@@ -5,13 +5,15 @@ refs: {
 main: 'main',
 upcoming: 'upcoming',
 newEvent: 'newEvent',
-past: 'past'
+past: 'past',
+maindnd: 'main #dndmode'
 },
 control: {
     main: {
     upComingCommand: 'onUpComing',
     pastCommand: 'onPast',
-    newEventCommand: 'onNew'
+    newEventCommand: 'onNew',
+    dndcommand: 'ondnd'
     }
 }
 },
@@ -27,5 +29,12 @@ onPast:function(){
     },
 onNew: function(){
         Ext.Viewport.animateActiveItem(this.getNewEvent(), {type: 'slide', direction: 'left'});
+},
+ondnd: function(newvalue){
+    console.log(newvalue);
+    if(newvalue == 1)
+        this.getMaindnd().setLabel("DND MODE ON");
+    else
+        this.getMaindnd().setLabel("DND MODE OFF");
 }
 });

@@ -2,7 +2,7 @@ Ext.define('EventReminder.utils.StringEN', {
 title: 'Event Reminder',
 upcoming: 'Upcoming Reminders',
 past: 'Past Reminders',
-dnd: 'DND MODE',
+dnd: 'DND MODE OFF',
 back: 'Back',
 newEvent: 'New Event',
 addPeople: 'Add People',

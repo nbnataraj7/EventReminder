@@ -88,17 +88,46 @@ Ext.define('EventReminder.controller.EditEvent', {
         console.log("Saving the Changes");
         var dbutils = Ext.create('EventReminder.utils.Dbutils');
 
-        console.log(this.getEditEventPeopleList());
+        //Adding the contact number to the person
+        if(Ext.getStore('EventPeople').getData().getAt(0) == null)
+            var person = Ext.create('EventReminder.model.Person', {name: 'none', contact: ''});
+        else
+            var person = Ext.getStore('EventPeople').getData().getAt(0).getData().name;
+
+
+
+        //Calculating the Date and time at which the alert is been created
+        var date = this.getEditEventDate().getValue();
+        //adding hours and minute details
+        var year = parseInt(20+""+date.getYear()%100);
+        var month = date.getMonth();
+        var day = date.getDate();
+        var time = this.getAlertTimeSelect().getValue();
+        var ampm = time.split(" ")[1];
+        var minutes = parseInt((time.split(" ")[0]).split(":")[1]);
+        var hours;
+        if(ampm == "PM")
+        {
+            hours = (parseInt((time.split(" ")[0]).split(":")[0])+12)%24;
+        }
+        else{
+            hours = parseInt((time.split(" ")[0]).split(":")[0]);
+        }
+
+        //creating the new date
+        var newDate = new Date(year, month, day, hours, minutes);
+        console.log(newDate);
+
 
         //Validating the current Event Note
         var eventModel = Ext.create('EventReminder.model.Event', {
             EventID: this.getEditEventID().getValue(),
             category: this.getEditEventCategory().getValue(),
-            date:  this.getEditEventDate().getValue(),
+            date:  newDate,
             eventTime: this.getEditTimeSelect().getValue(),
             alertTime: this.getAlertTimeSelect().getValue(),
             message: this.getEditEventMessage().getValue(),
-            people: this.getEditEventPeopleList().getData().name,
+            people: person,
             priority: this.getEditEventPriority().getLabel(),
             activities: this.getEditEventActivities().getValue()
         });
@@ -116,7 +145,7 @@ Ext.define('EventReminder.controller.EditEvent', {
                 date : this.getEditEventDate().getValue(),
                 eventTime : this.getEditTimeSelect().getValue(),
                 alertTime : this.getAlertTimeSelect().getValue(),
-                people : this.getEditEventPeopleList().getData().name,
+                people : person,
                 message : this.getEditEventMessage().getValue(),
                 priority : this.getEditEventPriority().getLabel(),
                 activities : this.getEditEventActivities().getValue(),

@@ -33,6 +33,7 @@ control: {
 //Back button handling
 onBack: function(){
     Ext.Viewport.animateActiveItem(this.getMain(), {type: 'slide', direction: 'right'});
+
 },
 
 //Adding people Popup
