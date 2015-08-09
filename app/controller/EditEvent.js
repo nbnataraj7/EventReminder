@@ -98,7 +98,7 @@ Ext.define('EventReminder.controller.EditEvent', {
 
         //Adding the contact number to the person
         if(Ext.getStore('EventPeople').getData().getAt(0) == null)
-            var person = Ext.create('EventReminder.model.Person', {name: 'none', contact: ''});
+            var person = 'none'
         else
             var person = Ext.getStore('EventPeople').getData().getAt(0).getData().name;
 
@@ -174,7 +174,7 @@ Ext.define('EventReminder.controller.EditEvent', {
     dbutils.deleteRecord(this.getEditEventID().getValue());
 
     //Refreshing the list
-    this.getUpcomingEventList().refresh();
+    //this.getUpcomingEventList().refresh();
 
     //Syncing the store
     Ext.getStore("Upcoming").sync();

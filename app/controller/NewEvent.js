@@ -83,8 +83,9 @@ onPriorityChange:function(newValue){
 onAddEvent:function(){
 
 //Adding the contact number to the person
-if(Ext.getStore('EventPeople').getData().getAt(0) == null)
-    var person = Ext.create('EventReminder.model.Person', {name: 'none', contact: ''});
+if(Ext.getStore('EventPeople').getData().getAt(0) == null){
+    var person = 'none'
+    }
 else
     var person = Ext.getStore('EventPeople').getData().getAt(0).getData().name;
 
@@ -153,11 +154,11 @@ else{
     Ext.Msg.alert("Event Saved");
 }
 },
+
+//Function for removing person from the list
 onRemovePerson:function(index){
     console.log("Removing the record");
     console.log(index);
-   //this.getNewEventPeopleList().removeAt(index);
-   //this.getNewEventPeopleList().refresh();
    Ext.getStore('EventPeople').removeAt(index);
    Ext.getStore('EventPeople').sync();
 }
