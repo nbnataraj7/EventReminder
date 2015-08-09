@@ -124,6 +124,8 @@ Ext.define('EventReminder.controller.EditEvent', {
         var newDate = new Date(year, month, day, hours, minutes);
         console.log(newDate);
 
+        //Setting the default priority value
+        //(this.getEditEventPriority().getLabel() == 'Priority')?'Medium':(this.getEditEventPriority().getLabel() == 'Priority')
 
         //Validating the current Event Note
         var eventModel = Ext.create('EventReminder.model.Event', {

@@ -123,7 +123,7 @@ var event = Ext.create('EventReminder.model.Event', {
     alertTime: this.getNewAlertTimeSelect().getValue(),
     message: this.getNewEventMessage().getValue(),
     people: person,
-    priority: this.getNewEventPriority().getLabel(),
+    priority: (this.getNewEventPriority().getLabel() == 'Priority')?'Medium':(this.getNewEventPriority().getLabel()),
     activities: activity
 });
 
