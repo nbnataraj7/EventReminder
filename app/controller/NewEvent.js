@@ -90,11 +90,33 @@ else
 //Setting the default value of the activity
 var activity = this.getNewEventActivity().getValue()?this.getNewEventActivity().getValue():"none";
 
+//Calculating the Date and time at which the alert is been created
+var date = this.getNewEventSelectDate().getValue();
+//adding hours and minute details
+var year = parseInt(20+""+date.getYear()%100);
+var month = date.getMonth();
+var day = date.getDate();
+var time = this.getNewAlertTimeSelect().getValue();
+var ampm = time.split(" ")[1];
+var minutes = parseInt((time.split(" ")[0]).split(":")[1]);
+var hours;
+if(ampm == "PM")
+{
+    hours = (parseInt((time.split(" ")[0]).split(":")[0])+12)%24;
+}
+else{
+    hours = parseInt((time.split(" ")[0]).split(":")[0]);
+}
+
+//creating the new date
+var newDate = new Date(year, month, day, hours, minutes);
+console.log(newDate);
+
 //setting the values to the NewEvent Store
 var event = Ext.create('EventReminder.model.Event', {
     EventID: (new Date()).getTime(),
     category: this.getNewEventCategory().getValue(),
-    date: this.getNewEventSelectDate().getValue(),
+    date: newDate,
     eventTime: this.getNewEventTimeSelect().getValue(),
     alertTime: this.getNewAlertTimeSelect().getValue(),
     message: this.getNewEventMessage().getValue(),
