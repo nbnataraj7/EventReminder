@@ -8,13 +8,22 @@ layout: {
 autoLoad: true,
 items: [
 {
-    xtype: 'titlebar',
+    xtype: 'toolbar',
     itemId: 'title',
     items: [
     {
         xtype: 'button',
         itemId: 'back',
         ui:'back'
+    },
+    {
+        xtype: 'spacer'
+    },
+    {
+        xtype: 'button',
+        itemId: 'clear',
+        text: 'Clear All',
+        ui: 'confirm'
     }
     ]
 },
@@ -50,6 +59,11 @@ listeners: [
     delegate: '#pastEventList',
     event: 'disclose',
     fn: 'editEvent'
+},
+{
+    delegate: '#clear',
+    event: 'tap',
+    fn: 'clearCommand'
 }
 ]
 },
@@ -62,5 +76,10 @@ back:function(){
 //Fire an Edit Event Command
 editEvent:function(list, record, target, index, e, eOpts){
     this.fireEvent("editEventCommand", record,  this);
+},
+
+//Fire a clear command
+clearCommand: function(){
+    this.fireEvent('clearCommand', this);
 }
 });

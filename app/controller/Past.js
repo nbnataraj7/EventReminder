@@ -19,8 +19,9 @@ editPrev : 'editevent #prev'
 },
 control: {
 past: {
-backCommand: 'onBack',
-editEventCommand: 'onEditEvent'
+    backCommand: 'onBack',
+    editEventCommand: 'onEditEvent',
+    clearCommand: 'onClear'
 }
 }
 },
@@ -59,5 +60,12 @@ onEditEvent: function(record){
 
      //Setting the Edit Event Screen to the viewport
      Ext.Viewport.animateActiveItem(editEventScreen, {type: 'slide', direction: 'left'});
+},
+
+//Clearing out all the past reminders
+onClear: function(){
+console.log("Clearing out");
+Ext.getStore("Upcoming").removeAll();
+Ext.getStore("Upcoming").sync();
 }
 });
