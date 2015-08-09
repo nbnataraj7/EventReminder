@@ -27,7 +27,8 @@ Ext.define('EventReminder.controller.EditEvent', {
                 priorityChangeCommand: 'onPriorityChange',
                 saveChangesCommand: 'saveChanges',
                 trashEventCommand: 'onTrashEvent',
-                addPeopleCommand: 'onAddPeople'
+                addPeopleCommand: 'onAddPeople',
+                removePeopleCommand: 'onRemovePeople'
             }
         }
     },
@@ -39,6 +40,11 @@ Ext.define('EventReminder.controller.EditEvent', {
             back = this.getPast();
         else
             back = this.getUpcoming();
+
+    //Clear the adhoc store
+        Ext.getStore('EventPeople').removeAll();
+        Ext.getStore('EventPeople').sync();
+
         Ext.Viewport.animateActiveItem(back, {type: 'slide', direction: 'right'});
     },
     onAddPeople: function(){
@@ -142,5 +148,13 @@ Ext.define('EventReminder.controller.EditEvent', {
     //Code for traversing back to the Main View
     Ext.Msg.alert("Event Deleted");
     this.onBack();
+    },
+
+    //When the item disclosee of the people list is clicked
+    //Person item should be removed
+    onRemovePeople: function(index){
+        Ext.getStore('EventPeople').removeAt(index);
+        Ext.getStore('EventPeople').sync();
     }
+
 });

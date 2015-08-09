@@ -135,6 +135,9 @@ else{
 onRemovePerson:function(index){
     console.log("Removing the record");
     console.log(index);
-   this.getNewEventPeopleList().removeAt(index);
+   //this.getNewEventPeopleList().removeAt(index);
+   //this.getNewEventPeopleList().refresh();
+   Ext.getStore('EventPeople').removeAt(index);
+   Ext.getStore('EventPeople').sync();
 }
 });

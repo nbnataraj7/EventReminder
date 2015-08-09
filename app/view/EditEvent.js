@@ -57,10 +57,11 @@ Ext.define('EventReminder.view.EditEvent', {
             },
             {
                 xtype: 'list',
+                flex: 1,
                 itemId: 'peopleList',
-                height: '100px',
                 itemTpl: document.getElementById('people-list').innerHTML,
-                onItemDisclosure: true
+                onItemDisclosure: true,
+                store: 'EventPeople'
             },
             {
                 xtype: 'button',
@@ -164,9 +165,14 @@ Ext.define('EventReminder.view.EditEvent', {
            fn: 'saveEvent'
        },
        {
-        delegate: '#trashEvent',
-        event:'tap',
-        fn: 'trashEvent'
+            delegate: '#trashEvent',
+            event:'tap',
+            fn: 'trashEvent'
+       },
+       {
+            delegate: '#peopleList',
+            event: 'disclose',
+            fn: 'removePeople'
        }
    ]
    },
@@ -175,7 +181,6 @@ Ext.define('EventReminder.view.EditEvent', {
    },
    addPeople: function(){
     this.fireEvent("addPeopleCommand", this);
-    console.log("AddPeopleCommand from Edit Event");
    },
    eventTimeSelected:function(){
     this.fireEvent("eventTimeCommand", this)
@@ -191,5 +196,9 @@ Ext.define('EventReminder.view.EditEvent', {
    },
    trashEvent: function(){
     this.fireEvent("trashEventCommand", this);
+   },
+   removePeople: function(scope, list, record, index){
+    console.log("Removing people");
+    this.fireEvent('removePeopleCommand', index,  this);
    }
 });

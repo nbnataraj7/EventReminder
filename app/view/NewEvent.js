@@ -42,12 +42,12 @@ items: [
         },
         {
             xtype: 'list',
+            flex: 1,
             itemId: 'peopleList',
-            height: '100px',
             itemTpl: document.getElementById('people-list').innerHTML,
             onItemDisclosure: true,
-            scrollable: true,
-            store: 'AdhocPeople'
+            store: 'EventPeople',
+            autoDestroy: true
         },
         {
             xtype: 'button',

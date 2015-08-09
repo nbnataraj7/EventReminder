@@ -57,14 +57,17 @@ Ext.define('EventReminder.controller.People', {
         }
         else {
         //Person is Selected from the List
-            updateList.setData(selected);
-            console.log(selected);
-            this.getPeopleList().deselectAll();
+            var adhoc = Ext.getStore('EventPeople');
+            adhoc.add(selected);
+            adhoc.sync();
             Ext.Msg.alert("Selected Person Added");
         }
 
         //Hide the popup
         this.getPeople().hide();
+
+        //Increase the height of the list to adjust items
+        updateList.setHeight(updateList.getItemHeight()*Ext.getStore('EventPeople').getData().getCount());
     },
     onClose: function(){
         this.getPeople().hide();
