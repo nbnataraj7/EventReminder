@@ -14,7 +14,6 @@ Ext.define('EventReminder.controller.DatabaseController', {
             insertEventCommand: this.onInsertEvent.bind(this)
         });
 
-
         //Making sure adhoc is clear
         Ext.getStore('EventPeople').removeAll();
         Ext.getStore().sync();

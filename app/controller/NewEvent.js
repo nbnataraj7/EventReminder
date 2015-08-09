@@ -42,7 +42,7 @@ onAddPeople:function(){
     peoplePopup.show();
 },
 
-//Adding an Event Time
+//Adding an Event Time from a custom time picker
 onEventTimeSelect:function(){
     var utils = Ext.create('EventReminder.utils.Utilities');
     var eventTimePicker = utils.createTimePicker();
@@ -54,7 +54,7 @@ onEventTimeSelect:function(){
     });
 },
 
-//Adding an alert time
+//Adding an alert time from a custom time picker
 onAlertTimeSelect:function(){
     var utils = Ext.create('EventReminder.utils.Utilities');
     var eventTimePicker = utils.createTimePicker();

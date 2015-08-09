@@ -47,10 +47,14 @@ Ext.define('EventReminder.controller.EditEvent', {
 
         Ext.Viewport.animateActiveItem(back, {type: 'slide', direction: 'right'});
     },
+
+    //Adding people from a popup
     onAddPeople: function(){
         var peoplePopup = this.getPeople();
         peoplePopup.show();
     },
+
+    //Setting the event time using custom time picker
     onEventTime:function(){
         var utils = Ext.create('EventReminder.utils.Utilities');
         var eventTimePicker = utils.createTimePicker();
@@ -62,6 +66,8 @@ Ext.define('EventReminder.controller.EditEvent', {
         me.getEditTimeSelect().setValue(value.Hours+":"+value.Minutes+" "+value.AMPM);
         });
     },
+
+    //Setting the alert time using custom time picker
     onAlertTime:function(){
         var utils = Ext.create('EventReminder.utils.Utilities');
         var eventTimePicker = utils.createTimePicker();
@@ -73,6 +79,8 @@ Ext.define('EventReminder.controller.EditEvent', {
         me.getAlertTimeSelect().setValue(value.Hours+":"+value.Minutes+" "+value.AMPM);
         });
     },
+
+    //Function to Handle priority change
     onPriorityChange: function(newValue){
         if(newValue < 35)
           this.getEditEventPriority().setLabel("Low");
@@ -93,8 +101,6 @@ Ext.define('EventReminder.controller.EditEvent', {
             var person = Ext.create('EventReminder.model.Person', {name: 'none', contact: ''});
         else
             var person = Ext.getStore('EventPeople').getData().getAt(0).getData().name;
-
-
 
         //Calculating the Date and time at which the alert is been created
         var date = this.getEditEventDate().getValue();
@@ -131,7 +137,6 @@ Ext.define('EventReminder.controller.EditEvent', {
             priority: this.getEditEventPriority().getLabel(),
             activities: this.getEditEventActivities().getValue()
         });
-
         var errors = eventModel.validate();
         if(!errors.isValid())
         {
