@@ -13,6 +13,12 @@ Ext.define('EventReminder.controller.DatabaseController', {
         newEvent.on({
             insertEventCommand: this.onInsertEvent.bind(this)
         });
+
+
+        //Making sure adhoc is clear
+        Ext.getStore('EventPeople').removeAll();
+        Ext.getStore().sync();
+        conole.log('Adhoc cleared');
     },
     //Function to insert the Event into the Table
     onInsertEvent:function(event){

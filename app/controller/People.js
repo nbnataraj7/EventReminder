@@ -58,7 +58,8 @@ Ext.define('EventReminder.controller.People', {
         else {
         //Person is Selected from the List
             var adhoc = Ext.getStore('EventPeople');
-            adhoc.add(selected);
+            var person = Ext.create('EventReminder.model.Person', {name: selected[0].getData().name, contact: selected[0].getData().contact});
+            adhoc.add(person);
             adhoc.sync();
             Ext.Msg.alert("Selected Person Added");
         }

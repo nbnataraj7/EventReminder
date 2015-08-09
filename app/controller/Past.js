@@ -43,16 +43,15 @@ onEditEvent: function(record){
     this.getEditActivity().setValue(data.activities);
     this.getEditTimeSelect().setValue(data.alertTime);
     this.getAlertTimeSelect().setValue(data.eventTime);
-    var people = {
-        name: data.people
-    };
 
-
-    //remove garbage from the list
-    if(this.getEditList().getData() != null)
-      this.getEditList().removeAll(true, true);
-    this.getEditList().add(people);
-
+    //Adding people
+    var people = Ext.create('EventReminder.model.Person', {
+        name: data.people,
+        contact: data.contact
+    });
+    Ext.getStore('EventPeople').add(people);
+    Ext.getStore('EventPeople').sync();
+    this.getEditList().setHeight(this.getEditList().getItemHeight()*Ext.getStore('EventPeople').getData().getCount());
 
      //Setting the value of previous screen
      this.getEditPrev().setValue("Past");
