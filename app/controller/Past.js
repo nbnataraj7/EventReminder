@@ -43,8 +43,8 @@ onEditEvent: function(record){
     this.getEditMessage().setValue(data.message);
     this.getEditEventPriority().setLabel(data.priority);
     this.getEditActivity().setValue(data.activities);
-    this.getEditTimeSelect().setValue(data.alertTime);
-    this.getAlertTimeSelect().setValue(data.eventTime);
+    this.getEditTimeSelect().setValue(data.eventTime);
+    this.getAlertTimeSelect().setValue(data.alertTime);
 
     //Adding people
     var people = Ext.create('EventReminder.model.Person', {

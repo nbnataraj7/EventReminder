@@ -10,5 +10,7 @@ selectCategory: 'Select Category',
 selectDate: 'Select Date',
 alertOn: 'Alert On',
 eventTime: 'Event Time',
-chooseOne: 'Choose One'
+chooseOne: 'Choose One',
+addCategory: 'Add New Category',
+newCategory: 'New Category'
 });

@@ -6,14 +6,16 @@ main: 'main',
 upcoming: 'upcoming',
 newEvent: 'newEvent',
 past: 'past',
-maindnd: 'main #dndmode'
+maindnd: 'main #dndmode',
+category: 'category'
 },
 control: {
     main: {
     upComingCommand: 'onUpComing',
     pastCommand: 'onPast',
     newEventCommand: 'onNew',
-    dndcommand: 'ondnd'
+    dndcommand: 'ondnd',
+    newCategoryCommand: 'onNewCategory'
     }
 }
 },
@@ -46,5 +48,10 @@ ondnd: function(newvalue){
         this.getMaindnd().setLabel("DND MODE ON");
     else
         this.getMaindnd().setLabel("DND MODE OFF");
+},
+onNewCategory: function(){
+    //console.log("Adding a New Category");
+    //Launch a form for creating a new category
+    Ext.Viewport.animateActiveItem(this.getCategory(), {type: 'slide', direction: 'left'});
 }
 });

@@ -35,6 +35,15 @@ Ext.define('EventReminder.view.Main', {
                  cls: 'launch-button'
             },
             {
+                xtype: 'button',
+                itemId: 'addCategory',
+                layout: {
+                    pack: 'center'
+                },
+                ui: 'action',
+                cls: 'launch-button'
+            },
+            {
                 xtype: 'togglefield',
                 name: 'DND',
                 itemId: 'dndmode',
@@ -62,6 +71,11 @@ Ext.define('EventReminder.view.Main', {
             delegate: '#dndmode',
             event: 'change',
             fn: 'dndswitch'
+        },
+        {
+            delegate: '#addCategory',
+            event: 'tap',
+            fn: 'addCategory'
         }
         ]
     },
@@ -86,5 +100,8 @@ Ext.define('EventReminder.view.Main', {
     },
     dndswitch: function(field, newvalue, oldvalue){
         this.fireEvent('dndcommand', newvalue,  this);
+    },
+    addCategory: function(){
+        this.fireEvent("newCategoryCommand", this);
     }
 });

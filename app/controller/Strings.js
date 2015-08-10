@@ -14,6 +14,7 @@ mainUpcoming: 'main #upcoming',
 mainPast: 'main #past',
 mainDnd: 'main #dndmode',
 mainNew: 'main #new',
+mainCategory: 'main #addCategory',
 upcomingTitle: 'upcoming #title',
 upcomingBack: 'upcoming #back',
 pastTitle: 'past #title',
@@ -27,7 +28,9 @@ newEventChooseOne: 'newEvent #chooseOne',
 editEvent: 'editevent',
 editeventTitle: 'editevent #title',
 editeventBack: 'editevent #back',
-editeventSaveChanges: 'editevent #save'
+editeventSaveChanges: 'editevent #save',
+categoryTitle: 'category #newCategory',
+categoryBack: 'category #back'
 }
 },
 launch: function(){
@@ -51,6 +54,9 @@ this.getNewEventBack().setText(strings.back);
 this.getNewEventAddPeople().setText(strings.addPeople);
 this.getNewEventSelectCategory().setLabel(strings.selectCategory);
 this.getNewEventSelectDate().setLabel(strings.selectDate);
+this.getMainCategory().setText(strings.addCategory);
+this.getCategoryTitle().setTitle(strings.newCategory);
+this.getCategoryBack().setText(strings.back);
 //this.getNewEventChooseOne().setText(strings.chooseOne);
 }
 });
