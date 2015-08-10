@@ -23,6 +23,7 @@ items: [
 //Form for Entering the Details of the Event
     xtype: 'fieldset',
     itemId: 'newEventForm',
+    autoDestroy: false,
         items: [
         {
             xtype: 'hiddenfield',
@@ -48,7 +49,7 @@ items: [
             itemTpl: document.getElementById('people-list').innerHTML,
             onItemDisclosure: true,
             store: 'EventPeople',
-            autoDestroy: true,
+            autoDestroy: false,
             scrollable: false
         },
         {

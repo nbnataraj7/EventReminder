@@ -15,7 +15,6 @@ refs: {
     editActivity: 'editevent #activity',
     editHidden: 'editevent #hiddenField',
     editPrev : 'editevent #prev'
-
 },
 control: {
     upcoming: {

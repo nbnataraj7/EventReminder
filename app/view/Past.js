@@ -30,6 +30,7 @@ items: [
 {
     xtype: 'list',
     flex: 1,
+    autoDestroy: false,
     itemId: 'pastEventList',
     itemTpl: document.getElementById('events').innerHTML,
     onItemDisclosure: true,

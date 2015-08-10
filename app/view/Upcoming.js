@@ -21,6 +21,7 @@ items: [
 {
     xtype: 'list',
     flex: 1,
+    autoDestroy: false,
     itemId: 'upcomingEventList',
     itemTpl: document.getElementById('events').innerHTML,
     onItemDisclosure: true,

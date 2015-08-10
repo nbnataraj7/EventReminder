@@ -41,12 +41,7 @@ Ext.define('EventReminder.view.People', {
                 xtype: 'list',
                 flex: 1,
                 itemTpl: document.getElementById('people-list').innerHTML,
-                /*
-                data: [
-                    {name: 'Nataraj', contact: '9943051988'},
-                    {name: 'Raju', contact: '8143621415'}
-                ],
-                */
+                autoDestroy: false,
                 itemId: 'PeopleList',
                 store: 'Person'
             },

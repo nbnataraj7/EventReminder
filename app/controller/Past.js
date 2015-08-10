@@ -3,6 +3,7 @@ extend: 'Ext.app.Controller',
 config: {
 refs: {
 past: 'past',
+pastPeople: 'past #peopleList',
 main: 'main',
 editEvent: 'editevent',
 editTimeSelect: 'editevent #eventTimeSelect',
@@ -57,7 +58,6 @@ onEditEvent: function(record){
      //Setting the value of previous screen
      this.getEditPrev().setValue("Past");
 
-
      //Setting the Edit Event Screen to the viewport
      Ext.Viewport.animateActiveItem(editEventScreen, {type: 'slide', direction: 'left'});
 },
@@ -65,7 +65,11 @@ onEditEvent: function(record){
 //Clearing out all the past reminders
 onClear: function(){
 console.log("Clearing out");
-Ext.getStore("Upcoming").removeAll();
-Ext.getStore("Upcoming").sync();
+var upcoming = Ext.getStore("Upcoming");
+upcoming.each(function(item, index, length){
+   upcoming.remove(item);
+});
+upcoming.sync();
+//this.getPastPeople().refresh();
 }
 });

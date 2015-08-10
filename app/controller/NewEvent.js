@@ -32,7 +32,7 @@ control: {
 
 //Back button handling
 onBack: function(){
-    Ext.getStore('EventPeople').removeAll();
+    Ext.getStore('EventPeople').removeAll(true);
     Ext.getStore('EventPeople').sync();
     Ext.Viewport.animateActiveItem(this.getMain(), {type: 'slide', direction: 'right'});
 },
@@ -146,7 +146,7 @@ else{
     this.getNewEventTimeSelect().setValue("");
     this.getNewAlertTimeSelect().setValue("");
     this.getNewEventMessage().setValue("");
-    this.getNewEventPeopleList().removeAll(true, true);
+    this.getNewEventPeopleList().removeAll();
     this.getNewEventPriority().setValue("");
     this.getNewEventActivity().setValue("none");
 

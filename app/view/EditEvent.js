@@ -58,12 +58,14 @@ Ext.define('EventReminder.view.EditEvent', {
             {
                 xtype: 'list',
                 flex: 1,
+                height: '20',
                 itemId: 'peopleList',
                 cls: 'people-list',
                 itemTpl: document.getElementById('people-list').innerHTML,
                 onItemDisclosure: true,
                 store: 'EventPeople',
-                scrollable: false
+                scrollable: false,
+                autoDestroy: false
             },
             {
                 xtype: 'button',
