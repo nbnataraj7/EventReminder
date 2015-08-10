@@ -1,5 +1,6 @@
 Ext.define('EventReminder.controller.EditEvent', {
     extend: 'Ext.app.Controller',
+    xtype: 'editeventctr',
     config: {
         refs: {
             main: 'main',
@@ -35,11 +36,18 @@ Ext.define('EventReminder.controller.EditEvent', {
     onBack: function(){
 
     //Set the value of Back with the appropriate view
+    //As well as Apply appropriate filters
         var back;
-        if(this.getEditPrev().getValue() == "Past")
+        if(this.getEditPrev().getValue() == "Past"){
             back = this.getPast();
-        else
+            console.log("Filter Upcoming");
+            this.fireEvent("filterUpcomingCommand", this);
+         }
+        else{
             back = this.getUpcoming();
+            console.log("Filter Past");
+            this.fireEvent("filterPastCommand", this);
+         }
 
     //Clear the adhoc store
         Ext.getStore('EventPeople').removeAll();
@@ -149,7 +157,7 @@ Ext.define('EventReminder.controller.EditEvent', {
             //Creating an Updated event Object to pass
             var event = {
                 category : this.getEditEventCategory().getValue(),
-                date : this.getEditEventDate().getValue(),
+                date : newDate,
                 eventTime : this.getEditTimeSelect().getValue(),
                 alertTime : this.getAlertTimeSelect().getValue(),
                 people : person,
@@ -166,6 +174,7 @@ Ext.define('EventReminder.controller.EditEvent', {
             //Event Edited Successfully
              Ext.Msg.alert("Changes Saved");
         }
+
     },
 
     //Deleting the Event from Upcoming Events List
@@ -192,5 +201,4 @@ Ext.define('EventReminder.controller.EditEvent', {
         Ext.getStore('EventPeople').removeAt(index);
         Ext.getStore('EventPeople').sync();
     }
-
 });

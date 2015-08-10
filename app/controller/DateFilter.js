@@ -3,7 +3,7 @@ Ext.define('EventReminder.controller.DateFilter', {
 
     config: {
         refs: {
-            main: 'main'
+            main: 'main',
         },
         control: {
             main: {
@@ -55,5 +55,17 @@ Ext.define('EventReminder.controller.DateFilter', {
        //Reloading the Store
        console.log("Reloading the Store");
        store.load();
+    },
+
+    //Bind the filter commands from various controllers
+    launch: function(){
+    this.callParent();
+    console.log("Filters Installed");
+
+    var editEvent = EventReminder.app.getController('EditEvent');
+        editEvent.on({
+            filterPastCommand: this.onUpcoming.bind(this),
+            filterUpcomingCommand: this.onPast.bind(this)
+        });
     }
 });
