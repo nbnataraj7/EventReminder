@@ -48,6 +48,9 @@ Ext.define('EventReminder.controller.People', {
                 console.log("Adding the person");
                 personStore.add(person);
                 personStore.sync();
+                var adhoc = Ext.getStore('EventPeople');
+                adhoc.add(person);
+                adhoc.sync();
                 updateList.add(person.getData());
                 Ext.Msg.alert("Person Added");
             }
