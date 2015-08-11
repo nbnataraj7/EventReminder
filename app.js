@@ -8,10 +8,10 @@ Ext.application({
     name: 'EventReminder',
 
     views: [
-        'Main', 'Upcoming', 'Past', 'NewEvent', 'People', 'EditEvent'
+        'Main', 'Upcoming', 'Past', 'NewEvent', 'People', 'EditEvent', 'Event'
     ],
     controllers: [
-        'Main', 'Upcoming', 'Past', 'NewEvent', 'Strings', 'People', 'DatabaseController', 'EditEvent', 'DateFilter', 'Category'
+        'Main', 'Upcoming', 'Past', 'NewEvent', 'Strings', 'People', 'DatabaseController', 'EditEvent', 'DateFilter', 'Category', 'Event'
     ],
     models: ['Event', 'Person', 'Category', 'CategoryOptions'],
     stores: ['Upcoming', 'Past', 'NewEventPerson', 'AdhocPeople', 'Category', 'CategoryOptions'],
@@ -54,9 +54,9 @@ Ext.application({
         var EditEvent = Ext.create('EventReminder.view.EditEvent');
         var peoplePopup = Ext.create('EventReminder.view.People');
         var category = Ext.create('EventReminder.view.Category');
-
+        var event = Ext.create('EventReminder.view.Event');
         // Initialize the main view
-        Ext.Viewport.add(titleBar, EventReminderMain, Upcoming, Past, bottomBar, newEvent, EditEvent, peoplePopup, category);
+        Ext.Viewport.add(titleBar, EventReminderMain, Upcoming, Past, bottomBar, newEvent, EditEvent, peoplePopup, category, event);
     },
 
     onUpdated: function() {

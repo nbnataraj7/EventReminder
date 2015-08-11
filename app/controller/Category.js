@@ -54,18 +54,27 @@ Ext.define('EventReminder.controller.Category', {
                 value: this.getCategoryName().getValue()
             });
 
-            //Add the new category to options
-            var categoryOptionsStore = Ext.getStore('CategoryOptions');
-            categoryOptionsStore.add(option);
-            categoryOptionsStore.sync();
+            var errors = option.validate();
 
-           //Display success message
-           Ext.Msg.alert('New Category Created');
+            if(errors.isValid())
+            {
+                //Add the new category to options
+                var categoryOptionsStore = Ext.getStore('CategoryOptions');
+                categoryOptionsStore.add(option);
+                categoryOptionsStore.sync();
 
-           //Clear the fields
-           this.getCategoryName().setValue("");
-           this.getCategoryPriority().setValue(0);
-           this.getCategoryActivity().getValue("");
+               //Display success message
+               Ext.Msg.alert('New Category Created');
+
+               //Clear the fields
+               this.getCategoryName().setValue("");
+               this.getCategoryPriority().setValue(0);
+               this.getCategoryActivity().getValue("");
+            }
+            else
+            {
+                Ext.Msg.alert('Category Already Exists');
+            }
         }
     },
 
