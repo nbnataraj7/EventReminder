@@ -33,14 +33,7 @@ items: [
             xtype: 'selectfield',
             itemId: 'selectCategory',
             label: 'Select Category',
-            options: [
-                {text: 'Choose One'},
-                {text: 'Birthday', value: 'Birthday'},
-                {text: 'Meeting', value: 'Meeting'},
-                {text: 'Call', value: 'Call'},
-                {text: 'Email', value: 'Email'},
-                {text: 'Shopping', value: 'Shopping'}
-            ],
+            store: 'CategoryOptions'
         },
         {
             xtype: 'list',
@@ -124,7 +117,12 @@ items: [
         {
             xtype: 'selectfield',
             label: 'Activity',
-            store: 'CategoryOptions',
+            options: [
+                {text: 'Select', value: 'none'},
+                {text: 'Call', value: 'call'},
+                {text: 'Text', value: 'sms'},
+                {text: 'Email', value: 'email'}
+            ],
             itemId: 'activity'
         },
         {

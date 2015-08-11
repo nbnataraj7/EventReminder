@@ -42,18 +42,22 @@ Ext.define('EventReminder.controller.Category', {
            Ext.Msg.alert("Enter a valid Category Name");
         }
         else{
+
+            //Getting the Options store
             var store = Ext.getStore('Category');
             store.add(category);
             store.sync();
 
-            var options = new Array();
-            options = this.getEditEventCategory().getOptions();
-            var option = {text: this.getCategoryName().getValue(), value: this.getCategoryName().getValue()};
-            options.push(option);
+            //Prepare Option Object
+            var option = Ext.create('EventReminder.model.CategoryOptions', {
+                text: this.getCategoryName().getValue(),
+                value: this.getCategoryName().getValue()
+            });
 
             //Add the new category to options
-            this.getNewEventCategory().setOptions(options);
-            this.getEditEventCategory().setOptions(options);
+            var categoryOptionsStore = Ext.getStore('CategoryOptions');
+            categoryOptionsStore.add(option);
+            categoryOptionsStore.sync();
 
            //Display success message
            Ext.Msg.alert('New Category Created');
@@ -63,9 +67,13 @@ Ext.define('EventReminder.controller.Category', {
            this.getCategoryPriority().setValue(0);
            this.getCategoryActivity().getValue("");
         }
-    }
+    },
 
     launch: function(){
+        if(Ext.getStore('CategoryOptions').getCount() != 0)
+        {
+            Ext.getStore('CategoryOptions').removeAll();
+        }
         Ext.getStore('CategoryOptions').sync();
     }
     });
