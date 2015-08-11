@@ -5,7 +5,7 @@ Ext.define('EventReminder.controller.EditEvent', {
         refs: {
             main: 'main',
             editEvent: 'editevent',
-            editEventCategory: 'editevent #selectCategory',
+            editEventCategory: 'editevent #selectEditCategory',
             editEventDate: 'editevent #selectDate',
             editEventPeopleList: 'editevent #peopleList',
             editEventMessage: 'editevent #message',

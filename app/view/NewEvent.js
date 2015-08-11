@@ -32,6 +32,7 @@ items: [
         {
             xtype: 'selectfield',
             itemId: 'selectCategory',
+            label: 'Select Category',
             options: [
                 {text: 'Choose One'},
                 {text: 'Birthday', value: 'Birthday'},
@@ -220,5 +221,9 @@ addEvent: function(){
 },
 removePerson:function(scope, list, record, index){
     this.fireEvent("removePersonCommand", index, this)
+},
+initialize: function(){
+    console.log('New Event View Initialized');
+    this.fireEvent("setCategoryOptionsCommand", this);
 }
 });

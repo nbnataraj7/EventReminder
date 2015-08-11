@@ -1,5 +1,5 @@
 Ext.define('EventReminder.view.EditEvent', {
-    extend: 'Ext.form.Panel',
+    extend: 'Ext.Container',
     xtype: 'editevent',
     config: {
         layout: {
@@ -44,7 +44,7 @@ Ext.define('EventReminder.view.EditEvent', {
             },
             {
                 xtype: 'selectfield',
-                itemId: 'selectCategory',
+                itemId: 'selectEditCategory',
                 label: 'Select Category',
                 options: [
                     {text: 'Choose One'},
@@ -204,5 +204,9 @@ Ext.define('EventReminder.view.EditEvent', {
    removePeople: function(scope, list, record, index){
     console.log("Removing people");
     this.fireEvent('removePeopleCommand', index,  this);
+   },
+   initialize: function(){
+    console.log("Edit Event Initialized");
+    this.fireEvent('setCategoryOptionsCommand', this);
    }
 });

@@ -8,7 +8,7 @@ refs: {
     editTimeSelect: 'editevent #eventTimeSelect',
     alertTimeSelect: 'editevent #alertTimeSelect',
     editEventPriority: 'editevent #priority',
-    editCategory: 'editevent #selectCategory',
+    editCategory: 'editevent #selectEditCategory',
     editDate: 'editevent #selectDate',
     editList: 'editevent #peopleList',
     editMessage: 'editevent #message',
@@ -30,7 +30,6 @@ onBack: function(){
 //Open a view for editing the Event
 //Also set the values of the fields
 onEditEvent: function(record){
-     var editEventScreen = this.getEditEvent();
 
     //Setting the Default values of the form fields
     //Saving data in a variable
@@ -60,8 +59,7 @@ onEditEvent: function(record){
     //Setting the value of previous screen
      this.getEditPrev().setValue("Upcoming");
 
-
      //Setting the Edit Event Screen to the viewport
-     Ext.Viewport.animateActiveItem(editEventScreen, {type: 'slide', direction: 'left'});
+     Ext.Viewport.animateActiveItem(this.getEditEvent(), {type: 'slide', direction: 'left'});
 }
 });
