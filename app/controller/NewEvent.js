@@ -162,5 +162,8 @@ onRemovePerson:function(index){
     console.log(index);
    Ext.getStore('EventPeople').removeAt(index);
    Ext.getStore('EventPeople').sync();
+
+    //Increase the height of the list to adjust items
+    this.getNewEventPeopleList().setHeight(this.getNewEventPeopleList().getItemHeight()*Ext.getStore('EventPeople').getData().getCount());
 }
 });
