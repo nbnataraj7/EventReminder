@@ -83,9 +83,9 @@ onPriorityChange:function(newValue){
 //and Validating them
 onAddEvent:function(){
 
-//Adding the contact number to the person
+//Adding the contact name to the person
 if(Ext.getStore('EventPeople').getData().getAt(0) == null){
-    var person = 'none'
+    var person = 'none';
     }
 else
     var person = Ext.getStore('EventPeople').getData().getAt(0).getData().name;
@@ -117,6 +117,7 @@ console.log(newDate);
 
 //setting the values to the NewEvent Store
 var event = Ext.create('EventReminder.model.Event', {
+    Recur: 'none',
     EventID: (new Date()).getTime(),
     category: this.getNewEventCategory().getValue(),
     date: newDate,

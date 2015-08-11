@@ -14,17 +14,12 @@ Ext.define('EventReminder.controller.DatabaseController', {
             insertEventCommand: this.onInsertEvent.bind(this)
         });
 
-        /*
-        //Making sure adhoc is clear
-        Ext.getStore('EventPeople').removeAll();
-        Ext.getStore().sync();
-        conole.log('Adhoc cleared');
-        */
     },
     //Function to insert the Event into the Table
     onInsertEvent:function(event){
-        //Create the Upcoming Event Store
+        //get the Upcoming event store
         //and Sync it
+        console.log(event);
         var upcomingEvents = Ext.getStore("Upcoming");
         upcomingEvents.add(event);
         upcomingEvents.sync();
