@@ -13,8 +13,8 @@ Ext.application({
     controllers: [
         'Main', 'Upcoming', 'Past', 'NewEvent', 'Strings', 'People', 'DatabaseController', 'EditEvent', 'DateFilter', 'Category'
     ],
-    models: ['Event', 'Person', 'Category'],
-    stores: ['Upcoming', 'Past', 'NewEventPerson', 'AdhocPeople', 'Category'],
+    models: ['Event', 'Person', 'Category', 'CategoryOptions'],
+    stores: ['Upcoming', 'Past', 'NewEventPerson', 'AdhocPeople', 'Category', 'CategoryOptions'],
     icon: {
         '57': 'resources/icons/Icon.png',
         '72': 'resources/icons/Icon~ipad.png',

@@ -124,12 +124,7 @@ items: [
         {
             xtype: 'selectfield',
             label: 'Activity',
-            options: [
-                {text: 'Select'},
-                {text: 'Call', value: 'call'},
-                {text: 'Text', value: 'sms'},
-                {text: 'Email', value: 'email'}
-            ],
+            store: 'CategoryOptions',
             itemId: 'activity'
         },
         {
@@ -221,9 +216,5 @@ addEvent: function(){
 },
 removePerson:function(scope, list, record, index){
     this.fireEvent("removePersonCommand", index, this)
-},
-initialize: function(){
-    console.log('New Event View Initialized');
-    this.fireEvent("setCategoryOptionsCommand", this);
 }
 });

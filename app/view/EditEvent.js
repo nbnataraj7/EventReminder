@@ -46,14 +46,7 @@ Ext.define('EventReminder.view.EditEvent', {
                 xtype: 'selectfield',
                 itemId: 'selectEditCategory',
                 label: 'Select Category',
-                options: [
-                    {text: 'Choose One'},
-                    {text: 'Birthday', value: 'Birthday'},
-                    {text: 'Meeting', value: 'Meeting'},
-                    {text: 'Call', value: 'Call'},
-                    {text: 'Email', value: 'Email'},
-                    {text: 'Shopping', value: 'Shopping'}
-                ],
+                store: 'CategoryOptions',
             },
             {
                 xtype: 'list',
@@ -204,9 +197,5 @@ Ext.define('EventReminder.view.EditEvent', {
    removePeople: function(scope, list, record, index){
     console.log("Removing people");
     this.fireEvent('removePeopleCommand', index,  this);
-   },
-   initialize: function(){
-    console.log("Edit Event Initialized");
-    this.fireEvent('setCategoryOptionsCommand', this);
    }
 });

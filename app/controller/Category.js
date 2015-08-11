@@ -17,12 +17,6 @@ Ext.define('EventReminder.controller.Category', {
             category: {
                 backCommand: 'back',
                 createCommand: 'create'
-            },
-            editevent: {
-                setCategoryOptionsCommand: 'setEditCategories'
-            },
-            newevent: {
-                setCategoryOptionsCommand: 'setNewCategories'
             }
         }
     },
@@ -69,13 +63,9 @@ Ext.define('EventReminder.controller.Category', {
            this.getCategoryPriority().setValue(0);
            this.getCategoryActivity().getValue("");
         }
-    },
+    }
 
-    //Set the Categories of Edit View
-    setEditCategories: function(){
-    },
-
-    //Set the category options of NewEvent View
-    setNewCategories: function(){
+    launch: function(){
+        Ext.getStore('CategoryOptions').sync();
     }
     });
