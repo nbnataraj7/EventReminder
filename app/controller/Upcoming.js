@@ -14,7 +14,8 @@ refs: {
     editMessage: 'editevent #message',
     editActivity: 'editevent #activity',
     editHidden: 'editevent #hiddenField',
-    editPrev : 'editevent #prev'
+    editPrev : 'editevent #prev',
+    editRecurrence: 'editevent #recurrence'
 },
 control: {
     upcoming: {
@@ -34,7 +35,7 @@ onEditEvent: function(record){
     //Setting the Default values of the form fields
     //Saving data in a variable
     var data = record.getData();
-
+    this.getEditRecurrence().setValue(data.Recur);
     this.getEditHidden().setValue(data.EventID);
     this.getEditCategory().setValue(data.category);
     this.getEditDate().setValue(new Date(data.date));
@@ -43,7 +44,6 @@ onEditEvent: function(record){
     this.getEditActivity().setValue(data.activities);
     this.getEditTimeSelect().setValue(data.eventTime);
     this.getAlertTimeSelect().setValue(data.alertTime);
-
 
     //Adding people
     //Adding people

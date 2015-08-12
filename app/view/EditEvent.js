@@ -10,13 +10,12 @@ Ext.define('EventReminder.view.EditEvent', {
     {
         xtype: 'toolbar',
         itemId: 'title',
-        title: 'Edit Event',
         docked: 'top',
         items: [
         {
             xtype: 'button',
             itemId: 'back',
-            text: 'Back',
+            iconCls: 'arrow_left',
             ui: 'back'
         },
         {
@@ -24,9 +23,25 @@ Ext.define('EventReminder.view.EditEvent', {
         },
         {
             xtype: 'button',
+            iconCls: 'action',
+            ui: 'confirm',
+            itemId: 'saveEvent'
+        },
+        {
+            xtype: 'button',
+            iconCls: 'add',
+            itemId: 'addPeople'
+        },
+        {
+            xtype: 'button',
+            iconCls: 'settings',
+            itemId: 'addRecurrence'
+        },
+        {
+            xtype: 'button',
             iconCls: 'trash',
             itemId: 'trashEvent'
-        }
+        },
         ]
     },
     //Form for Entering the Details of the Event
@@ -37,6 +52,10 @@ Ext.define('EventReminder.view.EditEvent', {
             {
                 xtype: 'hiddenfield',
                 itemId: 'hiddenField'
+            },
+            {
+                xtype: 'hiddenfield',
+                itemId: 'recurrence'
             },
             {
                 xtype: 'hiddenfield',
@@ -59,12 +78,6 @@ Ext.define('EventReminder.view.EditEvent', {
                 store: 'EventPeople',
                 scrollable: false,
                 autoDestroy: false
-            },
-            {
-                xtype: 'button',
-                itemId: 'addPeople',
-                ui: 'confirm',
-                text: 'Add People'
             },
             {
                 itemId: 'selectDate',
@@ -119,14 +132,6 @@ Ext.define('EventReminder.view.EditEvent', {
                 ],
                 itemId: 'activity',
                 autoSelect: true
-            },
-            {
-                xtype: 'button',
-                ui: 'confirm',
-                itemId: 'saveEvent',
-                docked: 'bottom',
-                text: 'Save Changes',
-                docked: 'bottom'
             }
    ]
    }],
@@ -170,6 +175,11 @@ Ext.define('EventReminder.view.EditEvent', {
             delegate: '#peopleList',
             event: 'disclose',
             fn: 'removePeople'
+       },
+       {
+            delegate: '#addRecurrence',
+            event: 'tap',
+            fn: 'editRecurrence'
        }
    ]
    },
@@ -195,7 +205,10 @@ Ext.define('EventReminder.view.EditEvent', {
     this.fireEvent("trashEventCommand", this);
    },
    removePeople: function(scope, list, record, index){
-    console.log("Removing people");
+    //console.log("Removing people");
     this.fireEvent('removePeopleCommand', index,  this);
+   },
+   editRecurrence: function(){
+    this.fireEvent('editRecurrenceCommand', this);
    }
 });

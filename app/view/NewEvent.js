@@ -8,15 +8,36 @@ layout: {
 },
 items: [
 {
-    xtype: 'titlebar',
+    xtype: 'toolbar',
     itemId: 'title',
     docked: 'top',
 items: [
 {
     xtype: 'button',
     itemId: 'back',
+    iconCls: 'arrow_left',
     ui: 'back'
-}
+},
+{
+    xtype: 'spacer'
+},
+{
+    xtype: 'button',
+    itemId: 'saveEvent',
+    iconCls: 'action',
+    ui:'confirm',
+    itemId: 'addEvent'
+},
+{
+    xtype: 'button',
+    iconCls: 'add',
+    itemId: 'addPeople',
+},
+{
+     xtype: 'button',
+    iconCls: 'settings',
+    itemId: 'addRecurrence'
+},
 ]
 },
 {
@@ -28,6 +49,11 @@ items: [
         {
             xtype: 'hiddenfield',
             itemId: 'ID'
+        },
+        {
+            xtype: 'hiddenfield',
+            itemId: 'recurrence',
+            value: 'none'
         },
         {
             xtype: 'selectfield',
@@ -45,11 +71,6 @@ items: [
             store: 'EventPeople',
             autoDestroy: false,
             scrollable: false
-        },
-        {
-            xtype: 'button',
-            itemId: 'addPeople',
-            ui: 'confirm'
         },
         {
             itemId: 'selectDate',
@@ -124,13 +145,6 @@ items: [
                 {text: 'Email', value: 'email'}
             ],
             itemId: 'activity'
-        },
-        {
-            xtype: 'button',
-            ui: 'confirm',
-            text: 'Create Event',
-            itemId: 'addEvent',
-            docked: 'bottom'
         }
      ]
     }
@@ -177,6 +191,11 @@ items: [
         delegate: '#peopleList',
         event: 'disclose',
         fn: 'removePerson'
+    },
+    {
+        delegate: '#addRecurrence',
+        event: 'tap',
+        fn: 'addRecurrence'
     }
     ]
 },
@@ -214,5 +233,8 @@ addEvent: function(){
 },
 removePerson:function(scope, list, record, index){
     this.fireEvent("removePersonCommand", index, this)
+},
+addRecurrence: function(){
+    this.fireEvent('recurrenceCommand', this);
 }
 });

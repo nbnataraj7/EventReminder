@@ -15,7 +15,9 @@ refs: {
     newEventMessage: 'newEvent #message',
     newEventPriority: 'newEvent #priority',
     newEventActivity: 'newEvent #activity',
-    newEventHidden: 'newEvent #hiddenField'
+    newEventHidden: 'newEvent #hiddenField',
+    recurrence: 'recurrence',
+    newEventRecurrence: 'newEvent #recurrence'
 },
 control: {
     newevent: {
@@ -25,7 +27,8 @@ control: {
         eventTimeSelectCommand: 'onEventTimeSelect',
         alertTimeSelectCommand: 'onAlertTimeSelect',
         removePersonCommand: 'onRemovePerson',
-        addPeopleCommand: 'onAddPeople'
+        addPeopleCommand: 'onAddPeople',
+        recurrenceCommand: 'onRecurrence'
 }
 }
 },
@@ -117,7 +120,7 @@ console.log(newDate);
 
 //setting the values to the NewEvent Store
 var event = Ext.create('EventReminder.model.Event', {
-    Recur: 'none',
+    Recur: this.getNewEventRecurrence().getValue(),
     EventID: (new Date()).getTime(),
     category: this.getNewEventCategory().getValue(),
     date: newDate,
@@ -166,5 +169,11 @@ onRemovePerson:function(index){
 
     //Increase the height of the list to adjust items
     this.getNewEventPeopleList().setHeight(this.getNewEventPeopleList().getItemHeight()*Ext.getStore('EventPeople').getData().getCount());
+},
+
+//Setting an event as Recurring one
+onRecurrence: function(){
+    this.getRecurrence().show();
 }
+
 });

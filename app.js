@@ -8,13 +8,17 @@ Ext.application({
     name: 'EventReminder',
 
     views: [
-        'Main', 'Upcoming', 'Past', 'NewEvent', 'People', 'EditEvent', 'Event'
+        'Main', 'Upcoming', 'Past', 'NewEvent', 'People', 'EditEvent', 'Event', 'Recurrence'
     ],
     controllers: [
-        'Main', 'Upcoming', 'Past', 'NewEvent', 'Strings', 'People', 'DatabaseController', 'EditEvent', 'DateFilter', 'Category', 'Event'
+        'Main', 'Upcoming', 'Past', 'NewEvent', 'Strings', 'People', 'DatabaseController', 'EditEvent', 'DateFilter', 'Category', 'Event', 'Recurrence'
     ],
-    models: ['Event', 'Person', 'Category', 'CategoryOptions'],
-    stores: ['Upcoming', 'Past', 'NewEventPerson', 'AdhocPeople', 'Category', 'CategoryOptions'],
+    models: [
+        'Event', 'Person', 'Category', 'CategoryOptions'
+    ],
+    stores: [
+        'Upcoming', 'Past', 'NewEventPerson', 'AdhocPeople', 'Category', 'CategoryOptions'
+    ],
     icon: {
         '57': 'resources/icons/Icon.png',
         '72': 'resources/icons/Icon~ipad.png',
@@ -55,8 +59,9 @@ Ext.application({
         var peoplePopup = Ext.create('EventReminder.view.People');
         var category = Ext.create('EventReminder.view.Category');
         var event = Ext.create('EventReminder.view.Event');
+        var recurrence = Ext.create('EventReminder.view.Recurrence');
         // Initialize the main view
-        Ext.Viewport.add(titleBar, EventReminderMain, Upcoming, Past, bottomBar, newEvent, EditEvent, peoplePopup, category, event);
+        Ext.Viewport.add(titleBar, EventReminderMain, Upcoming, Past, bottomBar, newEvent, EditEvent, peoplePopup, category, event, recurrence);
     },
 
     onUpdated: function() {

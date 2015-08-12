@@ -18,7 +18,8 @@ Ext.define('EventReminder.controller.EditEvent', {
             upcomingEventList: 'upcoming #upcomingEventList',
             people: 'people',
             editPrev : 'editevent #prev',
-            past: 'past'
+            past: 'past',
+            recurrence: 'recurrence'
         },
         control: {
             editEvent: {
@@ -29,7 +30,8 @@ Ext.define('EventReminder.controller.EditEvent', {
                 saveChangesCommand: 'saveChanges',
                 trashEventCommand: 'onTrashEvent',
                 addPeopleCommand: 'onAddPeople',
-                removePeopleCommand: 'onRemovePeople'
+                removePeopleCommand: 'onRemovePeople',
+                editRecurrenceCommand: 'onEditRecurrence'
             }
         }
     },
@@ -203,5 +205,12 @@ Ext.define('EventReminder.controller.EditEvent', {
 
     //Increase the height of the list to adjust items
     this.getEditEventPeopleList().setHeight(this.getEditEventPeopleList().getItemHeight()*Ext.getStore('EventPeople').getData().getCount());
+    },
+
+    //Editing the Recurrence of the Event
+    onEditRecurrence: function(){
+        console.log("Editing recurrence");
+        this.getRecurrence().show();
+
     }
 });
