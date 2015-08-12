@@ -19,6 +19,7 @@ Ext.define('EventReminder.utils.Dbutils', {
          });
     },
 
+    //Update the event with the new Field values
     updateEvent: function(event){
             //Get the store
             var store = Ext.getStore("Upcoming");

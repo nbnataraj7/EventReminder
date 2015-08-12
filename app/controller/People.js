@@ -29,6 +29,8 @@ Ext.define('EventReminder.controller.People', {
 
         //Getting the list handle
         var updateList = Ext.Viewport.getActiveItem().down("#peopleList");
+        var eventId = Ext.Viewport.getActiveItem().down('#ID');
+
         console.log(Ext.Viewport.getActiveItem());
         console.log(updateList);
 
@@ -46,6 +48,7 @@ Ext.define('EventReminder.controller.People', {
             var errors = person.validate()
             if(person.name != "" && errors.isValid()){
                 console.log("Adding the person");
+                console.log(person);
                 personStore.add(person);
                 personStore.sync();
                 var adhoc = Ext.getStore('EventPeople');

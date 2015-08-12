@@ -111,6 +111,24 @@ else{
 var newDate = new Date(year, month, day, hours, minutes);
 console.log(newDate);
 
+
+//Adding People To the Event
+if(Ext.getStore('EventPeople').getData().getAt(0) == null){
+    //Creating a Dummy
+    var people = 'none'
+    }
+else{
+    var personStore = Ext.getStore('EventPeople');
+    var people = "";
+    personStore.each(function(item, index, length){
+        people += item.get('name')+", ";
+    });
+
+    //Trimming out the ending punctuation
+    people = people.substring(0, people.length-2);
+}
+
+
 //setting the values to the NewEvent Store
 var event = Ext.create('EventReminder.model.Event', {
     Recur: this.getNewEventRecurrence().getValue(),
@@ -121,33 +139,9 @@ var event = Ext.create('EventReminder.model.Event', {
     alertTime: this.getNewAlertTimeSelect().getValue(),
     message: this.getNewEventMessage().getValue(),
     priority: (this.getNewEventPriority().getLabel() == 'Priority')?'Medium':(this.getNewEventPriority().getLabel()),
-    activities: activity
+    activities: activity,
+    people: people
 });
-
-//Adding People To the Event
-if(Ext.getStore('EventPeople').getData().getAt(0) == null){
-
-    //Creating a Dummy Person
-    var person = Ext.create('EventReminder.model.Person', {
-        name: 'none',
-        contact: ''
-    });
-
-    //Adding this dummy to the Event
-    var eventPeople = event.people();
-    eventPeople.add(person);
-    eventPeople.sync();
-    }
-else{
-     var addedPeople = Ext.getStore('EventPeople');
-     var eventPeople = event.people();
-     //Adding each Person in the adhoc store to the Current event
-     addedPeople.each(function(item, index, length){
-        eventPeople.add(item);
-     });
-
-     eventPeople.sync();
-}
 
 
 //Validating against the Event model
@@ -171,7 +165,7 @@ else{
     this.getNewEventPeopleList().removeAll();
     this.getNewEventPriority().setValue("");
     this.getNewEventActivity().setValue("none");
-    this.getNewEventRecurrence.setValue("none");
+    this.getNewEventRecurrence().setValue("none");
 
     //Destroying the loader mask
     //loader.destroy();

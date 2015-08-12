@@ -49,12 +49,18 @@ onEditEvent: function(record){
 
 
     //Adding people
-    var people = Ext.create('EventReminder.model.Person', {
-        name: data.people,
-        contact: data.contact
-    });
-    Ext.getStore('EventPeople').add(people);
-    Ext.getStore('EventPeople').sync();
+    var all = data.people.split(', ');
+    var personStore = Ext.getStore('Person');
+    var adhocpeople = Ext.getStore('EventPeople');
+    for(var i=0; i< all.length; i++){
+        var person = all[i];
+        var index = personStore.findExact('name', person);
+        var record = personStore.getAt(index);
+        adhocpeople.add(record);
+        adhocpeople.sync();
+    }
+
+    //Adjusting the ItemList height
     this.getEditList().setHeight(this.getEditList().getItemHeight()*Ext.getStore('EventPeople').getData().getCount());
 
      //Setting the value of previous screen

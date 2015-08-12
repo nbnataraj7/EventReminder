@@ -11,7 +11,8 @@ config: {
         {name: "priority", type: 'string'},
         {name: "activities", type: 'string'},
         {name: "EventID", type: 'int'},
-        {name: "Recur", type: 'string'}
+        {name: "Recur", type: 'string'},
+        {name: 'people', type: 'string'}
     ],
     validations: [
         {type: 'presence', field: 'category'},
@@ -19,8 +20,6 @@ config: {
         {type: 'presence', field: 'eventTime'},
         {type: 'presence', field: 'alertTime'},
         {type: 'presence', field: 'message'}
-    ],
-    hasMany:
-        {model: 'EventReminder.model.Person', name: 'people'}
+    ]
 }
 });
