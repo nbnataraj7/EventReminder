@@ -45,6 +45,7 @@ items: [
     xtype: 'fieldset',
     itemId: 'newEventForm',
     autoDestroy: false,
+    instructions: 'Enter Details for The New Event',
         items: [
         {
             xtype: 'hiddenfield',

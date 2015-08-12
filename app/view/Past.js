@@ -14,7 +14,8 @@ items: [
     {
         xtype: 'button',
         itemId: 'back',
-        ui:'back'
+        ui:'back',
+        iconCls: 'arrow_left'
     },
     {
         xtype: 'spacer'
@@ -42,7 +43,7 @@ items: [
         direction: 'DESC',
         groupFn: function(record){
             if(record && record.data.date){
-                return record.data.date.toDateString();
+                return (new Date(record.data.date)).toDateString();
             }
             else{
                 return '';

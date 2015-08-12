@@ -48,6 +48,7 @@ Ext.define('EventReminder.view.EditEvent', {
     {
         xtype: 'fieldset',
         itemId: 'eventForm',
+        instructions: 'Edit Event Details',
             items: [
             {
                 xtype: 'hiddenfield',

@@ -12,6 +12,7 @@ config: {
             {
                 xtype: 'button',
                 itemId: 'back',
+                iconCls: 'arrow_left',
                 ui: 'back'
             },
             {
@@ -20,7 +21,7 @@ config: {
              {
                  xtype: 'button',
                  itemId: 'addCategory',
-                 text: 'Create Category',
+                 iconCls: 'action',
                  ui: 'confirm'
              }
         ]
