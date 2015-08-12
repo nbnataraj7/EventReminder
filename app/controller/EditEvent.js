@@ -184,7 +184,7 @@ Ext.define('EventReminder.controller.EditEvent', {
 
     //Code for Deleting this record
     var dbutils = Ext.create("EventReminder.utils.Dbutils");
-    dbutils.deleteRecord(this.getEditEventID().getValue());
+    dbutils.deleteRecord(parseInt(this.getEditEventID().getValue()));
 
     //Refreshing the list
     //this.getUpcomingEventList().refresh();

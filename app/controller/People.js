@@ -75,5 +75,12 @@ Ext.define('EventReminder.controller.People', {
     },
     onClose: function(){
         this.getPeople().hide();
+    },
+
+    //On Launch Remove all the adhoc people
+    launch: function(){
+        var adhocPeople = Ext.getStore('EventPeople');
+        adhocPeople.removeAll();
+        adhocPeople.sync();
     }
 });

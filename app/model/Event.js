@@ -7,7 +7,6 @@ config: {
         {name: "date", type: 'string'},
         {name: "eventTime", type: 'string'},
         {name: "alertTime", type: 'string'},
-        {name: "people", type: 'string'},
         {name: "message", type: 'string'},
         {name: "priority", type: 'string'},
         {name: "activities", type: 'string'},
@@ -17,10 +16,11 @@ config: {
     validations: [
         {type: 'presence', field: 'category'},
         {type: 'presence', field: 'date'},
-        {type: 'presence', field: 'people'},
         {type: 'presence', field: 'eventTime'},
         {type: 'presence', field: 'alertTime'},
         {type: 'presence', field: 'message'}
-    ]
+    ],
+    hasMany:
+        {model: 'EventReminder.model.Person', name: 'people'}
 }
 });

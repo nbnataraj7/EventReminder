@@ -86,13 +86,6 @@ onPriorityChange:function(newValue){
 //and Validating them
 onAddEvent:function(){
 
-//Adding the contact name to the person
-if(Ext.getStore('EventPeople').getData().getAt(0) == null){
-    var person = 'none';
-    }
-else
-    var person = Ext.getStore('EventPeople').getData().getAt(0).getData().name;
-
 //Setting the default value of the activity
 var activity = this.getNewEventActivity().getValue()?this.getNewEventActivity().getValue():"none";
 
@@ -127,10 +120,35 @@ var event = Ext.create('EventReminder.model.Event', {
     eventTime: this.getNewEventTimeSelect().getValue(),
     alertTime: this.getNewAlertTimeSelect().getValue(),
     message: this.getNewEventMessage().getValue(),
-    people: person,
     priority: (this.getNewEventPriority().getLabel() == 'Priority')?'Medium':(this.getNewEventPriority().getLabel()),
     activities: activity
 });
+
+//Adding People To the Event
+if(Ext.getStore('EventPeople').getData().getAt(0) == null){
+
+    //Creating a Dummy Person
+    var person = Ext.create('EventReminder.model.Person', {
+        name: 'none',
+        contact: ''
+    });
+
+    //Adding this dummy to the Event
+    var eventPeople = event.people();
+    eventPeople.add(person);
+    eventPeople.sync();
+    }
+else{
+     var addedPeople = Ext.getStore('EventPeople');
+     var eventPeople = event.people();
+     //Adding each Person in the adhoc store to the Current event
+     addedPeople.each(function(item, index, length){
+        eventPeople.add(item);
+     });
+
+     eventPeople.sync();
+}
+
 
 //Validating against the Event model
 var errors = event.validate();

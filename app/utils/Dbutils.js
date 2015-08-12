@@ -35,18 +35,22 @@ Ext.define('EventReminder.utils.Dbutils', {
             store.sync();
         },
 
-
     deleteRecord: function(eventId){
-        var db = openDatabase('EventReminder', '1.0', 'Database for Events', 2*1024*1024);
-        db.transaction(function(tx){
-                var query = 'DELETE FROM NewEvents WHERE EventID = '+eventId;
-                tx.executeSql(query, [], function(tx, result){
-                       console.log("Record Deleted");
-                       console.log(result);
-                });
-            });
+        var store = Ext.getStore('Upcoming');
+        var index = store.findExact('EventID', eventId);
 
-            //Sync the store
-            Ext.getStore("Upcoming").sync();
+        //Also find the associated recurrence
+        var record = store.getAt(index);
+        var recurId = record.get('Recur');
+        if(recurId != 'none')
+        {
+            //Remove the recurrence
+            var recurStore = Ext.getStore('Recurrence');
+            var rec = recurStore.findExact('RecurrenceId', parseInt(recurId));
+            recurStore.removeAt(rec);
+            recurStore.sync();
         }
+        store.removeAt(index);
+        store.sync();
+    }
     });
