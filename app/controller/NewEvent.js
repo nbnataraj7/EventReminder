@@ -153,6 +153,7 @@ else{
     this.getNewEventPeopleList().removeAll();
     this.getNewEventPriority().setValue("");
     this.getNewEventActivity().setValue("none");
+    this.getNewEventRecurrence.setValue("none");
 
     //Destroying the loader mask
     //loader.destroy();

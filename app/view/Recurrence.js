@@ -51,7 +51,7 @@ Ext.define('EventReminder.view.Recurrence', {
                 itemId: 'recurrenceInterval',
                 label: 'Interval',
                 minValue: 1,
-                maxValue: 10,
+                maxValue: 12,
                 stepValue: 1,
                 cycle: true
             },

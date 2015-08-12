@@ -14,10 +14,10 @@ Ext.application({
         'Main', 'Upcoming', 'Past', 'NewEvent', 'Strings', 'People', 'DatabaseController', 'EditEvent', 'DateFilter', 'Category', 'Event', 'Recurrence'
     ],
     models: [
-        'Event', 'Person', 'Category', 'CategoryOptions'
+        'Event', 'Person', 'Category', 'CategoryOptions', 'Recurrence'
     ],
     stores: [
-        'Upcoming', 'Past', 'NewEventPerson', 'AdhocPeople', 'Category', 'CategoryOptions'
+        'Upcoming', 'Past', 'NewEventPerson', 'AdhocPeople', 'Category', 'CategoryOptions', 'Recurrence'
     ],
     icon: {
         '57': 'resources/icons/Icon.png',
