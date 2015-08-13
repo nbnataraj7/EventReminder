@@ -38,8 +38,20 @@ Ext.define('EventReminder.controller.Category', {
         //Validate the Category
         var errors = category.validate();
 
-        if(!errors.isValid()){
-           Ext.Msg.alert("Enter a valid Category Name");
+        //Also Check for Duplicate categories assuming the new category is not duplicate
+        var categoryOptionsStore = Ext.getStore('CategoryOptions');
+        var isDuplicate = false;
+        var me = this;
+        categoryOptionsStore.each(function(item, index, length){
+            var rec = me.getCategoryName().getValue();
+            console.log(rec);
+            console.log(item.get('text'));
+            if(item.get('text') == rec)
+                isDuplicate = true;
+        });
+
+        if(!errors.isValid() || isDuplicate){
+           Ext.Msg.alert("Duplicate or invalid Category");
         }
         else{
 
@@ -59,7 +71,6 @@ Ext.define('EventReminder.controller.Category', {
             if(errors.isValid())
             {
                 //Add the new category to options
-                var categoryOptionsStore = Ext.getStore('CategoryOptions');
                 categoryOptionsStore.add(option);
                 categoryOptionsStore.sync();
 
