@@ -183,7 +183,12 @@ Ext.define('EventReminder.view.EditEvent', {
             delegate: '#addRecurrence',
             event: 'tap',
             fn: 'editRecurrence'
-       }
+       },
+       {
+            delegate: '#selectEditCategory',
+            event: 'change',
+            fn: 'setDefaults'
+        }
    ]
    },
    back: function(){
@@ -213,5 +218,8 @@ Ext.define('EventReminder.view.EditEvent', {
    },
    editRecurrence: function(){
     this.fireEvent('editRecurrenceCommand', this);
+   },
+   setDefaults: function(scope, newValue){
+       this.fireEvent("setDefaultsCommand", newValue, this);
    }
 });

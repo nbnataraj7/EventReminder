@@ -96,7 +96,7 @@ Ext.define('EventReminder.controller.Category', {
         categoryOptionsStore.sync();
 
         categoryOptionsStore.load(function(records, operation, success){
-             console.log(categoryOptionsStore.getTotalCount());
+
              if(categoryOptionsStore.getTotalCount() == 0){
                  var Birthday = Ext.create('EventReminder.model.CategoryOptions', {
                      text: 'Birthday',
@@ -119,7 +119,39 @@ Ext.define('EventReminder.controller.Category', {
                  categoryOptionsStore.add(Shopping);
                  categoryOptionsStore.add(Outing);
                  categoryOptionsStore.sync();
-                 console.log("Category Options Init");
+            }
+        });
+
+        //Add Default records to the Category store too
+        var categoryStore = Ext.getStore('Category');
+        categoryStore.load(function(records, operation, success){
+
+            if(categoryStore.getTotalCount() == 0){
+        var Birthday = Ext.create('EventReminder.model.Category', {
+             Category: 'Birthday',
+             Priority: '70',
+             Activity: 'call'
+         });
+         var Meeting = Ext.create('EventReminder.model.Category', {
+             Category: 'Meeting',
+             Priority: '100',
+             Activity: 'email'
+         });
+         var Shopping = Ext.create('EventReminder.model.Category', {
+             Category: 'Shopping',
+             Priority: '80',
+             Activity: 'sms'
+         });
+         var Outing = Ext.create('EventReminder.model.Category', {
+             Category: 'Outing',
+             Priority: '30',
+             Activity: 'email'
+         });
+         categoryStore.add(Birthday);
+         categoryStore.add(Meeting);
+         categoryStore.add(Shopping);
+         categoryStore.add(Outing);
+         categoryStore.sync();
             }
         });
     }

@@ -201,6 +201,11 @@ items: [
         delegate: '#addRecurrence',
         event: 'tap',
         fn: 'addRecurrence'
+    },
+    {
+        delegate: '#selectCategory',
+        event: 'change',
+        fn: 'setDefaults'
     }
     ]
 },
@@ -241,5 +246,8 @@ removePerson:function(scope, list, record, index){
 },
 addRecurrence: function(){
     this.fireEvent('recurrenceCommand', this);
+},
+setDefaults: function(scope, newValue){
+    this.fireEvent("setDefaultsCommand", newValue, this);
 }
 });

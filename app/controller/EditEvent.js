@@ -32,7 +32,8 @@ Ext.define('EventReminder.controller.EditEvent', {
                 trashEventCommand: 'onTrashEvent',
                 addPeopleCommand: 'onAddPeople',
                 removePeopleCommand: 'onRemovePeople',
-                editRecurrenceCommand: 'onEditRecurrence'
+                editRecurrenceCommand: 'onEditRecurrence',
+                setDefaultsCommand: 'onDefaults'
             }
         }
     },
@@ -233,5 +234,18 @@ Ext.define('EventReminder.controller.EditEvent', {
         console.log("Editing recurrence");
         this.getRecurrence().show();
 
-    }
+    },
+
+//Setting Default Values
+onDefaults: function(value){
+
+    //search the category store
+    var categoryStore = Ext.getStore('Category');
+    var index = categoryStore.findExact('Category', value);
+    var record = categoryStore.getAt(index);
+
+    //Set the defaults
+    this.getEditEventActivities().setValue(record.get('Activity'));
+    this.getEditEventPriority().setValue(record.get('Priority'));
+}
 });

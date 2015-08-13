@@ -28,7 +28,8 @@ control: {
         alertTimeSelectCommand: 'onAlertTimeSelect',
         removePersonCommand: 'onRemovePerson',
         addPeopleCommand: 'onAddPeople',
-        recurrenceCommand: 'onRecurrence'
+        recurrenceCommand: 'onRecurrence',
+        setDefaultsCommand: 'onDefaults'
 }
 }
 },
@@ -194,6 +195,19 @@ onRemovePerson:function(index){
 //Setting an event as Recurring one
 onRecurrence: function(){
     this.getRecurrence().show();
-}
+},
 
+
+//Setting Default Values
+onDefaults: function(value){
+
+    //search the category store
+    var categoryStore = Ext.getStore('Category');
+    var index = categoryStore.findExact('Category', value);
+    var record = categoryStore.getAt(index);
+
+    //Set the defaults
+    this.getNewEventActivity().setValue(record.get('Activity'));
+    this.getNewEventPriority().setValue(record.get('Priority'));
+}
 });
