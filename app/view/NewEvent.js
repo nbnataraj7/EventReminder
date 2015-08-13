@@ -76,7 +76,11 @@ items: [
         {
             itemId: 'selectDate',
             xtype: 'datepickerfield',
-            value: new Date()
+            value: new Date(),
+            picker: {
+                yearFrom: 2015,
+                yearTo: 2030
+            }
         },
         {
             xtype: 'fieldset',

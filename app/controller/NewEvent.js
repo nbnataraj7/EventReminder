@@ -86,6 +86,7 @@ onPriorityChange:function(newValue){
 //and Validating them
 onAddEvent:function(){
 
+
 //Setting the default value of the activity
 var activity = this.getNewEventActivity().getValue()?this.getNewEventActivity().getValue():"none";
 
@@ -109,7 +110,14 @@ else{
 
 //creating the new date
 var newDate = new Date(year, month, day, hours, minutes);
-console.log(newDate);
+
+//check for date
+var now = new Date();
+if(newDate < now){
+    Ext.Msg.alert("Cannot create Event for past date");
+    return;
+}
+
 
 
 //Adding People To the Event

@@ -145,7 +145,14 @@ Ext.define('EventReminder.controller.EditEvent', {
 
         //creating the new date
         var newDate = new Date(year, month, day, hours, minutes);
-        console.log(newDate);
+
+
+        //check for date
+        var now = new Date();
+        if(newDate < now){
+            Ext.Msg.alert("Cannot create Past Event");
+            return;
+        }
 
         //Setting the default priority value
         //(this.getEditEventPriority().getLabel() == 'Priority')?'Medium':(this.getEditEventPriority().getLabel() == 'Priority')
