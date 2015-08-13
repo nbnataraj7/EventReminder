@@ -15,16 +15,22 @@ refs: {
     editActivity: 'editevent #activity',
     editHidden: 'editevent #hiddenField',
     editPrev : 'editevent #prev',
-    editRecurrence: 'editevent #recurrence'
+    editRecurrence: 'editevent #recurrence',
+    searchField: 'upcoming #search'
 },
 control: {
     upcoming: {
     backCommand: 'onBack',
-    editEventCommand: 'onEditEvent'
+    editEventCommand: 'onEditEvent',
+    searchByPersonCommand: 'onSearch'
 }
 }
 },
 onBack: function(){
+
+    //Clear the search field
+    this.getSearchField().setValue("");
+
     Ext.Viewport.animateActiveItem(this.getMain(), {type: 'slide', direction: 'right'});
 },
 
@@ -58,7 +64,6 @@ onEditEvent: function(record){
         adhocpeople.sync();
     }
 
-
     //Adjusting the Height
     this.getEditList().setHeight(this.getEditList().getItemHeight()*Ext.getStore('EventPeople').getData().getCount());
 
@@ -68,5 +73,12 @@ onEditEvent: function(record){
 
      //Setting the Edit Event Screen to the viewport
      Ext.Viewport.animateActiveItem(this.getEditEvent(), {type: 'slide', direction: 'left'});
+},
+
+
+//Searching the list
+onSearch: function(person){
+  var utils = Ext.create('EventReminder.utils.Utilities');
+  utils.filterEventsByPeople(person);
 }
 });

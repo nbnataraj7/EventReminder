@@ -36,6 +36,21 @@ createTimePicker: function(){
          ]
     });
     return picker;
-}
+},
 
+//Can Filter event store given a string of people
+filterEventsByPeople: function(person){
+    //Get the store
+    var store = Ext.getStore('Upcoming');
+    console.log("Filtering");
+    //Filter the event store by the people
+    store.filterBy(function(record, id){
+        var regex = new RegExp(person);
+        //console.log(regex, person);
+        return regex.test(record.get('people'));
+    });
+
+    //Load the store
+    store.load();
+}
 });

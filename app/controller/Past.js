@@ -16,19 +16,24 @@ editMessage: 'editevent #message',
 editActivity: 'editevent #activity',
 editHidden: 'editevent #hiddenField',
 editPrev : 'editevent #prev',
-editRecurrence: 'editevent #recurrence'
-
+editRecurrence: 'editevent #recurrence',
+searchField: 'past #search'
 },
 control: {
 past: {
     backCommand: 'onBack',
     editEventCommand: 'onEditEvent',
-    clearCommand: 'onClear'
+    clearCommand: 'onClear',
+    searchByPersonCommand: 'onSearch'
 }
 }
 },
 onBack: function(){
 console.log("Returned to Main");
+
+//Clear the search field
+this.getSearchField().setValue("");
+
 Ext.Viewport.animateActiveItem(this.getMain(), {type: 'slide', direction: 'right'});
 },
 onEditEvent: function(record){
@@ -79,5 +84,12 @@ upcoming.each(function(item, index, length){
 });
 upcoming.sync();
 //this.getPastPeople().refresh();
+},
+
+//Searching the list
+onSearch: function(person){
+  var utils = Ext.create('EventReminder.utils.Utilities');
+  utils.filterEventsByPeople(person);
 }
+
 });

@@ -23,8 +23,8 @@ Ext.define('EventReminder.controller.DateFilter', {
 
        //Add A new Past Filter
        store.filterBy(function(record, id){
-            console.log("Record : ");
-            console.log(record);
+            //console.log("Record : ");
+            //console.log(record);
             var recordDate = new Date(record.getData().date);
             var now = new Date();
             return (now > recordDate);

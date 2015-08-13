@@ -18,12 +18,14 @@ items: [
         iconCls: 'arrow_left'
     },
     {
-        xtype: 'spacer'
+            xtype: 'searchfield',
+            placeHolder: 'Search by People',
+            itemId: 'search'
     },
     {
         xtype: 'button',
         itemId: 'clear',
-        text: 'Clear All',
+        text: 'Clear',
         ui: 'confirm'
     }
     ]
@@ -67,6 +69,11 @@ listeners: [
     delegate: '#clear',
     event: 'tap',
     fn: 'clearCommand'
+},
+{
+    delegate: '#search',
+    event: 'keyup',
+    fn: 'search'
 }
 ]
 },
@@ -84,5 +91,10 @@ editEvent:function(list, record, target, index, e, eOpts){
 //Fire a clear command
 clearCommand: function(){
     this.fireEvent('clearCommand', this);
+},
+
+//Search the list with the person
+search: function( scope, e, eOpts){
+    this.fireEvent("searchByPersonCommand", scope.getValue(), this);
 }
 });
