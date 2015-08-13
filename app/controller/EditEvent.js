@@ -14,6 +14,7 @@ Ext.define('EventReminder.controller.EditEvent', {
             editTimeSelect: 'editevent #eventTimeSelect',
             alertTimeSelect: 'editevent #alertTimeSelect',
             editEventPriority: 'editevent #priority',
+            editEventRecurrence: 'editevent #recurrence',
             upcoming: 'upcoming',
             upcomingEventList: 'upcoming #upcomingEventList',
             people: 'people',
@@ -102,6 +103,7 @@ Ext.define('EventReminder.controller.EditEvent', {
 
     //Saving the edits in the database table
     saveChanges: function(){
+
         //Code for Editing the record in the database table
         console.log("Saving the Changes");
         var dbutils = Ext.create('EventReminder.utils.Dbutils');
@@ -158,6 +160,7 @@ Ext.define('EventReminder.controller.EditEvent', {
         else{
             //Creating an Updated event Object to pass
             var event = {
+                Recur: this.getEditEventRecurrence().getValue(),
                 category : this.getEditEventCategory().getValue(),
                 date : newDate,
                 eventTime : this.getEditTimeSelect().getValue(),

@@ -1,7 +1,6 @@
 Ext.define('EventReminder.model.Event', {
 extend: 'Ext.data.Model',
 config: {
-    //idProperty: 'EventID',
     fields: [
         {name: "category", type: 'string'},
         {name: "date", type: 'string'},

@@ -79,10 +79,37 @@ Ext.define('EventReminder.controller.Category', {
     },
 
     launch: function(){
-        if(Ext.getStore('CategoryOptions').getCount() != 0)
-        {
-            Ext.getStore('CategoryOptions').removeAll();
-        }
-        Ext.getStore('CategoryOptions').sync();
+
+        //Add default records if the store is the loaded first time
+        var categoryOptionsStore = Ext.getStore('CategoryOptions');
+        categoryOptionsStore.sync();
+
+        categoryOptionsStore.load(function(records, operation, success){
+             console.log(categoryOptionsStore.getTotalCount());
+             if(categoryOptionsStore.getTotalCount() == 0){
+                 var Birthday = Ext.create('EventReminder.model.CategoryOptions', {
+                     text: 'Birthday',
+                     value: 'Birthday'
+                 });
+                 var Meeting = Ext.create('EventReminder.model.CategoryOptions', {
+                     text: 'Meeting',
+                     value: 'Meeting'
+                 });
+                 var Shopping = Ext.create('EventReminder.model.CategoryOptions', {
+                     text: 'Shopping',
+                     value: 'Shopping'
+                 });
+                 var Outing = Ext.create('EventReminder.model.CategoryOptions', {
+                     text: 'Outing',
+                     value: 'Outing'
+                 });
+                 categoryOptionsStore.add(Birthday);
+                 categoryOptionsStore.add(Meeting);
+                 categoryOptionsStore.add(Shopping);
+                 categoryOptionsStore.add(Outing);
+                 categoryOptionsStore.sync();
+                 console.log("Category Options Init");
+            }
+        });
     }
     });

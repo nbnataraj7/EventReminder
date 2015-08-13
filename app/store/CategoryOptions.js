@@ -9,14 +9,6 @@ Ext.define('EventReminder.store.CategoryOptions', {
             type: 'sql',
             database: 'EventReminder',
             table: 'CategoryOptions'
-        },
-        data: [
-            {text: 'Birthday', value: 'Birthday'},
-            {text: 'Meeting', value: 'Meeting'},
-            {text: 'Shopping', value: 'Shopping'},
-            {text: 'Call', value: 'Call'},
-            {text: 'Email', value: 'Email'},
-            {text: 'Send Card', value: 'Send Card'}
-        ]
+        }
     }
 });

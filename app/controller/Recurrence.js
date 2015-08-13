@@ -64,6 +64,7 @@ Ext.define('EventReminder.controller.Recurrence', {
             //Store this record and set the Hidden field with the recurrence ID
 
             //Set the generated Unique Id to this recurrenceId field
+            console.log(currentView.$className);
             currentView.setValue(recurrence.get('RecurrenceId'));
             console.log(currentView.getValue());
 

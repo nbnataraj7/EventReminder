@@ -22,6 +22,7 @@ Ext.Loader.addClassPathMappings({
   "Ext.Element-static": "touch/src/dom/Element.static.js",
   "Ext.Element-style": "touch/src/dom/Element.style.js",
   "Ext.Element-traversal": "touch/src/dom/Element.traversal.js",
+  "Ext.cmd": "../../../C:/Users/nbo/bin/Sencha/Cmd/6.0.0.202/plugins/src",
   "Ext.core.DomQuery": "touch/src/dom/Query.js",
   "Ext.device.Purchases.Product": "touch/src/device/purchases/Sencha.js",
   "Ext.device.filesystem.DirectoryEntry": "touch/src/device/filesystem/Sencha.js",
@@ -36,7 +37,44 @@ Ext.Loader.addClassPathMappings({
 });
 
 Ext.ClassManager.addNameAlternateMappings({
+  "EventReminder.controller.Category": [],
+  "EventReminder.controller.DatabaseController": [],
+  "EventReminder.controller.DateFilter": [],
+  "EventReminder.controller.DatePickerController": [],
+  "EventReminder.controller.EditEvent": [],
+  "EventReminder.controller.Event": [],
+  "EventReminder.controller.Main": [],
+  "EventReminder.controller.NewEvent": [],
+  "EventReminder.controller.Past": [],
+  "EventReminder.controller.People": [],
+  "EventReminder.controller.Recurrence": [],
+  "EventReminder.controller.Strings": [],
+  "EventReminder.controller.Upcoming": [],
+  "EventReminder.model.Category": [],
+  "EventReminder.model.CategoryOptions": [],
+  "EventReminder.model.Event": [],
+  "EventReminder.model.Person": [],
+  "EventReminder.model.Recurrence": [],
+  "EventReminder.store.AdhocPeople": [],
+  "EventReminder.store.Category": [],
+  "EventReminder.store.CategoryOptions": [],
+  "EventReminder.store.NewEventPerson": [],
+  "EventReminder.store.Past": [],
+  "EventReminder.store.Recurrence": [],
+  "EventReminder.store.Upcoming": [],
+  "EventReminder.utils.Dbutils": [],
+  "EventReminder.utils.StringEN": [],
+  "EventReminder.utils.Utilities": [],
+  "EventReminder.view.Activity": [],
+  "EventReminder.view.Category": [],
+  "EventReminder.view.EditEvent": [],
+  "EventReminder.view.Event": [],
   "EventReminder.view.Main": [],
+  "EventReminder.view.NewEvent": [],
+  "EventReminder.view.Past": [],
+  "EventReminder.view.People": [],
+  "EventReminder.view.Recurrence": [],
+  "EventReminder.view.Upcoming": [],
   "Ext.AbstractComponent": [],
   "Ext.AbstractManager": [],
   "Ext.AbstractPlugin": [],
@@ -533,17 +571,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.layout.wrapper.BoxDock": [],
   "Ext.layout.wrapper.Dock": [],
   "Ext.layout.wrapper.Inner": [],
-  "Ext.log.Base": [],
-  "Ext.log.Logger": [],
-  "Ext.log.filter.Filter": [],
-  "Ext.log.filter.Priority": [],
-  "Ext.log.formatter.Default": [],
-  "Ext.log.formatter.Formatter": [],
-  "Ext.log.formatter.Identity": [],
-  "Ext.log.writer.Console": [],
-  "Ext.log.writer.DocumentTitle": [],
-  "Ext.log.writer.Remote": [],
-  "Ext.log.writer.Writer": [],
   "Ext.mixin.Bindable": [],
   "Ext.mixin.Filterable": [],
   "Ext.mixin.Mixin": [],
@@ -672,8 +699,65 @@ Ext.ClassManager.addNameAlternateMappings({
 });
 
 Ext.ClassManager.addNameAliasMappings({
+  "EventReminder.controller.Category": [],
+  "EventReminder.controller.DatabaseController": [],
+  "EventReminder.controller.DateFilter": [],
+  "EventReminder.controller.DatePickerController": [],
+  "EventReminder.controller.EditEvent": [
+    "widget.editeventctr"
+  ],
+  "EventReminder.controller.Event": [],
+  "EventReminder.controller.Main": [],
+  "EventReminder.controller.NewEvent": [
+    "widget.neweventctr"
+  ],
+  "EventReminder.controller.Past": [],
+  "EventReminder.controller.People": [],
+  "EventReminder.controller.Recurrence": [],
+  "EventReminder.controller.Strings": [],
+  "EventReminder.controller.Upcoming": [],
+  "EventReminder.model.Category": [],
+  "EventReminder.model.CategoryOptions": [],
+  "EventReminder.model.Event": [],
+  "EventReminder.model.Person": [],
+  "EventReminder.model.Recurrence": [],
+  "EventReminder.store.AdhocPeople": [],
+  "EventReminder.store.Category": [],
+  "EventReminder.store.CategoryOptions": [],
+  "EventReminder.store.NewEventPerson": [],
+  "EventReminder.store.Past": [],
+  "EventReminder.store.Recurrence": [],
+  "EventReminder.store.Upcoming": [],
+  "EventReminder.utils.Dbutils": [],
+  "EventReminder.utils.StringEN": [],
+  "EventReminder.utils.Utilities": [],
+  "EventReminder.view.Activity": [],
+  "EventReminder.view.Category": [
+    "widget.category"
+  ],
+  "EventReminder.view.EditEvent": [
+    "widget.editevent"
+  ],
+  "EventReminder.view.Event": [
+    "widget.event"
+  ],
   "EventReminder.view.Main": [
     "widget.main"
+  ],
+  "EventReminder.view.NewEvent": [
+    "widget.newEvent"
+  ],
+  "EventReminder.view.Past": [
+    "widget.past"
+  ],
+  "EventReminder.view.People": [
+    "widget.people"
+  ],
+  "EventReminder.view.Recurrence": [
+    "widget.recurrence"
+  ],
+  "EventReminder.view.Upcoming": [
+    "widget.upcoming"
   ],
   "Ext.AbstractComponent": [],
   "Ext.AbstractManager": [],
@@ -1252,17 +1336,6 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.layout.wrapper.BoxDock": [],
   "Ext.layout.wrapper.Dock": [],
   "Ext.layout.wrapper.Inner": [],
-  "Ext.log.Base": [],
-  "Ext.log.Logger": [],
-  "Ext.log.filter.Filter": [],
-  "Ext.log.filter.Priority": [],
-  "Ext.log.formatter.Default": [],
-  "Ext.log.formatter.Formatter": [],
-  "Ext.log.formatter.Identity": [],
-  "Ext.log.writer.Console": [],
-  "Ext.log.writer.DocumentTitle": [],
-  "Ext.log.writer.Remote": [],
-  "Ext.log.writer.Writer": [],
   "Ext.mixin.Bindable": [],
   "Ext.mixin.Filterable": [],
   "Ext.mixin.Mixin": [],

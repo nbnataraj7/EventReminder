@@ -17,7 +17,7 @@ Ext.application({
         'Event', 'Person', 'Category', 'CategoryOptions', 'Recurrence'
     ],
     stores: [
-        'Upcoming', 'Past', 'NewEventPerson', 'AdhocPeople', 'Category', 'CategoryOptions', 'Recurrence'
+        'Upcoming', 'NewEventPerson', 'AdhocPeople', 'Category', 'CategoryOptions', 'Recurrence'
     ],
     icon: {
         '57': 'resources/icons/Icon.png',

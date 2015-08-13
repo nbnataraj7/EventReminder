@@ -25,6 +25,7 @@ Ext.define('EventReminder.utils.Dbutils', {
             var store = Ext.getStore("Upcoming");
             var index = store.findExact('EventID', parseInt(event.EventID));
             var record = store.getAt(index);
+            record.set('Recur', event.Recur);
             record.set('category', event.category);
             record.set('date', event.date);
             record.set('eventTime', event.eventTime);

@@ -1,6 +1,6 @@
 Ext.define('EventReminder.controller.People', {
     extend: 'Ext.app.Controller',
-    requires: 'Ext.MessageBox',
+    requires: ['Ext.MessageBox', 'Ext.device.Contacts'],
     //A Controller for adding People from the Contacts
     config: {
         refs: {
@@ -82,8 +82,35 @@ Ext.define('EventReminder.controller.People', {
 
     //On Launch Remove all the adhoc people
     launch: function(){
+
+        //Remove all the people from the adhoc store
         var adhocPeople = Ext.getStore('EventPeople');
         adhocPeople.removeAll();
         adhocPeople.sync();
+
+
+/*
+
+        //Add all the contacts from device to People store
+        //Creating an inline store
+        var ContactsStore = Ext.create('Ext.data.Store', {
+            fields: [
+                'First', 'Last'
+            ],
+            data: Ext.device.Contacts.getContacts()
+        });
+
+
+        //Now add all of these contacts to the People store
+        var people = Ext.getStore('Person');
+        ContactsStore.each(function(item, index, length){
+            var contact = Ext.create('EventReminder.model.Person', {
+                name: item.get('First')+" "+item.get('Last'),
+                contact: ''
+            });
+            people.add(contact);
+            people.sync();
+        });
+*/
     }
 });
