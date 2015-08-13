@@ -108,11 +108,22 @@ Ext.define('EventReminder.controller.EditEvent', {
         console.log("Saving the Changes");
         var dbutils = Ext.create('EventReminder.utils.Dbutils');
 
-        //Adding the contact number to the person
-        if(Ext.getStore('EventPeople').getData().getAt(0) == null)
-            var person = 'none'
-        else
-            var person = Ext.getStore('EventPeople').getData().getAt(0).getData().name;
+        //Adding People To the Event
+        var people;
+        if(Ext.getStore('EventPeople').getData().getAt(0) == null){
+            //Creating a Dummy
+            people = 'none'
+            }
+        else{
+            var personStore = Ext.getStore('EventPeople');
+            people = "";
+            personStore.each(function(item, index, length){
+                people += item.get('name')+", ";
+            });
+
+            //Trimming out the ending punctuation
+            people = people.substring(0, people.length-2);
+        }
 
         //Calculating the Date and time at which the alert is been created
         var date = this.getEditEventDate().getValue();
@@ -147,7 +158,7 @@ Ext.define('EventReminder.controller.EditEvent', {
             eventTime: this.getEditTimeSelect().getValue(),
             alertTime: this.getAlertTimeSelect().getValue(),
             message: this.getEditEventMessage().getValue(),
-            people: person,
+            people: people,
             priority: this.getEditEventPriority().getLabel(),
             activities: this.getEditEventActivities().getValue()
         });
@@ -165,7 +176,7 @@ Ext.define('EventReminder.controller.EditEvent', {
                 date : newDate,
                 eventTime : this.getEditTimeSelect().getValue(),
                 alertTime : this.getAlertTimeSelect().getValue(),
-                people : person,
+                people : people,
                 message : this.getEditEventMessage().getValue(),
                 priority : this.getEditEventPriority().getLabel(),
                 activities : this.getEditEventActivities().getValue(),

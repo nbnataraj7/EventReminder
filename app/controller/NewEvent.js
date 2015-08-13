@@ -128,7 +128,6 @@ else{
     people = people.substring(0, people.length-2);
 }
 
-
 //setting the values to the NewEvent Store
 var event = Ext.create('EventReminder.model.Event', {
     Recur: this.getNewEventRecurrence().getValue(),
