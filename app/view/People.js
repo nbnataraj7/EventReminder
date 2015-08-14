@@ -18,24 +18,35 @@ Ext.define('EventReminder.view.People', {
                 title: 'Add People',
                 docked: 'top',
                 items: [
-                {
-                    xtype: 'spacer'
-                },
-                {
-                    xtype: 'button',
-                    text: 'close',
-                    itemId: 'close'
-                }]
+                    {
+                        xtype: 'button',
+                        itemId: 'close',
+                        ui: 'decline',
+                        iconCls: 'delete'
+                    }
+                ]
             },
             {
-                xtype: 'searchfield',
-                placeHolder: 'Search or Enter a Name',
-                itemId: 'personName'
+                xtype: 'toolbar',
+                docked: 'top',
+                items: [
+                {
+                    xtype: 'searchfield',
+                    placeHolder: 'Search by Name',
+                    itemId: 'personName'
+                }
+                ]
             },
             {
-                xtype: 'searchfield',
-                placeHolder: 'Search or Enter a Contact Number',
-                itemId: 'personContact'
+                xtype: 'toolbar',
+                docked: 'top',
+                items: [
+                    {
+                        xtype: 'searchfield',
+                        placeHolder: 'Contact',
+                        itemId: 'personContact'
+                    },
+                ]
             },
             {
                 xtype: 'list',
@@ -63,6 +74,16 @@ Ext.define('EventReminder.view.People', {
                 delegate: '#addPeople',
                 event: 'tap',
                 fn: 'addPeople'
+            },
+            {
+                delegate: '#personName',
+                event: 'keyup',
+                fn: 'searchPeople'
+            },
+            {
+                delegate: '#personContact',
+                event: 'keyup',
+                fn: 'searchContact'
             }
         ]
     },
@@ -70,7 +91,13 @@ Ext.define('EventReminder.view.People', {
         this.fireEvent('closeCommand', this);
     },
     addPeople: function(){
-        console.log("Add Person Command");
+        //console.log("Add Person Command");
         this.fireEvent('addPersonCommand', this);
+    },
+    searchPeople: function(scope, e, eOpts){
+        this.fireEvent("searchPeopleCommand", scope.getValue(), this);
+    },
+    searchContact: function(scope, e, eOpts){
+        this.fireEvent("searchContactCommand", scope.getValue(), this);
     }
 });

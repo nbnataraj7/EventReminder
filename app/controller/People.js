@@ -11,12 +11,15 @@ Ext.define('EventReminder.controller.People', {
             newEventList: 'newEvent #peopleList',
             enteredName: 'people #personName',
             enteredContact: 'people #personContact',
-            upcomingEventList: 'upcoming #peopleList'
+            upcomingEventList: 'upcoming #peopleList',
+
         },
         control: {
             people: {
                 closeCommand: 'onClose',
-                addPersonCommand: 'onAddPersonCommand'
+                addPersonCommand: 'onAddPersonCommand',
+                searchPeopleCommand: 'onSearchPeople',
+                searchContactCommand: 'onSearchContact'
             }
         }
     },
@@ -43,6 +46,19 @@ Ext.define('EventReminder.controller.People', {
                 contact: this.getEnteredContact().getValue()
             });
             var personStore = Ext.getStore("Person");
+
+
+        //Check if a person exist with same name or contact
+            var nameExist = personStore.findExact('name', this.getEnteredName().getValue())
+            var contactExist = personStore.findExact('contact', this.getEnteredContact().getValue());
+            if(nameExist!=-1){
+                Ext.Msg.alert("Duplicate Contact Name");
+                return;
+            }
+            if(contactExist!=-1){
+                Ext.Msg.alert("Duplicate Contact Number");
+                return;
+            }
 
             //Validation for the person
             var errors = person.validate()
@@ -76,9 +92,25 @@ Ext.define('EventReminder.controller.People', {
         //Increase the height of the list to adjust items
         updateList.setHeight(updateList.getItemHeight()*Ext.getStore('EventPeople').getData().getCount());
     },
+
+    //On click of the close button
     onClose: function(){
         this.getPeople().hide();
     },
+
+    //on typing in the person name search field
+    onSearchPeople: function(person){
+        //call the search utility
+        var util = Ext.create('EventReminder.utils.Utilities');
+        util.filterPeople(person);
+    },
+
+    //on typing in the person contact search field
+    onSearchContact: function(contact){
+        //call the search utility
+        var util = Ext.create('EventReminder.utils.Utilities');
+        util.filterContact(contact);
+    }
 
 /*    //On Launch Remove all the adhoc people
     launch: function(){

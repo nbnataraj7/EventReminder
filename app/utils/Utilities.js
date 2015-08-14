@@ -52,5 +52,35 @@ filterEventsByPeople: function(person){
 
     //Load the store
     store.load();
+},
+
+//Filter the people in the people popup
+filterPeople: function(person){
+    //Get the store
+    var peopleStore = Ext.getStore("Person");
+    peopleStore.clearFilter();
+    peopleStore.filterBy(function(record, id){
+        var regex = new RegExp(person);
+        return regex.test(record.get('name'));
+    });
+
+    //Load the store
+    peopleStore.load();
+},
+
+//Filter the people in the people popup by contact number
+filterContact: function(contact){
+    //Get the Store
+    var peopleStore = Ext.getStore("Person");
+    peopleStore.clearFilter();
+    peopleStore.filterBy(function(record, id){
+        var regex = new RegExp(contact);
+        return regex.test(record.get('contact'));
+    });
+
+    //Load the store
+    peopleStore.load();
+
 }
+
 });
