@@ -80,16 +80,13 @@ Ext.define('EventReminder.controller.People', {
         this.getPeople().hide();
     },
 
-    //On Launch Remove all the adhoc people
+/*    //On Launch Remove all the adhoc people
     launch: function(){
 
         //Remove all the people from the adhoc store
         var adhocPeople = Ext.getStore('EventPeople');
         adhocPeople.removeAll();
         adhocPeople.sync();
-
-
-/*
 
         //Add all the contacts from device to People store
         //Creating an inline store
@@ -111,6 +108,7 @@ Ext.define('EventReminder.controller.People', {
             people.add(contact);
             people.sync();
         });
-*/
     }
+
+    */
 });

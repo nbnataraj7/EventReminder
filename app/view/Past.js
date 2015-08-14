@@ -8,6 +8,11 @@ layout: {
 autoLoad: true,
 items: [
 {
+    xtype: 'titlebar',
+    docked: 'top',
+    title: 'Past Events'
+},
+{
     xtype: 'toolbar',
     itemId: 'title',
     items: [

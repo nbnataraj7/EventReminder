@@ -244,8 +244,10 @@ onDefaults: function(value){
     var index = categoryStore.findExact('Category', value);
     var record = categoryStore.getAt(index);
 
-    //Set the defaults
-    this.getEditEventActivities().setValue(record.get('Activity'));
-    this.getEditEventPriority().setValue(record.get('Priority'));
+    //Set the defaults if the Record exists
+    if(record != null){
+        this.getEditEventActivities().setValue(record.get('Activity'));
+        this.getEditEventPriority().setValue(record.get('Priority'));
+    }
 }
 });

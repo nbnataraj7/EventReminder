@@ -40,7 +40,8 @@ Ext.application({
     launch: function() {
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
-        var titleBar = {
+
+        /*var titleBar = {
             xtype: 'titlebar',
             title: 'Event Reminder',
             docked: 'top'
@@ -49,6 +50,8 @@ Ext.application({
             xtype: 'titlebar',
             docked: 'bottom'
         };
+        */
+
 
         //Creating objects for some views
         var EventReminderMain = Ext.create('EventReminder.view.Main');
@@ -61,7 +64,7 @@ Ext.application({
         var event = Ext.create('EventReminder.view.Event');
         var recurrence = Ext.create('EventReminder.view.Recurrence');
         // Initialize the main view
-        Ext.Viewport.add(titleBar, EventReminderMain, Upcoming, Past, bottomBar, newEvent, EditEvent, peoplePopup, category, event, recurrence);
+        Ext.Viewport.add(EventReminderMain, Upcoming, Past, newEvent, EditEvent, peoplePopup, category, event, recurrence);
     },
 
     onUpdated: function() {

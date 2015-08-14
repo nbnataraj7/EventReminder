@@ -8,6 +8,12 @@ Ext.define('EventReminder.view.EditEvent', {
         scrollable: true,
     items: [
     {
+        xtype: 'titlebar',
+        itemId: 'EditEventTitle',
+        title: 'Edit Event',
+        docked: 'top'
+    },
+    {
         xtype: 'toolbar',
         itemId: 'title',
         docked: 'top',

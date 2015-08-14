@@ -33,6 +33,7 @@ Ext.define('EventReminder.controller.DateFilter', {
         //Reloading the Store
         console.log("Reloading the Store");
         store.load();
+        //store.sync();
     },
 
     //This function filters out all the Past events from the store

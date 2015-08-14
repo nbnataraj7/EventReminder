@@ -2,9 +2,11 @@ Ext.define('EventReminder.view.Category', {
 extend: 'Ext.Container',
 xtype: 'category',
 config: {
-    items: [{
+    items: [
+    {
         xtype: 'toolbar',
         itemId: 'newCategory',
+        title: 'New Category',
         docked: 'top',
         newEventCategory: 'newEvent #category',
         editEventCategory: 'editevent #category',

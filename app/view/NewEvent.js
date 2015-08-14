@@ -2,11 +2,17 @@ Ext.define('EventReminder.view.NewEvent', {
 extend: 'Ext.Container',
 xtype: 'newEvent',
 config: {
-    scrollable: true,
+scrollable: true,
 layout: {
     type: 'vbox'
 },
 items: [
+{
+    xtype: 'titlebar',
+    itemId: 'NewEventTitle',
+    title: 'New Event',
+    docked: 'top'
+},
 {
     xtype: 'toolbar',
     itemId: 'title',

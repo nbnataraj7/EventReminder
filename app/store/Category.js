@@ -1,10 +1,10 @@
 Ext.define('EventReminder.store.Category', {
     extend: 'Ext.data.Store',
     requires: 'Ext.data.proxy.SQL',
-    model :'EventReminder.model.Category',
     autoLoad: true,
     clearOnPageLoad: false,
     config: {
+        model :'EventReminder.model.Category',
         storeId: 'Category',
         proxy: {
             type: 'sql',

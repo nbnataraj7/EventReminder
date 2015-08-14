@@ -2,12 +2,12 @@ Ext.define('EventReminder.controller.Main',{
 extend: 'Ext.app.Controller',
 config: {
 refs: {
-main: 'main',
-upcoming: 'upcoming',
-newEvent: 'newEvent',
-past: 'past',
-maindnd: 'main #dndmode',
-category: 'category'
+    main: 'main',
+    upcoming: 'upcoming',
+    newEvent: 'newEvent',
+    past: 'past',
+    maindnd: 'main #dndmode',
+    category: 'category'
 },
 control: {
     main: {
@@ -22,8 +22,8 @@ control: {
 
 //Thing to be executed once this controller launches
 launch: function(){
-this.callParent();
-console.log("Main controller");
+    this.callParent();
+    console.log("Main controller");
 },
 
 //Function for opening Upcoming events view

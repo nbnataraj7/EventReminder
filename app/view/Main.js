@@ -8,6 +8,11 @@ Ext.define('EventReminder.view.Main', {
         scrollable: true,
         items: [
             {
+                xtype: 'titlebar',
+                itemId: 'MainTitle',
+                title: 'Event Reminder'
+            },
+            {
                 xtype: 'button',
                 itemId: 'upcoming',
                 layout:{

@@ -207,7 +207,9 @@ onDefaults: function(value){
     var record = categoryStore.getAt(index);
 
     //Set the defaults
-    this.getNewEventActivity().setValue(record.get('Activity'));
-    this.getNewEventPriority().setValue(record.get('Priority'));
+    if(record != null){
+        this.getNewEventActivity().setValue(record.get('Activity'));
+        this.getNewEventPriority().setValue(record.get('Priority'));
+    }
 }
 });

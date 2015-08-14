@@ -9,6 +9,11 @@ autoLoad: true,
 items: [
 {
     xtype: 'titlebar',
+    title: 'Upcoming Events',
+    docked: 'top'
+},
+{
+    xtype: 'toolbar',
     itemId: 'title',
     items: [
     {
