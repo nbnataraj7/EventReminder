@@ -18,6 +18,11 @@
 .event-priority{
     font-style: italic;
 }
+
+.color-event-high{
+    background-color: '#f00';
+}
+
 .x-list.event-list.x-list-item-tpl.x-list-disclosure{
 top: 35%;
 border-radius: 0px;
@@ -43,4 +48,9 @@ width: 25%;
 }
 .x-list.people-list .x-list-disclosure:before{
 content: '*';
+}
+
+//Color Coding for Priorities
+.x-list-item-relative.high{
+    background-image: -webkit-linear-gradient(top, #039906,#007A6B 3%,#005C86);
 }

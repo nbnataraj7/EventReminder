@@ -1,6 +1,7 @@
 Ext.define('EventReminder.controller.People', {
     extend: 'Ext.app.Controller',
     requires: ['Ext.MessageBox', 'Ext.device.Contacts'],
+
     //A Controller for adding People from the Contacts
     config: {
         refs: {

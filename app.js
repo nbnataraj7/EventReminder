@@ -8,10 +8,10 @@ Ext.application({
     name: 'EventReminder',
 
     views: [
-        'Main', 'Upcoming', 'Past', 'NewEvent', 'People', 'EditEvent', 'Event', 'Recurrence'
+        'Main', 'Upcoming', 'Past', 'NewEvent', 'People', 'EditEvent', 'Event', 'Recurrence', 'Category'
     ],
     controllers: [
-        'Main', 'Upcoming', 'Past', 'NewEvent', 'Strings', 'People', 'DatabaseController', 'EditEvent', 'DateFilter', 'Category', 'Event', 'Recurrence'
+        'Main', 'Upcoming', 'Past', 'NewEvent', 'Strings', 'People', 'DatabaseController', 'EditEvent', 'DateFilter', 'Category', 'Event', 'Recurrence', 'PriorityCoder'
     ],
     models: [
         'Event', 'Person', 'Category', 'CategoryOptions', 'Recurrence'

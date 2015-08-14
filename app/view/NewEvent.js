@@ -1,6 +1,7 @@
 Ext.define('EventReminder.view.NewEvent', {
 extend: 'Ext.Container',
 xtype: 'newEvent',
+requires: ['Ext.TitleBar', 'Ext.form.FieldSet', 'Ext.field.Hidden', 'Ext.field.Select', 'Ext.field.DatePicker'],
 config: {
 scrollable: true,
 layout: {
@@ -77,7 +78,7 @@ items: [
             onItemDisclosure: true,
             store: 'EventPeople',
             autoDestroy: false,
-            scrollable: false
+            scrollable: null
         },
         {
             itemId: 'selectDate',

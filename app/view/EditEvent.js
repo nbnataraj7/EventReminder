@@ -1,5 +1,6 @@
 Ext.define('EventReminder.view.EditEvent', {
     extend: 'Ext.Container',
+    requires: ['Ext.TitleBar', 'Ext.form.FieldSet', 'Ext.field.Hidden', 'Ext.field.Select', 'Ext.field.DatePicker'],
     xtype: 'editevent',
     config: {
         layout: {
@@ -83,7 +84,7 @@ Ext.define('EventReminder.view.EditEvent', {
                 itemTpl: document.getElementById('people-list').innerHTML,
                 onItemDisclosure: true,
                 store: 'EventPeople',
-                scrollable: false,
+                scrollable: null,
                 autoDestroy: false
             },
             {

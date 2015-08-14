@@ -1,5 +1,6 @@
 Ext.define('EventReminder.controller.Recurrence', {
     extend: 'Ext.app.Controller',
+    requires: ['Ext.field.Spinner'],
     config: {
         refs: {
             recurrence: 'recurrence',

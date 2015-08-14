@@ -1,5 +1,6 @@
 Ext.define('EventReminder.controller.Main',{
 extend: 'Ext.app.Controller',
+requires: ['EventReminder.utils.StringEN'],
 config: {
 refs: {
     main: 'main',
@@ -23,7 +24,7 @@ control: {
 //Thing to be executed once this controller launches
 launch: function(){
     this.callParent();
-    console.log("Main controller");
+    //console.log("Main controller");
 },
 
 //Function for opening Upcoming events view

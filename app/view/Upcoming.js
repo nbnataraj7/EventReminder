@@ -1,5 +1,6 @@
 Ext.define('EventReminder.view.Upcoming', {
 extend: 'Ext.Container',
+requires: ['Ext.field.Search', 'Ext.dataview.List'],
 xtype: 'upcoming',
 config: {
 layout: {
@@ -85,5 +86,26 @@ editEvent:function(list, record, target, index, e, eOpts){
 //Search the list with the person
 search: function( scope, e, eOpts ){
     this.fireEvent("searchByPersonCommand", scope.getValue(), this);
+},
+
+initialize: function(){
+    this.callParent();
+    var xtpl = new Ext.XTemplate(
+            '<tpl for=".">',
+            '   <tpl if="priority == \'high\'">',
+            '       <div class = "color-event-high">',
+            '          <div class="event-category">{category}</div>',
+            '          <div class="event-date">On: {date} at: {eventTime}</div>',
+            '          <div>Alert at : {alertTime}</div>',
+            '          <div class="event-people">People: {people}</div>',
+            '           <div class="event-message">{message}</div>',
+            '          <div class="event-priority">{priority}</div>',
+            '          <div class="event-activities">{activities}</div>',
+            '      </div>',
+            '   </tpl>',
+            '</tpl>'
+    );
+
+    this.down("#upcomingEventList").setItemTpl(xtpl);
 }
 });

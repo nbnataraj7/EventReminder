@@ -1,9 +1,9 @@
 Ext.define('EventReminder.store.AdhocPeople', {
     extend: 'Ext.data.Store',
-    model: 'EventReminder.model.Person',
-    require: 'Ext.data.proxy.LocalStorage',
-    autoLoad: true,
+    requires: 'Ext.data.proxy.LocalStorage',
     config: {
+        model: 'EventReminder.model.Person',
+        autoLoad: true,
         proxy: {
             type: 'localstorage',
             id: 'adhocpeople'

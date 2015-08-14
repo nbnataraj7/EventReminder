@@ -1,9 +1,10 @@
 Ext.define('EventReminder.view.People', {
     extend: 'Ext.Panel',
+    requires: ['Ext.field.Search', 'Ext.dataview.List', 'Ext.form.FieldSet'],
     xtype: 'people',
     config: {
     height: '70%',
-    width: '60%',
+    width: '90%',
         layout: {
             type: 'vbox'
         },

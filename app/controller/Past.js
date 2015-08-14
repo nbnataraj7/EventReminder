@@ -17,7 +17,8 @@ editActivity: 'editevent #activity',
 editHidden: 'editevent #hiddenField',
 editPrev : 'editevent #prev',
 editRecurrence: 'editevent #recurrence',
-searchField: 'past #search'
+searchField: 'past #search',
+pastList: 'past #pastEventList'
 },
 control: {
 past: {
@@ -91,5 +92,4 @@ onSearch: function(person){
   var utils = Ext.create('EventReminder.utils.Utilities');
   utils.filterEventsByPeople(person);
 }
-
 });

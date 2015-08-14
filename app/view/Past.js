@@ -1,5 +1,6 @@
 Ext.define('EventReminder.view.Past', {
 extend: 'Ext.Container',
+requires: ['Ext.field.Search', 'Ext.dataview.List'],
 xtype: 'past',
 config: {
 layout: {

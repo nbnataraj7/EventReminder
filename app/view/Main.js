@@ -1,6 +1,7 @@
 Ext.define('EventReminder.view.Main', {
     extend: 'Ext.Container',
     xtype: 'main',
+    requires: ['Ext.TitleBar', 'Ext.field.Toggle'],
     config: {
         layout: {
             type: 'vbox'
@@ -87,7 +88,7 @@ Ext.define('EventReminder.view.Main', {
     initialize: function(){
         this.callParent();
         this.fireEvent('initMainCommand', this);
-        console.log("Main Initialized");
+        //console.log("Main Initialized");
     },
     upcoming: function(){
         console.log("Upcoming Events Command fired");
