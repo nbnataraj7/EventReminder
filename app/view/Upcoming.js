@@ -35,9 +35,46 @@ items: [
     flex: 1,
     autoDestroy: false,
     itemId: 'upcomingEventList',
-    itemTpl: document.getElementById('events').innerHTML,
-    onItemDisclosure: true,
     store: 'Upcoming',
+    itemTpl: [
+               '<tpl for=".">',
+                    '   <tpl if="priority==\'High\'">',
+                    '       <div class="high">',
+                    '          <div class="event-category">{category}</div>',
+                    '          <div class="event-date">On : {date} at: {eventTime}</div>',
+                    '          <div>Alert at : {alertTime}</div>',
+                    '          <div class="event-people">People: {people}</div>',
+                    '           <div class="event-message">{message}</div>',
+                    '          <div class="event-priority">{priority}</div>',
+                    '          <div class="event-activities">{activities}</div>',
+                    '      </div>',
+                    '   </tpl>',
+                    '<tpl if="priority==\'Medium\'">',
+                    '       <div class="medium">',
+                    '          <div class="event-category">{category}</div>',
+                    '          <div class="event-date">On : {date} at: {eventTime}</div>',
+                    '          <div>Alert at : {alertTime}</div>',
+                    '          <div class="event-people">People: {people}</div>',
+                    '           <div class="event-message">{message}</div>',
+                    '          <div class="event-priority">{priority}</div>',
+                    '          <div class="event-activities">{activities}</div>',
+                    '      </div>',
+                    '   </tpl>',
+                    '<tpl if="priority==\'Low\'">',
+                    '       <div class="low">',
+                    '          <div class="event-category">{category}</div>',
+                    '          <div class="event-date">On : {date} at: {eventTime}</div>',
+                    '          <div>Alert at : {alertTime}</div>',
+                    '          <div class="event-people">People: {people}</div>',
+                    '           <div class="event-message">{message}</div>',
+                    '          <div class="event-priority">{priority}</div>',
+                    '          <div class="event-activities">{activities}</div>',
+                    '      </div>',
+                    '   </tpl>',
+                    '</tpl>'
+    ],
+
+    onItemDisclosure: true,
     cls: 'event-list',
     scrollable: true,
     grouper: {
@@ -52,6 +89,7 @@ items: [
             }
         }
         }
+
 }
 ],
 listeners: [
@@ -86,26 +124,5 @@ editEvent:function(list, record, target, index, e, eOpts){
 //Search the list with the person
 search: function( scope, e, eOpts ){
     this.fireEvent("searchByPersonCommand", scope.getValue(), this);
-},
-
-initialize: function(){
-    this.callParent();
-    var xtpl = new Ext.XTemplate(
-            '<tpl for=".">',
-            '   <tpl if="priority == \'high\'">',
-            '       <div class = "color-event-high">',
-            '          <div class="event-category">{category}</div>',
-            '          <div class="event-date">On: {date} at: {eventTime}</div>',
-            '          <div>Alert at : {alertTime}</div>',
-            '          <div class="event-people">People: {people}</div>',
-            '           <div class="event-message">{message}</div>',
-            '          <div class="event-priority">{priority}</div>',
-            '          <div class="event-activities">{activities}</div>',
-            '      </div>',
-            '   </tpl>',
-            '</tpl>'
-    );
-
-    this.down("#upcomingEventList").setItemTpl(xtpl);
 }
 });

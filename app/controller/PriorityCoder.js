@@ -15,12 +15,5 @@ config: {
             upcomingListCommand: 'colorUpcomingList'
         }
     }
-},
-
-
-launch: function(){
-
-//console.log(this.getUpcomingEventList());
-
 }
 });

@@ -2,6 +2,19 @@
     width: 90%;
     margin:5%;
 }
+
+//Color coding the List
+.high{
+    background-color: #f00;
+}
+.medium{
+    background-color: #00f;
+}
+.low{
+    background-color: #0f0;
+}
+
+
 .event-category{
     font-weight: bolder;
     font-size: 30px;
@@ -17,10 +30,6 @@
 }
 .event-priority{
     font-style: italic;
-}
-
-.color-event-high{
-    background-color: '#f00';
 }
 
 .x-list.event-list.x-list-item-tpl.x-list-disclosure{
@@ -50,7 +59,3 @@ width: 25%;
 content: '*';
 }
 
-//Color Coding for Priorities
-.x-list-item-relative.high{
-    background-image: -webkit-linear-gradient(top, #039906,#007A6B 3%,#005C86);
-}
