@@ -33,7 +33,6 @@ Ext.define('EventReminder.controller.EditEvent', {
                 addPeopleCommand: 'onAddPeople',
                 removePeopleCommand: 'onRemovePeople',
                 editRecurrenceCommand: 'onEditRecurrence',
-                setDefaultsCommand: 'onDefaults'
             }
         }
     },
@@ -236,6 +235,8 @@ Ext.define('EventReminder.controller.EditEvent', {
 
     },
 
+
+/*
 //Setting Default Values
 onDefaults: function(value){
 
@@ -250,4 +251,6 @@ onDefaults: function(value){
         this.getEditEventPriority().setValue(record.get('Priority'));
     }
 }
+
+*/
 });

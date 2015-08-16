@@ -44,8 +44,8 @@ Ext.define('EventReminder.controller.Category', {
         var me = this;
         categoryOptionsStore.each(function(item, index, length){
             var rec = me.getCategoryName().getValue();
-            console.log(rec);
-            console.log(item.get('text'));
+            //console.log(rec);
+            //console.log(item.get('text'));
             if(item.get('text') == rec)
                 isDuplicate = true;
         });

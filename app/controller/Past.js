@@ -55,15 +55,20 @@ onEditEvent: function(record){
 
 
     //Adding people
-    var all = data.people.split(', ');
-    var personStore = Ext.getStore('Person');
-    var adhocpeople = Ext.getStore('EventPeople');
-    for(var i=0; i< all.length; i++){
-        var person = all[i];
-        var index = personStore.findExact('name', person);
-        var record = personStore.getAt(index);
-        adhocpeople.add(record);
-        adhocpeople.sync();
+    //Check Whether the event has people or not
+    var regex = new RegExp('none');
+    if(!regex.test(data.people))
+    {
+        var all = data.people.split(', ');
+        var personStore = Ext.getStore('Person');
+        var adhocpeople = Ext.getStore('EventPeople');
+        for(var i=0; i< all.length; i++){
+            var person = all[i];
+            var index = personStore.findExact('name', person);
+            var record = personStore.getAt(index);
+            adhocpeople.add(record);
+            adhocpeople.sync();
+        }
     }
 
     //Adjusting the ItemList height

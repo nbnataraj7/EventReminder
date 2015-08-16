@@ -226,7 +226,11 @@ Ext.define('EventReminder.view.EditEvent', {
    editRecurrence: function(){
     this.fireEvent('editRecurrenceCommand', this);
    },
+
+/*
    setDefaults: function(scope, newValue){
        this.fireEvent("setDefaultsCommand", newValue, this);
    }
+
+*/
 });
