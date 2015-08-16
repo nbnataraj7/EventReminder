@@ -1,9 +1,10 @@
 Ext.define('EventReminder.view.Event', {
     extend: 'Ext.Panel',
     xtype: 'event',
+    requires: 'Ext.TitleBar',
     config: {
         height: '70%',
-        width: '60%',
+        width: '90%',
         layout: {
             type: 'vbox'
         },
@@ -17,28 +18,48 @@ Ext.define('EventReminder.view.Event', {
         },
         items: [
             {
+                xtype: 'titlebar',
+                itemId: 'date',
+                docked: 'top'
+            },
+            {
                 itemId: 'EventCategory',
-                html: 'Category'
+                //html: 'Category',
+                cls: 'category'
             },
             {
                 itemId: 'EventTime',
-                html: 'Time'
+                //html: 'Time',
+                cls: 'eventTime'
+            },
+            {
+                itemId: 'AlertTime',
+                //html: 'Time',
+                cls: 'eventTime'
             },
             {
                 itemId: 'People',
-                html: 'Category'
+                //html: 'Category',
+                cls: 'people'
             },
             {
                 itemId: 'EventMessage',
-                html: 'Category'
+                //html: 'Category',
+                cls: 'message'
             },
             {
                 itemId: 'EventPriority',
-                html: 'Priority'
+                //html: 'Priority',
+                cls: 'priority'
             },
             {
                 itemId: 'Activity',
-                html: 'Activity'
+                //html: 'Activity',
+                cls: 'activity'
+            },
+            {
+                itemId: 'Recurrence',
+                cls: 'recurrence'
             },
             {
                 itemId: 'Snooze',
@@ -46,10 +67,11 @@ Ext.define('EventReminder.view.Event', {
                     {
                         xtype: 'selectfield',
                         label: 'Snooze',
+                        itemId: 'snoozeTime',
                         options: [
-                            {text: 'Immediate', value: '10'},
-                            {text: 'Next Hour', value: 'day'},
-                            {text: 'Next Month', value: 'month'}
+                            {text: 'Immediate', value: '10 Minutes'},
+                            {text: 'Next Hour', value: '1 hour'},
+                            {text: 'Next Day', value: '1 Day'}
                         ]
                     }]
             },
@@ -68,7 +90,7 @@ Ext.define('EventReminder.view.Event', {
                 {
                     xtype: 'button',
                     text: 'Dismiss',
-                    ui: 'normal',
+                    ui: 'decline',
                     itemId: 'dismiss'
                 }]
             }

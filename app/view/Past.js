@@ -116,6 +116,11 @@ listeners: [
     delegate: '#search',
     event: 'keyup',
     fn: 'search'
+},
+{
+    delegate: '#pastEventList',
+    event: 'itemdoubletap',
+    fn: 'showEvent'
 }
 ]
 },
@@ -138,5 +143,10 @@ clearCommand: function(){
 //Search the list with the person
 search: function( scope, e, eOpts){
     this.fireEvent("searchByPersonCommand", scope.getValue(), this);
+},
+
+//Shows the event in a popup
+showEvent: function(scope, index, target, record, e, eOpts){
+    this.fireEvent("showCommand", record);
 }
 });

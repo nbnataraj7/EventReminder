@@ -107,7 +107,12 @@ listeners: [
     delegate: '#search',
     event: 'keyup',
     fn: 'search'
-}
+},
+{
+     delegate: '#upcomingEventList',
+     event: 'itemdoubletap',
+     fn: 'showEvent'
+ }
 ]
 },
 
@@ -124,5 +129,11 @@ editEvent:function(list, record, target, index, e, eOpts){
 //Search the list with the person
 search: function( scope, e, eOpts ){
     this.fireEvent("searchByPersonCommand", scope.getValue(), this);
+},
+
+
+//Shows the event in a popup
+showEvent: function(scope, index, target, record, e, eOpts){
+    this.fireEvent("showCommand", record, this);
 }
 });

@@ -2,31 +2,43 @@ Ext.define('EventReminder.controller.Past', {
 extend: 'Ext.app.Controller',
 config: {
 refs: {
-past: 'past',
-pastPeople: 'past #peopleList',
-main: 'main',
-editEvent: 'editevent',
-editTimeSelect: 'editevent #eventTimeSelect',
-alertTimeSelect: 'editevent #alertTimeSelect',
-editEventPriority: 'editevent #priority',
-editCategory: 'editevent #selectEditCategory',
-editDate: 'editevent #selectDate',
-editList: 'editevent #peopleList',
-editMessage: 'editevent #message',
-editActivity: 'editevent #activity',
-editHidden: 'editevent #hiddenField',
-editPrev : 'editevent #prev',
-editRecurrence: 'editevent #recurrence',
-searchField: 'past #search',
-pastList: 'past #pastEventList'
+    past: 'past',
+    pastPeople: 'past #peopleList',
+    main: 'main',
+    editEvent: 'editevent',
+    editTimeSelect: 'editevent #eventTimeSelect',
+    alertTimeSelect: 'editevent #alertTimeSelect',
+    editEventPriority: 'editevent #priority',
+    editCategory: 'editevent #selectEditCategory',
+    editDate: 'editevent #selectDate',
+    editList: 'editevent #peopleList',
+    editMessage: 'editevent #message',
+    editActivity: 'editevent #activity',
+    editHidden: 'editevent #hiddenField',
+    editPrev : 'editevent #prev',
+    editRecurrence: 'editevent #recurrence',
+    searchField: 'past #search',
+    pastList: 'past #pastEventList',
+    event: 'event',
+    eventCategory: 'event #EventCategory',
+    eventTime: 'event #EventTime',
+    eventMessage: 'event #EventMessage',
+    eventPriority: 'event #EventPriority',
+    activity: 'event #Activity',
+    alertTime: 'event #AlertTime',
+    eventDate: 'event #date',
+    recurrence: 'event #Recurrence',
+    people: 'event #People'
+
 },
 control: {
-past: {
-    backCommand: 'onBack',
-    editEventCommand: 'onEditEvent',
-    clearCommand: 'onClear',
-    searchByPersonCommand: 'onSearch'
-}
+    past: {
+        backCommand: 'onBack',
+        editEventCommand: 'onEditEvent',
+        clearCommand: 'onClear',
+        searchByPersonCommand: 'onSearch',
+        showCommand: 'onShowCommand'
+    }
 }
 },
 onBack: function(){
@@ -96,5 +108,51 @@ upcoming.sync();
 onSearch: function(person){
   var utils = Ext.create('EventReminder.utils.Utilities');
   utils.filterEventsByPeople(person);
+},
+
+//Show the event in the event popup
+onShowCommand: function(record){
+
+    this.getEventCategory().setHtml(record.get('category'));
+    this.getEventTime().setHtml("Event Starts at: "+record.get('eventTime'));
+    this.getAlertTime().setHtml("Alert is set at: "+record.get('alertTime'));
+    this.getEventMessage().setHtml("Message: "+record.get('message'));
+    this.getEventPriority().setHtml(record.get('priority')+" Priority");
+    this.getActivity().setHtml("Follow up with "+record.get('activities'));
+    this.getEventDate().setTitle("Dated : "+(new Date(record.get('date'))).toDateString());
+
+    //Adding the people
+    this.getPeople().setHtml("With : "+record.get('people'));
+
+
+    //Calculating recurrence
+    var recurrence = record.get('Recur')=="none"?"Recurrence Not Set":record.get('Recur');
+    console.log(recurrence);
+    if(recurrence != 'Recurrence Not Set'){
+        var recurrenceStore = Ext.getStore('Recurrence');
+        var index = recurrenceStore.findExact('RecurrenceId', parseInt(recurrence));
+        console.log(index);
+        var RecurRecord = recurrenceStore.getAt(index);
+
+        var type = RecurRecord.get('Type');
+        var interval;
+        if(type == 'Daily'){
+            type = "Days"
+        }
+        else if(type == 'Weekly'){
+            type = "Weeks"
+        }
+        else{
+            type = "Months"
+        }
+
+        recurrence = "Repeat every "+RecurRecord.get('Interval')+" "+type+" "+RecurRecord.get('Count')+" times";
+    }
+
+    this.getRecurrence().setHtml(recurrence);
+
+    // Show the event with some animation
+    this.getEvent().show({type: 'pop'});
 }
+
 });

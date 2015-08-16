@@ -1,8 +1,10 @@
 Ext.define('EventReminder.controller.Event', {
     extend: 'Ext.app.Controller',
+    requires: 'Ext.MessageBox',
     config: {
         refs: {
-            event: 'event'
+            event: 'event',
+            eventSnooze: 'event #snoozeTime'
         },
         control: {
             event: {
@@ -12,9 +14,9 @@ Ext.define('EventReminder.controller.Event', {
         }
     },
     onSnooze: function(){
-        this.getEvent().hide();
+        Ext.Msg.alert('Snoozed for '+this.getEventSnooze().getValue());
     },
     onDismiss: function(){
-        this.getEvent().hide();
+        this.getEvent().hide({type: 'popOut'});
     }
 });

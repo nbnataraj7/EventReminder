@@ -43,10 +43,8 @@
     color: #000;
 }
 
-
-}
-
 .event-category{
+    font-family: Comic Sans Ms;
     font-weight: bolder;
     font-size: 30px;
 }
@@ -61,7 +59,43 @@
 }
 .event-priority{
     font-style: italic;
+    font-family: Comic Sans Ms;
 }
+
+
+.category {
+    font-weight: bolder;
+    font-size: 30px;
+    font-family: Comic Sans MS;
+    text-align: center;
+}
+
+.eventTime, .alertTime {
+    padding: 2%;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+.message{
+    font-family: Comic Sans Ms;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 5%;
+}
+
+.priority{
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+}
+
+.activity, .recurrence, .people{
+    font-weight: bold;
+    text-align: center;
+}
+
+
 
 .x-list.event-list.x-list-item-tpl.x-list-disclosure{
 top: 35%;
