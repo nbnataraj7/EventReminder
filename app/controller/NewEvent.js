@@ -245,7 +245,12 @@ onDefaults: function(value){
     //Set the defaults
     if(record != null){
         this.getNewEventPriority().setValue(record.get('Priority'));
-
+        if(record.get('Priority') < 35)
+            this.getNewEventPriority().setLabel("Low");
+        else if(record.get('Priority') < 70)
+            this.getNewEventPriority().setLabel("Medium");
+        else
+            this.getNewEventPriority().setLabel("High");
     }
 },
 
