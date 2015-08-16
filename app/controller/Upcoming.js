@@ -140,6 +140,6 @@ onShowCommand: function(record){
     this.getRecurrence().setHtml(recurrence);
 
     // Show the event with some animation
-    this.getEvent().show({type: 'pop'});
+    this.getEvent().show({type: 'flip'});
 }
 });

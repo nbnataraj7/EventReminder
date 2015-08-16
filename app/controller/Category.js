@@ -98,6 +98,10 @@ Ext.define('EventReminder.controller.Category', {
         categoryOptionsStore.load(function(records, operation, success){
 
              if(categoryOptionsStore.getTotalCount() == 0){
+                 var None = Ext.create('EventReminder.model.CategoryOptions', {
+                      text: 'None',
+                      value: ''
+                  });
                  var Birthday = Ext.create('EventReminder.model.CategoryOptions', {
                      text: 'Birthday',
                      value: 'Birthday'
@@ -114,6 +118,7 @@ Ext.define('EventReminder.controller.Category', {
                      text: 'Outing',
                      value: 'Outing'
                  });
+                 categoryOptionsStore.add(None);
                  categoryOptionsStore.add(Birthday);
                  categoryOptionsStore.add(Meeting);
                  categoryOptionsStore.add(Shopping);

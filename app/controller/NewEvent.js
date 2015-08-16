@@ -38,13 +38,14 @@ control: {
 onBack: function(){
     Ext.getStore('EventPeople').removeAll(true);
     Ext.getStore('EventPeople').sync();
+    this.getNewEventPeopleList().refresh();
     Ext.Viewport.animateActiveItem(this.getMain(), {type: 'slide', direction: 'right'});
 },
 
 //Adding people Popup
 onAddPeople:function(){
     var peoplePopup = this.getPeople();
-    peoplePopup.show();
+    peoplePopup.show({type: 'slide', direction: 'left'});
 },
 
 //Adding an Event Time from a custom time picker
@@ -170,7 +171,7 @@ else{
     this.getNewEventTimeSelect().setValue("");
     this.getNewAlertTimeSelect().setValue("");
     this.getNewEventMessage().setValue("");
-    this.getNewEventPeopleList().removeAll();
+    //this.getNewEventPeopleList().removeAll();
     this.getNewEventPriority().setValue("");
     this.getNewEventActivity().setValue("none");
     this.getNewEventRecurrence().setValue("none");

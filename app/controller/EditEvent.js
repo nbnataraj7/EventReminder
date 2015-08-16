@@ -55,14 +55,14 @@ Ext.define('EventReminder.controller.EditEvent', {
     //Clear the adhoc store
         Ext.getStore('EventPeople').removeAll();
         Ext.getStore('EventPeople').sync();
-
+        this.getNewEventPeopleList().refresh();
         Ext.Viewport.animateActiveItem(back, {type: 'slide', direction: 'right'});
     },
 
     //Adding people from a popup
     onAddPeople: function(){
         var peoplePopup = this.getPeople();
-        peoplePopup.show();
+        peoplePopup.show({type: 'slide', direction: 'left'});
     },
 
     //Setting the event time using custom time picker

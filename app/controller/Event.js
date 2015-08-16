@@ -17,6 +17,6 @@ Ext.define('EventReminder.controller.Event', {
         Ext.Msg.alert('Snoozed for '+this.getEventSnooze().getValue());
     },
     onDismiss: function(){
-        this.getEvent().hide({type: 'popOut'});
+        this.getEvent().hide();
     }
 });
