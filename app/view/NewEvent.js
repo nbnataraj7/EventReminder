@@ -12,7 +12,15 @@ items: [
     xtype: 'titlebar',
     itemId: 'NewEventTitle',
     title: 'New Event',
-    docked: 'top'
+    docked: 'top',
+    items: [
+        {
+            xtype: 'button',
+            itemId: 'back',
+            iconCls: 'arrow_left',
+            ui: 'back'
+        }
+    ]
 },
 {
     xtype: 'toolbar',
@@ -21,19 +29,18 @@ items: [
 items: [
 {
     xtype: 'button',
-    itemId: 'back',
-    iconCls: 'arrow_left',
-    ui: 'back'
+    itemId: 'saveEvent',
+    iconCls: 'action',
+    ui:'confirm',
+    itemId: 'addEvent'
 },
 {
     xtype: 'spacer'
 },
 {
     xtype: 'button',
-    itemId: 'saveEvent',
-    iconCls: 'action',
-    ui:'confirm',
-    itemId: 'addEvent'
+    itemId: 'activityButton',
+    iconCls: 'organize'
 },
 {
     xtype: 'button',
@@ -78,7 +85,7 @@ items: [
             onItemDisclosure: true,
             store: 'EventPeople',
             autoDestroy: false,
-            scrollable: null
+            scrollable: 'null'
         },
         {
             itemId: 'selectDate',
@@ -123,40 +130,21 @@ items: [
             maxValue: 100,
             value: 50
         },
-        /*
-        //Unblock this comment if we want multiple activites to be added to an event
-        {
-           xtype: 'list',
-           height: '100px',
-           label: 'Activity List',
-           itemId: 'ActivityList',
-           itemTpl: document.getElementById("activity-list").innerHTML,
-           data: [
-            {name: 'call'},
-            {name: 'text'}
-           ]
-        },
-        {
-            xtype: 'button',
-            label: 'Add Activity',
-            itemId: 'addActivity',
-            text: 'Add Activity',
-            ui: 'confirm'
-        }*/
+
 
         //Selecting an Activity for the event
         //Comment the below config and unblock the previous block
         //in case multiple activities are needed for an event
         {
-            xtype: 'selectfield',
-            label: 'Activity',
-            options: [
-                {text: 'Select', value: 'none'},
-                {text: 'Call', value: 'call'},
-                {text: 'Text', value: 'sms'},
-                {text: 'Email', value: 'email'}
-            ],
-            itemId: 'activity'
+            xtype: 'list',
+            store: 'Activity',
+            itemId: 'activity',
+            onItemDisclosure: true,
+            height: '150px',
+            scrollable: 'null',
+            autoDestroy: false,
+            itemTpl: '<div>{text}</div>',
+            cls: 'people-list'
         }
      ]
     }
@@ -213,6 +201,16 @@ items: [
         delegate: '#selectCategory',
         event: 'change',
         fn: 'setDefaults'
+    },
+    {
+        delegate: '#activityButton',
+        event: 'tap',
+        fn: 'addActivity'
+    },
+    {
+        delegate: '#activity',
+        event: 'disclose',
+        fn: 'removeActivity'
     }
     ]
 },
@@ -256,5 +254,13 @@ addRecurrence: function(){
 },
 setDefaults: function(scope, newValue){
     this.fireEvent("setDefaultsCommand", newValue, this);
+},
+
+addActivity: function(){
+    this.fireEvent("addActivityCommand", this);
+},
+
+removeActivity: function(list, record, target, index, e, eOpts ){
+    this.fireEvent("removeActivityCommand", index,  this);
 }
 });

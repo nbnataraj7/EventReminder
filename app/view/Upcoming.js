@@ -11,22 +11,25 @@ items: [
 {
     xtype: 'titlebar',
     title: 'Upcoming Events',
-    docked: 'top'
+    docked: 'top',
+    items: [
+        {
+            xtype: 'button',
+            itemId: 'back',
+            ui:'back',
+            iconCls: 'arrow_left'
+        }
+    ]
 },
 {
     xtype: 'toolbar',
     itemId: 'title',
     items: [
     {
-        xtype: 'button',
-        itemId: 'back',
-        ui:'back',
-        iconCls: 'arrow_left'
-    },
-    {
         xtype: 'searchfield',
         placeHolder: 'Search by People',
-        itemId: 'search'
+        itemId: 'search',
+        minWidth: '100%'
     }
     ]
 },

@@ -11,22 +11,25 @@ items: [
 {
     xtype: 'titlebar',
     docked: 'top',
-    title: 'Past Events'
+    title: 'Past Events',
+    items: [
+        {
+            xtype: 'button',
+            itemId: 'back',
+            ui:'back',
+            iconCls: 'arrow_left'
+        },
+    ]
 },
 {
     xtype: 'toolbar',
     itemId: 'title',
     items: [
     {
-        xtype: 'button',
-        itemId: 'back',
-        ui:'back',
-        iconCls: 'arrow_left'
-    },
-    {
             xtype: 'searchfield',
             placeHolder: 'Search by People',
-            itemId: 'search'
+            itemId: 'search',
+            minWidth: '80%'
     },
     {
         xtype: 'button',

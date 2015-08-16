@@ -135,22 +135,22 @@ Ext.define('EventReminder.controller.Category', {
         var Birthday = Ext.create('EventReminder.model.Category', {
              Category: 'Birthday',
              Priority: '70',
-             Activity: 'call'
+             Activity: 'Call'
          });
          var Meeting = Ext.create('EventReminder.model.Category', {
              Category: 'Meeting',
              Priority: '100',
-             Activity: 'email'
+             Activity: 'Email'
          });
          var Shopping = Ext.create('EventReminder.model.Category', {
              Category: 'Shopping',
              Priority: '80',
-             Activity: 'sms'
+             Activity: 'Text'
          });
          var Outing = Ext.create('EventReminder.model.Category', {
              Category: 'Outing',
              Priority: '30',
-             Activity: 'email'
+             Activity: 'Email'
          });
          categoryStore.add(Birthday);
          categoryStore.add(Meeting);

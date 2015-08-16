@@ -26,7 +26,8 @@ refs: {
     alertTime: 'event #AlertTime',
     eventDate: 'event #date',
     recurrence: 'event #Recurrence',
-    people: 'event #People'
+    people: 'event #People',
+    editActivity: 'editevent activity'
 },
 control: {
     upcoming: {
@@ -41,6 +42,11 @@ onBack: function(){
 
     //Clear the search field
     this.getSearchField().setValue("");
+
+    //Clear the activity
+     var activityStore = Ext.getStore('Activity');
+     activityStore.removeAll();
+     activityStore.sync();
 
     Ext.Viewport.animateActiveItem(this.getMain(), {type: 'slide', direction: 'right'});
 },
@@ -58,7 +64,7 @@ onEditEvent: function(record){
     this.getEditDate().setValue(new Date(data.date));
     this.getEditMessage().setValue(data.message);
     this.getEditEventPriority().setLabel(data.priority);
-    this.getEditActivity().setValue(data.activities);
+    //this.getEditActivity().setValue(data.activities);
     this.getEditTimeSelect().setValue(data.eventTime);
     this.getAlertTimeSelect().setValue(data.alertTime);
 
@@ -79,9 +85,20 @@ onEditEvent: function(record){
             adhocpeople.sync();
         }
     }
-
     //Adjusting the Height
     this.getEditList().setHeight(this.getEditList().getItemHeight()*Ext.getStore('EventPeople').getData().getCount());
+
+    //Adding the activities
+    var allActivities = data.activities.split(", ");
+    var activityStore = Ext.getStore('Activity');
+    for(var i=0; i<allActivities.length; i++){
+        var activityModel = Ext.create('EventReminder.model.Activity', {
+            text: allActivities[i],
+            value: allActivities[i]
+        });
+        activityStore.add(activityModel);
+        activityStore.sync();
+    }
 
 
     //Setting the value of previous screen

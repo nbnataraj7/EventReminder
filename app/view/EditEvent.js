@@ -12,7 +12,15 @@ Ext.define('EventReminder.view.EditEvent', {
         xtype: 'titlebar',
         itemId: 'EditEventTitle',
         title: 'Edit Event',
-        docked: 'top'
+        docked: 'top',
+        items: [
+           {
+               xtype: 'button',
+               itemId: 'back',
+               iconCls: 'arrow_left',
+               ui: 'back'
+           },
+        ]
     },
     {
         xtype: 'toolbar',
@@ -21,18 +29,17 @@ Ext.define('EventReminder.view.EditEvent', {
         items: [
         {
             xtype: 'button',
-            itemId: 'back',
-            iconCls: 'arrow_left',
-            ui: 'back'
+            iconCls: 'action',
+            ui: 'confirm',
+            itemId: 'saveEvent'
         },
         {
             xtype: 'spacer'
         },
         {
-            xtype: 'button',
-            iconCls: 'action',
-            ui: 'confirm',
-            itemId: 'saveEvent'
+            delegate: 'button',
+            iconCls: 'organize',
+            itemId: 'activityButton'
         },
         {
             xtype: 'button',
@@ -132,16 +139,15 @@ Ext.define('EventReminder.view.EditEvent', {
                 value: 50
             },
             {
-                xtype: 'selectfield',
-                label: 'Activity',
-                options: [
-                    {text: 'Select', value: 'none'},
-                    {text: 'Call', value: 'call'},
-                    {text: 'Text', value: 'sms'},
-                    {text: 'Email', value: 'email'}
-                ],
+                xtype: 'list',
+                store: 'Activity',
                 itemId: 'activity',
-                autoSelect: true
+                onItemDisclosure: true,
+                height: '150px',
+                scrollable: 'null',
+                autoDestroy: false,
+                itemTpl: '<div>{text}</div>',
+                cls: 'people-list'
             }
    ]
    }],
@@ -195,7 +201,17 @@ Ext.define('EventReminder.view.EditEvent', {
             delegate: '#selectEditCategory',
             event: 'change',
             fn: 'setDefaults'
-        }
+       },
+       {
+            delegate: '#activity',
+            event: 'disclose',
+            fn: 'editActivities'
+       },
+       {
+            delegate: '#activityButton',
+            event: 'tap',
+            fn: 'addActivities'
+       }
    ]
    },
    back: function(){
@@ -226,11 +242,12 @@ Ext.define('EventReminder.view.EditEvent', {
    editRecurrence: function(){
     this.fireEvent('editRecurrenceCommand', this);
    },
+   editActivities: function( scope, record, target, index, e, eOpts ){
+    this.fireEvent('editActivityCommand', index, this);
+   },
 
-/*
-   setDefaults: function(scope, newValue){
-       this.fireEvent("setDefaultsCommand", newValue, this);
+   addActivities: function(){
+    this.fireEvent("addActivitiesCommand", this);
    }
 
-*/
 });

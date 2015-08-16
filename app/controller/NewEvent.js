@@ -7,6 +7,8 @@ refs: {
     newevent : 'newEvent',
     main: 'main',
     people: 'people',
+    activity: 'activity',
+    activityList: 'activity #ActivityList',
     newEventCategory: 'newEvent #selectCategory',
     newEventPeopleList: 'newEvent #peopleList',
     newEventSelectDate: 'newEvent #selectDate',
@@ -29,16 +31,27 @@ control: {
         removePersonCommand: 'onRemovePerson',
         addPeopleCommand: 'onAddPeople',
         recurrenceCommand: 'onRecurrence',
-        setDefaultsCommand: 'onDefaults'
+        setDefaultsCommand: 'onDefaults',
+        addActivityCommand: 'onAddActivity',
+        removeActivityCommand: 'onRemoveActivity'
 }
 }
 },
 
 //Back button handling
 onBack: function(){
+
+    //Remove adhoc people
     Ext.getStore('EventPeople').removeAll(true);
     Ext.getStore('EventPeople').sync();
     this.getNewEventPeopleList().refresh();
+
+    //Remove adhoc activities
+    Ext.getStore('Activity').removeAll(true);
+    Ext.getStore('Activity').sync();
+    this.getActivityList().refresh();
+
+    //Set the Viewport to Main
     Ext.Viewport.animateActiveItem(this.getMain(), {type: 'slide', direction: 'right'});
 },
 
@@ -90,7 +103,18 @@ onAddEvent:function(){
 
 
 //Setting the default value of the activity
-var activity = this.getNewEventActivity().getValue()?this.getNewEventActivity().getValue():"none";
+var activities = "none";
+var activityStore = Ext.getStore('Activity');
+if(activityStore.getCount() != 0){
+    activities = "";
+    activityStore.each(function(item, index, length){
+         activities += item.get('text')+", ";
+    });
+
+    //Trimming out the ending punctuation
+    activities = activities.substring(0, activities.length-2);
+
+}
 
 //Calculating the Date and time at which the alert is been created
 var date = this.getNewEventSelectDate().getValue();
@@ -148,7 +172,7 @@ var event = Ext.create('EventReminder.model.Event', {
     alertTime: this.getNewAlertTimeSelect().getValue(),
     message: this.getNewEventMessage().getValue(),
     priority: (this.getNewEventPriority().getLabel() == 'Priority')?'Medium':(this.getNewEventPriority().getLabel()),
-    activities: activity,
+    activities: activities,
     people: people
 });
 
@@ -173,7 +197,7 @@ else{
     this.getNewEventMessage().setValue("");
     //this.getNewEventPeopleList().removeAll();
     this.getNewEventPriority().setValue("");
-    this.getNewEventActivity().setValue("none");
+    //this.getNewEventActivity().setValue("none");
     this.getNewEventRecurrence().setValue("none");
 
     //Destroying the loader mask
@@ -184,8 +208,6 @@ else{
 
 //Function for removing person from the list
 onRemovePerson:function(index){
-    console.log("Removing the record");
-    console.log(index);
    Ext.getStore('EventPeople').removeAt(index);
    Ext.getStore('EventPeople').sync();
 
@@ -195,7 +217,7 @@ onRemovePerson:function(index){
 
 //Setting an event as Recurring one
 onRecurrence: function(){
-    this.getRecurrence().show();
+    this.getRecurrence().show({type: 'slide', direction: 'left'});
 },
 
 
@@ -207,10 +229,37 @@ onDefaults: function(value){
     var index = categoryStore.findExact('Category', value);
     var record = categoryStore.getAt(index);
 
+    if(record == null)
+        return;
+
+    var activities = record.get('Activity');
+    var ActivityModel = Ext.create('EventReminder.model.Activity', {
+        text: activities,
+        value: activities
+    });
+
+    Ext.getStore('Activity').removeAll();
+    Ext.getStore('Activity').add(ActivityModel);
+    Ext.getStore('Activity').sync();
+
     //Set the defaults
     if(record != null){
-        this.getNewEventActivity().setValue(record.get('Activity'));
         this.getNewEventPriority().setValue(record.get('Priority'));
+
     }
+},
+
+//Adding Multiple activities for an event
+onAddActivity: function(){
+    this.getActivity().show({type: 'slide', direction: 'left'});
+},
+
+//Removing an Activity from the event
+onRemoveActivity: function(index){
+
+    console.log("removing the activity");
+    var store = Ext.getStore('Activity');
+    store.removeAt(index);
+    store.sync();
 }
 });

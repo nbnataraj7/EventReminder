@@ -34,7 +34,8 @@ Ext.define('EventReminder.view.People', {
                 {
                     xtype: 'searchfield',
                     placeHolder: 'Search by Name',
-                    itemId: 'personName'
+                    itemId: 'personName',
+                    minWidth: '100%'
                 }
                 ]
             },
@@ -44,8 +45,9 @@ Ext.define('EventReminder.view.People', {
                 items: [
                     {
                         xtype: 'searchfield',
-                        placeHolder: 'Contact',
-                        itemId: 'personContact'
+                        placeHolder: 'Search by Contact',
+                        itemId: 'personContact',
+                        minWidth: '100%'
                     },
                 ]
             },

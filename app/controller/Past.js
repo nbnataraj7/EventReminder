@@ -28,7 +28,8 @@ refs: {
     alertTime: 'event #AlertTime',
     eventDate: 'event #date',
     recurrence: 'event #Recurrence',
-    people: 'event #People'
+    people: 'event #People',
+    editActivity: 'editevent activity'
 
 },
 control: {
@@ -61,7 +62,7 @@ onEditEvent: function(record){
     this.getEditDate().setValue(new Date());
     this.getEditMessage().setValue(data.message);
     this.getEditEventPriority().setLabel(data.priority);
-    this.getEditActivity().setValue(data.activities);
+    //this.getEditActivity().setValue(data.activities);
     this.getEditTimeSelect().setValue(data.eventTime);
     this.getAlertTimeSelect().setValue(data.alertTime);
 
@@ -85,6 +86,18 @@ onEditEvent: function(record){
 
     //Adjusting the ItemList height
     this.getEditList().setHeight(this.getEditList().getItemHeight()*Ext.getStore('EventPeople').getData().getCount());
+
+    //Adding the activities
+    var allActivities = data.activities.split(", ");
+    var activityStore = Ext.getStore('Activity');
+    for(var i=0; i<allActivities.length; i++){
+        var activityModel = Ext.create('EventReminder.model.Activity', {
+            text: allActivities[i],
+            value: allActivities[i]
+        });
+        activityStore.add(activityModel);
+        activityStore.sync();
+    }
 
      //Setting the value of previous screen
      this.getEditPrev().setValue("Past");

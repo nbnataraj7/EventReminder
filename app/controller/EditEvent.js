@@ -20,7 +20,9 @@ Ext.define('EventReminder.controller.EditEvent', {
             people: 'people',
             editPrev : 'editevent #prev',
             past: 'past',
-            recurrence: 'recurrence'
+            recurrence: 'recurrence',
+            activity: 'activity',
+            activityList: 'activity #ActivityList'
         },
         control: {
             editEvent: {
@@ -33,6 +35,8 @@ Ext.define('EventReminder.controller.EditEvent', {
                 addPeopleCommand: 'onAddPeople',
                 removePeopleCommand: 'onRemovePeople',
                 editRecurrenceCommand: 'onEditRecurrence',
+                editActivityCommand: 'onEditActivity',
+                addActivitiesCommand: 'onAddActivities'
             }
         }
     },
@@ -56,7 +60,15 @@ Ext.define('EventReminder.controller.EditEvent', {
         Ext.getStore('EventPeople').removeAll();
         Ext.getStore('EventPeople').sync();
         this.getEditEventPeopleList().refresh();
-        Ext.Viewport.animateActiveItem(back, {type: 'slide', direction: 'right'});
+
+
+    //Clear the adhoc activities store
+        Ext.getStore('Activity').removeAll();
+        Ext.getStore('Activity').sync();
+        this.getEditEventActivities().refresh();
+
+    //Get back to Main
+       Ext.Viewport.animateActiveItem(back, {type: 'slide', direction: 'right'});
     },
 
     //Adding people from a popup
@@ -154,8 +166,18 @@ Ext.define('EventReminder.controller.EditEvent', {
             return;
         }
 
-        //Setting the default priority value
-        //(this.getEditEventPriority().getLabel() == 'Priority')?'Medium':(this.getEditEventPriority().getLabel() == 'Priority')
+        //Calculating the activities string
+        var activities = "none";
+        var activitiesStore = Ext.getStore('Activity');
+        if(activitiesStore.getCount() != 0){
+            activities = "";
+            activitiesStore.each(function(item, index, length){
+                activities += item.get('text')+", ";
+            });
+
+        //Trimming out the ending punctuation
+        activities = activities.substring(0, activities.length-2);
+        }
 
         //Validating the current Event Note
         var eventModel = Ext.create('EventReminder.model.Event', {
@@ -167,7 +189,7 @@ Ext.define('EventReminder.controller.EditEvent', {
             message: this.getEditEventMessage().getValue(),
             people: people,
             priority: this.getEditEventPriority().getLabel(),
-            activities: this.getEditEventActivities().getValue()
+            activities: activities
         });
         var errors = eventModel.validate();
         if(!errors.isValid())
@@ -186,7 +208,7 @@ Ext.define('EventReminder.controller.EditEvent', {
                 people : people,
                 message : this.getEditEventMessage().getValue(),
                 priority : this.getEditEventPriority().getLabel(),
-                activities : this.getEditEventActivities().getValue(),
+                activities : activities,
                 EventID : this.getEditEventID().getValue()
             };
             console.log(event);
@@ -231,26 +253,21 @@ Ext.define('EventReminder.controller.EditEvent', {
     //Editing the Recurrence of the Event
     onEditRecurrence: function(){
         console.log("Editing recurrence");
-        this.getRecurrence().show();
+        this.getRecurrence().show({type: 'slide', direction: 'left'});
 
     },
 
 
-/*
-//Setting Default Values
-onDefaults: function(value){
+    //Editing the activities
+    onEditActivity: function(index){
+        console.log('Editing activities');
+        var activitiesStore = Ext.getStore('Activity');
+        activitiesStore.removeAt(index);
+        activitiesStore.sync();
+    },
 
-    //search the category store
-    var categoryStore = Ext.getStore('Category');
-    var index = categoryStore.findExact('Category', value);
-    var record = categoryStore.getAt(index);
-
-    //Set the defaults if the Record exists
-    if(record != null){
-        this.getEditEventActivities().setValue(record.get('Activity'));
-        this.getEditEventPriority().setValue(record.get('Priority'));
+    //Adding more activities
+    onAddActivities: function(){
+        this.getActivity().show({type: 'slide', direction: 'left'});
     }
-}
-
-*/
 });
