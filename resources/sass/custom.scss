@@ -3,6 +3,7 @@
     margin:5%;
 }
 
+/*
 //Color coding the List
 .high{
     background-color: #f00;
@@ -14,6 +15,36 @@
     background-color: #0f0;
 }
 
+*/
+
+
+.high {
+    font-family: Comic Sans Ms;
+    background-image: -webkit-linear-gradient(top, #FF0000,#FFFF01 70%,#FF0000);
+    padding: 5%;
+    border-top-left-radius: 10%;
+    color: #000;
+}
+
+.medium {
+    font-family: Comic Sans Ms;
+    background-image: -webkit-linear-gradient(top, #00FF53,#00FE8E 70%,#005D13);
+    padding: 5%;
+    border-top-left-radius: 10%;
+    color: #000;
+}
+
+
+.low {
+    font-family: Comic Sans Ms;
+    background-image: -webkit-linear-gradient(top, #FFF00C,#FFF0BD 70%,#FFF00E);
+    padding: 5%;
+    border-top-left-radius: 10%;
+    color: #000;
+}
+
+
+}
 
 .event-category{
     font-weight: bolder;
@@ -48,12 +79,16 @@ font-family: 'Comic Sans MS';
 font-size: 15px;
 }
 .x-list.event-list .x-list-item-tpl .x-list-disclosure{
-border-radius: 0px;
-width: 25%;
+    width: 25%;
+    right: 3%;
+    top: 3%;
+    border-radius: 10%;
 }
 .x-list.past-event-list .x-list-item-tpl .x-list-disclosure{
-border-radius: 0px;
-width: 25%;
+    width: 25%;
+    right: 3%;
+    top: 3%;
+    border-radius: 10%;
 }
 .x-list.people-list .x-list-disclosure:before{
 content: '*';
