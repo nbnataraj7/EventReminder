@@ -55,7 +55,7 @@ Ext.define('EventReminder.controller.EditEvent', {
     //Clear the adhoc store
         Ext.getStore('EventPeople').removeAll();
         Ext.getStore('EventPeople').sync();
-        this.getNewEventPeopleList().refresh();
+        this.getEditEventPeopleList().refresh();
         Ext.Viewport.animateActiveItem(back, {type: 'slide', direction: 'right'});
     },
 
