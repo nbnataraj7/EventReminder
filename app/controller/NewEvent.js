@@ -191,7 +191,7 @@ else{
     this.fireEvent("insertEventCommand", event,  this);
     //Flush the contents of the new Event form
     this.getNewEventCategory().reset();
-    this.getNewEventSelectDate().setValue("");
+    this.getNewEventSelectDate().setValue(new Date());
     this.getNewEventTimeSelect().setValue("");
     this.getNewAlertTimeSelect().setValue("");
     this.getNewEventMessage().setValue("");
