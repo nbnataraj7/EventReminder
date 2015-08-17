@@ -57,8 +57,12 @@ onBack: function(){
 
 //Adding people Popup
 onAddPeople:function(){
+    //Uncomment the following lines for showing a people popup
+
     var peoplePopup = this.getPeople();
-    peoplePopup.show({type: 'slide', direction: 'left'});
+    //Add animation afterwards
+    peoplePopup.show();
+
 },
 
 //Adding an Event Time from a custom time picker

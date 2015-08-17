@@ -82,6 +82,7 @@ items: [
             itemId: 'peopleList',
             cls: 'people-list',
             itemTpl: document.getElementById('people-list').innerHTML,
+            //itemTpl: "<div>{name}</div><div>{contact}</div>",
             onItemDisclosure: true,
             store: 'EventPeople',
             autoDestroy: false,

@@ -111,37 +111,39 @@ Ext.define('EventReminder.controller.People', {
         //call the search utility
         var util = Ext.create('EventReminder.utils.Utilities');
         util.filterContact(contact);
-    }
+    },
 
-/*    //On Launch Remove all the adhoc people
+
+    //Add Contacts to person store
     launch: function(){
+    //Logging all the contacts from the device
+    //console.log(navigator.contacts);
 
-        //Remove all the people from the adhoc store
-        var adhocPeople = Ext.getStore('EventPeople');
-        adhocPeople.removeAll();
-        adhocPeople.sync();
+    Ext.getStore('Person').load(function(records, operation, success){
 
-        //Add all the contacts from device to People store
-        //Creating an inline store
-        var ContactsStore = Ext.create('Ext.data.Store', {
-            fields: [
-                'First', 'Last'
-            ],
-            data: Ext.device.Contacts.getContacts()
-        });
-
-
-        //Now add all of these contacts to the People store
-        var people = Ext.getStore('Person');
-        ContactsStore.each(function(item, index, length){
-            var contact = Ext.create('EventReminder.model.Person', {
-                name: item.get('First')+" "+item.get('Last'),
-                contact: ''
+        var onSuccess = function(item){
+        for(var i=0; i<item.length; i++){
+            var name = item[i].displayName;
+            var contact = item[i].phoneNumbers[0]==NaN?"":item[i].phoneNumbers[0];
+            var contactModel = Ext.create('EventReminder.model.Person', {
+                name: name,
+                contact: contact
             });
-            people.add(contact);
-            people.sync();
-        });
+            Ext.getStore('Person').add(contactModel);
+            }
+            Ext.getStore('Person').sync();
+            console.log("App contacts updated with phone contacts");
+
+        };
+
+        var onFailure = function(){
+            console.log("Something went wrong while reading contacts!");
+        };
+
+        if(Ext.getStore('Person').getCount()==0)
+            navigator.contacts.find([navigator.contacts.fieldType.displayName], onSuccess, onFailure);
+    });
     }
 
-    */
+
 });

@@ -37,6 +37,7 @@ Ext.Loader.addClassPathMappings({
 });
 
 Ext.ClassManager.addNameAlternateMappings({
+  "EventReminder.controller.Activity": [],
   "EventReminder.controller.Category": [],
   "EventReminder.controller.DatabaseController": [],
   "EventReminder.controller.DateFilter": [],
@@ -47,14 +48,17 @@ Ext.ClassManager.addNameAlternateMappings({
   "EventReminder.controller.NewEvent": [],
   "EventReminder.controller.Past": [],
   "EventReminder.controller.People": [],
+  "EventReminder.controller.PriorityCoder": [],
   "EventReminder.controller.Recurrence": [],
   "EventReminder.controller.Strings": [],
   "EventReminder.controller.Upcoming": [],
+  "EventReminder.model.Activity": [],
   "EventReminder.model.Category": [],
   "EventReminder.model.CategoryOptions": [],
   "EventReminder.model.Event": [],
   "EventReminder.model.Person": [],
   "EventReminder.model.Recurrence": [],
+  "EventReminder.store.Activity": [],
   "EventReminder.store.AdhocPeople": [],
   "EventReminder.store.Category": [],
   "EventReminder.store.CategoryOptions": [],
@@ -699,6 +703,7 @@ Ext.ClassManager.addNameAlternateMappings({
 });
 
 Ext.ClassManager.addNameAliasMappings({
+  "EventReminder.controller.Activity": [],
   "EventReminder.controller.Category": [],
   "EventReminder.controller.DatabaseController": [],
   "EventReminder.controller.DateFilter": [],
@@ -713,14 +718,17 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "EventReminder.controller.Past": [],
   "EventReminder.controller.People": [],
+  "EventReminder.controller.PriorityCoder": [],
   "EventReminder.controller.Recurrence": [],
   "EventReminder.controller.Strings": [],
   "EventReminder.controller.Upcoming": [],
+  "EventReminder.model.Activity": [],
   "EventReminder.model.Category": [],
   "EventReminder.model.CategoryOptions": [],
   "EventReminder.model.Event": [],
   "EventReminder.model.Person": [],
   "EventReminder.model.Recurrence": [],
+  "EventReminder.store.Activity": [],
   "EventReminder.store.AdhocPeople": [],
   "EventReminder.store.Category": [],
   "EventReminder.store.CategoryOptions": [],
@@ -731,7 +739,9 @@ Ext.ClassManager.addNameAliasMappings({
   "EventReminder.utils.Dbutils": [],
   "EventReminder.utils.StringEN": [],
   "EventReminder.utils.Utilities": [],
-  "EventReminder.view.Activity": [],
+  "EventReminder.view.Activity": [
+    "widget.activity"
+  ],
   "EventReminder.view.Category": [
     "widget.category"
   ],
