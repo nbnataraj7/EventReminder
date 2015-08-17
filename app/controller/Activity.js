@@ -25,9 +25,22 @@ Ext.define('EventReminder.controller.Activity', {
 
         //Getting the selected item from the list
         var selected = this.getSelectedList().getSelection();
+        selected = selected[0];
+
+        //Check if the selected activity is already added
+        var isAdded = false;
+        store.each(function(item, index, length){
+            if(item.get('text') == selected.get('text'))
+            {
+                Ext.Msg.alert("Activity already added");
+                isAdded = true;
+                return;
+            }
+        });
+        if(isAdded)
+            return;
 
         //Create an Activity model
-        selected = selected[0];
         var text = selected.get('text');
         var value = selected.get('value');
         var activity = Ext.create('EventReminder.model.Activity', {
