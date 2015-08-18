@@ -30,7 +30,7 @@ items: [
 {
     xtype: 'button',
     itemId: 'saveEvent',
-    iconCls: 'action',
+    iconCls: 'compose',
     ui:'confirm',
     itemId: 'addEvent'
 },
@@ -44,7 +44,7 @@ items: [
 },
 {
     xtype: 'button',
-    iconCls: 'add',
+    iconCls: 'user',
     itemId: 'addPeople',
 },
 {
@@ -74,6 +74,7 @@ items: [
             xtype: 'selectfield',
             itemId: 'selectCategory',
             label: 'Select Category',
+            labelWidth: '50%',
             store: 'CategoryOptions'
         },
         {
@@ -90,6 +91,7 @@ items: [
         },
         {
             itemId: 'selectDate',
+            labelWidth: '50%',
             xtype: 'datepickerfield',
             value: new Date(),
             picker: {
@@ -106,6 +108,7 @@ items: [
                     xtype: 'textfield',
                     itemId: 'eventTimeSelect',
                     label: 'Event Time',
+                    labelWidth: '50%',
                     placeHolder: 'Tap to select event time'
                   },
                 //Select Alert Time
@@ -113,6 +116,7 @@ items: [
                       xtype: 'textfield',
                       itemId: 'alertTimeSelect',
                       label: 'Alert Time',
+                      labelWidth: '50%',
                       placeHolder: 'Tap to select alert time'
                   }
               ]

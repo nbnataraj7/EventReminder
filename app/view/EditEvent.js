@@ -29,7 +29,7 @@ Ext.define('EventReminder.view.EditEvent', {
         items: [
         {
             xtype: 'button',
-            iconCls: 'action',
+            iconCls: 'compose',
             ui: 'confirm',
             itemId: 'saveEvent'
         },
@@ -43,7 +43,7 @@ Ext.define('EventReminder.view.EditEvent', {
         },
         {
             xtype: 'button',
-            iconCls: 'add',
+            iconCls: 'user',
             itemId: 'addPeople'
         },
         {
@@ -81,6 +81,7 @@ Ext.define('EventReminder.view.EditEvent', {
                 itemId: 'selectEditCategory',
                 label: 'Select Category',
                 store: 'CategoryOptions',
+                labelWidth: '50%'
             },
             {
                 xtype: 'list',
@@ -98,6 +99,7 @@ Ext.define('EventReminder.view.EditEvent', {
                 itemId: 'selectDate',
                 xtype: 'datepickerfield',
                 label: 'Select date',
+                labelWidth: '50%',
                 picker: {
                     yearFrom: 2015,
                     yearTo: 2030,
@@ -113,6 +115,7 @@ Ext.define('EventReminder.view.EditEvent', {
                         xtype: 'textfield',
                         itemId: 'eventTimeSelect',
                         label: 'Event Time',
+                        labelWidth: '50%',
                         placeHolder: 'Tap to select event time'
                       },
                     //Select Alert Time
@@ -120,6 +123,7 @@ Ext.define('EventReminder.view.EditEvent', {
                           xtype: 'textfield',
                           itemId: 'alertTimeSelect',
                           label: 'Alert Time',
+                          labelWidth: '50%',
                           placeHolder: 'Tap to select alert time'
                       }
                   ]

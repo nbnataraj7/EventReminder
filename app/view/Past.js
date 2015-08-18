@@ -44,43 +44,63 @@ items: [
     flex: 1,
     autoDestroy: false,
     itemId: 'pastEventList',
-    itemTpl: [
-           '<tpl for=".">',
-                '   <tpl if="priority==\'High\'">',
-                '       <div class="high">',
-                '          <div class="event-category">{category}</div>',
-                '          <div class="event-date">On : {date} </div>',
-                '          <div>Alert at : {alertTime}</div>',
-                '          <div class="event-people">People: {people}</div>',
-                '           <p class="event-message">{message}</p>',
-                '          <div class="event-priority">{priority} Priority</div>',
-                '          <div class="event-activities">{activities}</div>',
-                '      </div>',
-                '   </tpl>',
-                '<tpl if="priority==\'Medium\'">',
-                '       <div class="medium">',
-                '          <div class="event-category">{category}</div>',
-                '          <div class="event-date">On : {date}</div>',
-                '          <div>Alert at : {alertTime}</div>',
-                '          <div class="event-people">People: {people}</div>',
-                '           <p class="event-message">{message}</p>',
-                '          <div class="event-priority">{priority} Priority</div>',
-                '          <div class="event-activities">{activities}</div>',
-                '      </div>',
-                '   </tpl>',
-                '<tpl if="priority==\'Low\'">',
-                '       <div class="low">',
-                '          <div class="event-category">{category}</div>',
-                '          <div class="event-date">On : {date}</div>',
-                '          <div>Alert at : {alertTime}</div>',
-                '          <div class="event-people">People: {people}</div>',
-                '           <p class="event-message">{message}</p>',
-                '          <div class="event-priority">{priority} Priority</div>',
-                '          <div class="event-activities">{activities}</div>',
-                '      </div>',
-                '   </tpl>',
-                '</tpl>'
-        ],
+   itemTpl: new Ext.XTemplate(
+                      '<tpl for=".">',
+                           '   <tpl if="priority==\'High\'">',
+                           '          <div class="event-category">{category}</div>',
+                           '          <div><span class="pictos-icon">\\\\ </span><span class="event-date">{[(new Date(values.date)).toDateString()]}</span></div>',
+                           '          <div><span class="pictos-icon">t</span><span>  {alertTime}</span></div>',
+                           '          <span class="pictos-icon">U</span><span class="event-people">  {people}</span>',
+                           '          <p class="event-message"><span class="pictos-icon">q</span>  {message}</p>',
+                           '          <div class="high-priority">{priority} Priority</div>',
+                           '           <div class="activity-icons">',
+                           '                   <span class="pictos-icon">{[this.getAllIcons(values.activities)]}</span>',
+                           '           </div>',
+                           '   </tpl>',
+                           '<tpl if="priority==\'Medium\'">',
+                           '          <div class="event-category">{category}</div>',
+                           '          <div><span class="pictos-icon">\\\\ </span><span class="event-date">{[(new Date(values.date)).toDateString()]}</span></div>',
+                           '          <div><span class="pictos-icon">t</span><span>  {alertTime}</span></div>',
+                           '          <span class="pictos-icon">U</span><span class="event-people">  {people}</span>',
+                           '          <p class="event-message"><span class="pictos-icon">q</span>  {message}</p>',
+                           '          <div class="medium-priority">{priority} Priority</div>',
+                           '           <div class="activity-icons">',
+                           '                   <span class="pictos-icon">{[this.getAllIcons(values.activities)]}</span>',
+                           '           </div>',
+                           '   </tpl>',
+                           '<tpl if="priority==\'Low\'">',
+                           '          <div class="event-category">{category}</div>',
+                           '          <div><span class="pictos-icon"></span><span class="event-date">{[(new Date(values.date)).toDateString()]}</span></div>',
+                           '          <div><span class="pictos-icon">t</span><span>  {alertTime}</span></div>',
+                           '          <span class="pictos-icon">U</span><span class="event-people">  {people}</span>',
+                           '          <p class="event-message"><span class="pictos-icon">q</span>  {message}</p>',
+                           '          <div class="low-priority">{priority} Priority</div>',
+                           '           <div class="activity-icons">',
+                           '                   <span class="pictos-icon">{[this.getAllIcons(values.activities)]}</span>',
+                           '           </div>',
+                           '   </tpl>',
+                           '</tpl>',
+                           {
+                               getAllIcons: function(activities){
+
+                                   var icons = "";
+
+                                   var allActivities = activities.split(", ");
+                                   for(var i=0; i< allActivities.length; i++){
+                                       if(allActivities[i] == "Email" || allActivities[i]== "email"){
+                                           icons += "M  ";
+                                       }
+                                       else if(allActivities[i] == "Text" || allActivities[i]== "sms"){
+                                           icons += "w  ";
+                                       }
+                                       else if(allActivities[i] == "Call" || allActivities[i]=="call"){
+                                           icons += "f  ";
+                                       }
+                                   }
+                                   return icons;
+                               }
+                           }
+           ),
     onItemDisclosure: true,
     store: 'Upcoming',
     cls: 'past-event-list',

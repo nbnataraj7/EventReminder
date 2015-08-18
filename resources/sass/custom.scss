@@ -14,13 +14,12 @@
 .low{
     background-color: #0f0;
 }
-
 */
 
-
+/*
 .high {
     font-family: Comic Sans Ms;
-    background-image: -webkit-linear-gradient(top, #FF0000,#FFFF01 70%,#FF0000);
+    //background-image: -webkit-linear-gradient(top, #FF0000,#FFFF01 70%,#FF0000);
     padding: 5%;
     border-top-left-radius: 10%;
     color: #000;
@@ -28,7 +27,7 @@
 
 .medium {
     font-family: Comic Sans Ms;
-    background-image: -webkit-linear-gradient(top, #00FF53,#00FE8E 70%,#005D13);
+    //background-image: -webkit-linear-gradient(top, #00FF53,#00FE8E 70%,#005D13);
     padding: 5%;
     border-top-left-radius: 10%;
     color: #000;
@@ -37,11 +36,52 @@
 
 .low {
     font-family: Comic Sans Ms;
-    background-image: -webkit-linear-gradient(top, #FFF00C,#FFF0BD 70%,#FFF00E);
+    //background-image: -webkit-linear-gradient(top, #FFF00C,#FFF0BD 70%,#FFF00E);
     padding: 5%;
     border-top-left-radius: 10%;
     color: #000;
 }
+
+*/
+
+
+.high-priority{
+         font-family: Comic Sans MS;
+         font-style: italic;
+         border-radius: 5%;
+         text-align: center;
+         font-size: 12px;
+         padding: 2%;
+         background-color: #D85252;
+         color: #fff;
+         border-radius: 5px;
+}
+
+
+.medium-priority{
+          font-family: Comic Sans MS;
+          font-style: italic;
+          border-radius: 5%;
+          text-align: center;
+          background-color: #2988D6;
+          font-size: 12px;
+          padding: 2%;
+          color: #fff;
+          border-radius: 5px;
+}
+
+.low-priority{
+           font-family: Comic Sans MS;
+           font-style: italic;
+           border-radius: 5%;
+           background-color: #438E45;
+           text-align: center;
+           font-size: 12px;
+           padding: 2%;
+           color: #fff;
+           border-radius: 5px;
+}
+
 
 .event-category{
     font-family: Comic Sans Ms;
@@ -132,4 +172,20 @@ content: '*';
     width: 80%;
     margin-left: auto;
     margin-right: auto;
+}
+
+.message-label{
+    font-size: 15px;
+    font-family: Comic Sans MS;
+    font-weight: bolder;
+}
+
+.pictos-icon{
+font-family: 'Pictos';
+font-size: 25px;
+}
+
+.activity-icons{
+padding: 10px;
+text-align: center;
 }
