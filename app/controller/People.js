@@ -145,5 +145,4 @@ Ext.define('EventReminder.controller.People', {
     });
     }
 
-
 });

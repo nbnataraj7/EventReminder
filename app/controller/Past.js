@@ -118,9 +118,19 @@ upcoming.sync();
 },
 
 //Searching the list
-onSearch: function(person){
-  var utils = Ext.create('EventReminder.utils.Utilities');
-  utils.filterEventsByPeople(person);
+onSearch: function(eventName){
+
+var utils = Ext.create('EventReminder.utils.Utilities');
+
+  //Refresh the filters
+  var store = Ext.getStore('Upcoming');
+  store.clearFilter();
+
+  //Reapply the Past Filter
+  utils.filterUpcomingEvents();
+
+  //Apply the Category Filter
+  utils.filterEventsByCategory(eventName);
 },
 
 //Show the event in the event popup

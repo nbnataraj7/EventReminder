@@ -27,7 +27,7 @@ items: [
     items: [
     {
         xtype: 'searchfield',
-        placeHolder: 'Search by People',
+        placeHolder: 'Search by Category',
         itemId: 'search',
         minWidth: '100%'
     }

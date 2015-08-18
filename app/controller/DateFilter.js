@@ -15,46 +15,24 @@ Ext.define('EventReminder.controller.DateFilter', {
 
     //This function filters out all the Upcoming events from the store
     onPast: function(){
-//       console.log("Filtering out all the Upcoming events");
-       var store = Ext.getStore("Upcoming");
 
-       //First clear any previously applied filters
-       store.clearFilter();
+    //Create a utils object
+    var utils = Ext.create('EventReminder.utils.Utilities');
 
-       //Add A new Past Filter
-       store.filterBy(function(record, id){
-            //console.log("Record : ");
-            //console.log(record);
-            var recordDate = new Date(record.getData().date);
-            var now = new Date();
-            return (now > recordDate);
-       }, this);
+    //Apply Upcoming Event filter
+    utils.filterUpcomingEvents();
 
-        //Reloading the Store
-  //      console.log("Reloading the Store");
-        store.load();
-        //store.sync();
     },
 
     //This function filters out all the Past events from the store
     onUpcoming: function(){
-  //      console.log("Filtering out all the Past events");
-        var store = Ext.getStore("Upcoming");
 
-        //First clear any previously applied filters
-        store.clearFilter();
+    //Create a utils object
+    var utils = Ext.create('EventReminder.utils.Utilities');
 
-           //Add A new Past Filter
-       store.filterBy(function(record, id){
-            var recordDate = new Date(record.getData().date);
-            var now = new Date();
-            return (now <= recordDate);
-       }, this);
+    //Apply the Past Filter
+    utils.filterPastEvents();
 
-
-       //Reloading the Store
-  //     console.log("Reloading the Store");
-       store.load();
     },
 
     //Bind the filter commands from various controllers

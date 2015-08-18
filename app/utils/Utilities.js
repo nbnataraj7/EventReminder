@@ -54,6 +54,21 @@ filterEventsByPeople: function(person){
     store.load();
 },
 
+
+//Can Filter event store given an Event Category
+filterEventsByCategory: function(eventName){
+    //Get the store
+    var store = Ext.getStore('Upcoming');
+    //Filter the event store by the people
+    store.filterBy(function(record, id){
+        var regex = new RegExp(eventName);
+        return regex.test(record.get('category'));
+    });
+
+    //Load the store
+    store.load();
+},
+
 //Filter the people in the people popup
 filterPeople: function(person){
     //Get the store
@@ -80,6 +95,47 @@ filterContact: function(contact){
 
     //Load the store
     peopleStore.load();
+
+},
+
+//Filter the Past events in the Upcoming event listview
+filterUpcomingEvents: function(){
+ //getting the handle of store
+       var store = Ext.getStore("Upcoming");
+
+       //First clear any previously applied filters
+       store.clearFilter();
+
+       //Add A new Past Filter
+       store.filterBy(function(record, id){
+            var recordDate = new Date(record.getData().date);
+            var now = new Date();
+            return (now > recordDate);
+       }, this);
+
+        //Reloading the Store
+        store.load();
+},
+
+
+//Filter the Upcoming events in the Past event listview
+filterPastEvents: function(){
+
+        var store = Ext.getStore("Upcoming");
+
+        //First clear any previously applied filters
+        store.clearFilter();
+
+           //Add A new Past Filter
+       store.filterBy(function(record, id){
+            var recordDate = new Date(record.getData().date);
+            var now = new Date();
+            return (now <= recordDate);
+       }, this);
+
+
+       //Reloading the Store
+       store.load();
 
 }
 

@@ -110,9 +110,19 @@ onEditEvent: function(record){
 
 
 //Searching the list
-onSearch: function(person){
+onSearch: function(eventName){
+
   var utils = Ext.create('EventReminder.utils.Utilities');
-  utils.filterEventsByPeople(person);
+
+  //Refresh the filters
+  var store = Ext.getStore('Upcoming');
+  store.clearFilter();
+
+  //Reapply the Past Filter
+  utils.filterPastEvents();
+
+  //Apply the Category Filter
+  utils.filterEventsByCategory(eventName);
 },
 
 //Show the event in the event popup
