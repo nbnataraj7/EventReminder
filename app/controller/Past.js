@@ -29,7 +29,8 @@ refs: {
     eventDate: 'event #date',
     recurrence: 'event #Recurrence',
     people: 'event #People',
-    editActivity: 'editevent activity'
+    editActivity: 'editevent activity',
+    viewSwitcher: 'past #viewSwitcher'
 
 },
 control: {
@@ -38,7 +39,8 @@ control: {
         editEventCommand: 'onEditEvent',
         clearCommand: 'onClear',
         searchByPersonCommand: 'onSearch',
-        showCommand: 'onShowCommand'
+        showCommand: 'onShowCommand',
+        toggleViewCommand: 'toggleView'
     }
 }
 },
@@ -176,6 +178,51 @@ onShowCommand: function(record){
 
     // Show the event with some animation
     this.getEvent().show({type: 'flip'});
-}
+},
 
+//Toggle the View of the Events
+toggleView: function(){
+    var eventStore = Ext.getStore("Upcoming");
+
+    //Check the Button iconCls
+    if(this.getViewSwitcher().getIconCls() == "calendar")
+    {
+
+        //Switch to the Monthly view
+
+        //Change the button icon
+        this.getViewSwitcher().setIconCls("time");
+
+        //Create a grouper for the Monthly view
+        var grouper = Ext.create("Ext.util.Grouper",{
+            groupFn: function(record){
+                var monthNames = [
+                    "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+                ];
+                return monthNames[(new Date(record.get('date'))).getMonth()];
+            }
+        });
+
+        //Apply this grouper to the store
+        eventStore.setGrouper(grouper);
+    }
+    else
+    {
+        //Switch to some other category view
+
+        //Change the button icon
+        this.getViewSwitcher().setIconCls("calendar");
+
+        //Switch to the Monthly view
+            //Create a grouper for the Monthly view
+            var grouper = Ext.create("Ext.util.Grouper",{
+                groupFn: function(record){
+                    return (new Date(record.get('date'))).toDateString();
+                }
+            });
+
+            //Apply this grouper to the store
+            eventStore.setGrouper(grouper);
+    }
+   }
 });

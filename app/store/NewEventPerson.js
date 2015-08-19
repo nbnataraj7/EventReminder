@@ -15,7 +15,6 @@ config: {
                 sortProperty: "name",
                 direction: "DESC",
                 groupFn: function(record) {
-                    console.log("Grouping the records");
                     return record.get('name').substr(0, 1);
                 }
             }

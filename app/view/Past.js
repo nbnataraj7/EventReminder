@@ -9,7 +9,7 @@ layout: {
 autoLoad: true,
 items: [
 {
-    xtype: 'titlebar',
+    xtype: 'toolbar',
     docked: 'top',
     title: 'Past Events',
     items: [
@@ -19,6 +19,14 @@ items: [
             ui:'back',
             iconCls: 'arrow_left'
         },
+        {
+            xtype: 'spacer'
+        },
+        {
+            xtype: 'button',
+            itemId: 'viewSwitcher',
+            iconCls: 'calendar'
+        }
     ]
 },
 {
@@ -145,6 +153,11 @@ listeners: [
     delegate: '#pastEventList',
     event: 'itemdoubletap',
     fn: 'showEvent'
+},
+{
+    delegate: '#viewSwitcher',
+    event: 'tap',
+    fn: 'toggleView'
 }
 ]
 },
@@ -172,5 +185,10 @@ search: function( scope, e, eOpts){
 //Shows the event in a popup
 showEvent: function(scope, index, target, record, e, eOpts){
     this.fireEvent("showCommand", record);
+},
+
+//Toggle event view
+toggleView: function(){
+    this.fireEvent("toggleViewCommand", this);
 }
 });

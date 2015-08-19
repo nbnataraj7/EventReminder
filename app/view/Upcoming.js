@@ -9,7 +9,7 @@ layout: {
 autoLoad: true,
 items: [
 {
-    xtype: 'titlebar',
+    xtype: 'toolbar',
     title: 'Upcoming Events',
     docked: 'top',
     items: [
@@ -18,6 +18,14 @@ items: [
             itemId: 'back',
             ui:'back',
             iconCls: 'arrow_left'
+        },
+        {
+            xtype: 'spacer'
+        },
+        {
+            xtype: 'button',
+            itemId: 'viewSwitcher',
+            iconCls: 'calendar'
         }
     ]
 },
@@ -135,6 +143,11 @@ listeners: [
      delegate: '#upcomingEventList',
      event: 'itemdoubletap',
      fn: 'showEvent'
+ },
+ {
+     delegate: '#viewSwitcher',
+     event: 'tap',
+     fn: 'toggleView'
  }
 ]
 },
@@ -158,5 +171,10 @@ search: function( scope, e, eOpts ){
 //Shows the event in a popup
 showEvent: function(scope, index, target, record, e, eOpts){
     this.fireEvent("showCommand", record, this);
+},
+
+//Toggle the view
+toggleView: function(){
+    this.fireEvent("toggleViewCommand", this);
 }
 });
