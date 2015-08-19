@@ -27,7 +27,7 @@ items: [
     items: [
     {
         xtype: 'searchfield',
-        placeHolder: 'Search by Category',
+        placeHolder: 'Search',
         itemId: 'search',
         minWidth: '100%'
     }
@@ -39,6 +39,7 @@ items: [
     autoDestroy: false,
     itemId: 'upcomingEventList',
     store: 'Upcoming',
+    grouped: true,
     itemTpl: new Ext.XTemplate(
                    '<tpl for=".">',
                         '   <tpl if="priority==\'High\'">',

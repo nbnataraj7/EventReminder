@@ -27,7 +27,7 @@ items: [
     items: [
     {
             xtype: 'searchfield',
-            placeHolder: 'Search by Category',
+            placeHolder: 'Search',
             itemId: 'search',
             minWidth: '80%'
     },
@@ -103,6 +103,7 @@ items: [
            ),
     onItemDisclosure: true,
     store: 'Upcoming',
+    grouped: true,
     cls: 'past-event-list',
     scrollable: true,
     grouper: {

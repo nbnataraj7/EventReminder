@@ -13,6 +13,7 @@ Ext.define('EventReminder.view.People', {
         modal: true,
         styleHtmlContent: true,
         hidden: true,
+        hideOnMaskTap: true,
         items: [
             {
                 xtype: 'titlebar',
@@ -57,7 +58,10 @@ Ext.define('EventReminder.view.People', {
                 itemTpl: document.getElementById('people-list').innerHTML,
                 autoDestroy: false,
                 itemId: 'PeopleList',
-                store: 'Person'
+                store: 'Person',
+                grouped: true,
+                indexBar: true
+
             },
             {
                 xtype: 'button',

@@ -10,6 +10,11 @@ Ext.define('EventReminder.store.Upcoming', {
             database: 'EventReminder',
             table: 'NewEvents'
         },
-        sorters: [{property: 'date', direction: 'ASC'}]
+        sorters: [{property: 'date', direction: 'DESC'}],
+        grouper: {
+            groupFn: function(record){
+                return (new Date(record.get('date')).toDateString());
+            }
+        }
     }
 });

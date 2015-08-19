@@ -61,9 +61,10 @@ filterEventsByCategory: function(eventName){
     var store = Ext.getStore('Upcoming');
     //Filter the event store by the people
     store.filterBy(function(record, id){
-        var regex = new RegExp(eventName);
-        return regex.test(record.get('category'));
+        var regex = new RegExp(eventName, "i");
+        return regex.test(record.get('category')+record.get('people')+record.get('message')+record.get('alertTime')+record.get('eventTime')+record.get('priority')+record.get('date'));
     });
+
 
     //Load the store
     store.load();

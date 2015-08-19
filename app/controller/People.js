@@ -96,7 +96,8 @@ Ext.define('EventReminder.controller.People', {
                 }
         }
 
-        //Hide the popup
+        //Hide the popup and remove selections
+        this.getPeopleList().deselectAll();
         this.getPeople().hide();
 
         //Increase the height of the list to adjust items
@@ -105,6 +106,8 @@ Ext.define('EventReminder.controller.People', {
 
     //On click of the close button
     onClose: function(){
+        //Remove the selected people
+        this.getPeopleList().deselectAll();
         this.getPeople().hide();
     },
 
