@@ -115,7 +115,7 @@ Ext.define('EventReminder.view.EditEvent', {
                         xtype: 'textfield',
                         itemId: 'eventTimeSelect',
                         label: 'Event Time',
-                        labelWidth: '50%',
+                        labelWidth: '33%',
                         placeHolder: 'Tap to select event time'
                       },
                     //Select Alert Time
@@ -123,7 +123,7 @@ Ext.define('EventReminder.view.EditEvent', {
                           xtype: 'textfield',
                           itemId: 'alertTimeSelect',
                           label: 'Alert Time',
-                          labelWidth: '50%',
+                          labelWidth: '33%',
                           placeHolder: 'Tap to select alert time'
                       }
                   ]

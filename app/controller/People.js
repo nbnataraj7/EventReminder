@@ -35,16 +35,15 @@ Ext.define('EventReminder.controller.People', {
         var updateList = Ext.Viewport.getActiveItem().down("#peopleList");
         var eventId = Ext.Viewport.getActiveItem().down('#ID');
 
-        console.log(Ext.Viewport.getActiveItem());
-        console.log(updateList);
 
-        //if the user doesn't select any
+        //if the user doesn't select any Person
         //place a new name in the list
         //and with a dummy contact
         if(selected.length == 0){
             var person = Ext.create('EventReminder.model.Person', {
                 name: this.getEnteredName().getValue(),
-                contact: this.getEnteredContact().getValue()
+                contact: this.getEnteredContact().getValue(),
+                email: ''
             });
             var personStore = Ext.getStore("Person");
 
@@ -60,19 +59,22 @@ Ext.define('EventReminder.controller.People', {
                 Ext.Msg.alert("Duplicate Contact Number");
                 return;
             }
-
             //Validation for the person
-            var errors = person.validate()
+            var errors = person.validate();
             if(person.name != "" && errors.isValid()){
-                console.log("Adding the person");
-                console.log(person);
+                //console.log("Adding the person");
+                //console.log(person);
                 personStore.add(person);
                 personStore.sync();
                 var adhoc = Ext.getStore('EventPeople');
-                adhoc.add(person);
-                adhoc.sync();
-                updateList.add(person.getData());
-                Ext.Msg.alert("Person Added");
+
+                if(this.isEligible(person))
+                {
+                    adhoc.add(person);
+                    adhoc.sync();
+                    updateList.add(person.getData());
+                    Ext.Msg.alert("Person Added");
+                }
             }
             else{
                Ext.Msg.alert("None Added");
@@ -81,10 +83,17 @@ Ext.define('EventReminder.controller.People', {
         else {
         //Person is Selected from the List
             var adhoc = Ext.getStore('EventPeople');
-            var person = Ext.create('EventReminder.model.Person', {name: selected[0].getData().name, contact: selected[0].getData().contact});
-            adhoc.add(person);
-            adhoc.sync();
-            Ext.Msg.alert("Selected Person Added");
+            var person = Ext.create('EventReminder.model.Person', {
+                    name: selected[0].getData().name,
+                    contact: selected[0].getData().contact,
+                    email: selected[0].getData().email
+                });
+
+            if(this.isEligible(person)){
+                    adhoc.add(person);
+                    adhoc.sync();
+                    Ext.Msg.alert("Selected Person Added");
+                }
         }
 
         //Hide the popup
@@ -114,6 +123,28 @@ Ext.define('EventReminder.controller.People', {
     },
 
 
+    //Function for Checking the Eligibility of the person for event
+    isEligible: function(Person){
+        var eventActivities = Ext.getStore("Activity");
+        var isEligible = true;
+        eventActivities.each(function(item, index, length){
+            if(item.get('value') == "Email" && Person.get('email')=="")
+            {
+                Ext.Msg.alert("Email missing");
+                isEligible = false;
+                return;
+            }
+            else if((item.get('value') == "Call" || item.get('value')=="Text") && Person.get('contact') == "")
+            {
+                Ext.Msg.alert("Contact Number Missing");
+                isEligible = false;
+                return;
+            }
+        });
+
+        return isEligible;
+    },
+
     //Add Contacts to person store
     launch: function(){
     //Logging all the contacts from the device
@@ -124,10 +155,12 @@ Ext.define('EventReminder.controller.People', {
         var onSuccess = function(item){
         for(var i=0; i<item.length; i++){
             var name = item[i].displayName;
-            var contact = item[i].phoneNumbers[0]==NaN?"":item[i].phoneNumbers[0];
+            var contact = item[i].phoneNumbers[0]==null?"":item[i].phoneNumbers[0].value;
+            var email = item[i].emails==null?"":item[i].emails[0];
             var contactModel = Ext.create('EventReminder.model.Person', {
                 name: name,
-                contact: contact
+                contact: contact,
+                email: email
             });
             Ext.getStore('Person').add(contactModel);
             }

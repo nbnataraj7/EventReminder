@@ -40,6 +40,36 @@ Ext.define('EventReminder.controller.Activity', {
         if(isAdded)
             return;
 
+        //Check if the activity added can be carried out for the contacts involved
+        var peopleInvolved = Ext.getStore("EventPeople");
+
+        //If there are no people involved in the activity
+        if(peopleInvolved.getCount() == 0){
+            Ext.Msg.alert("No person added");
+            return;
+         }
+
+        //Check if this activity can be carried out for each person
+        //Flag for Eligibility of activity
+        var isEligible = true;
+        peopleInvolved.each(function(item, index, length){
+
+            //If the Activity added is Email, all the people involved should have an email id
+            if(selected.get('value') == "Email" && item.get('email')=="")
+            {
+                Ext.Msg.alert("Add Email for "+item.get('name'));
+                isEligible = false;
+                return;
+            }
+            else if((selected.get('value') == "Call" || selected.get('value') == "Text") && item.get('contact')==""){
+                Ext.Msg.alert("<div>Add Phone Number </div><div>for "+item.get('name')+"</div>");
+                isEligible = false;
+                return;
+            }
+        });
+        if(!isEligible)
+            return;
+
         //Create an Activity model
         var text = selected.get('text');
         var value = selected.get('value');

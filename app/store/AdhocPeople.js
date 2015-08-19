@@ -9,6 +9,6 @@ Ext.define('EventReminder.store.AdhocPeople', {
             id: 'adhocpeople'
         },
         storeId: 'EventPeople',
-        fields: ["name", "contact"]
+        fields: ["name", "contact", "email"]
     }
 });
