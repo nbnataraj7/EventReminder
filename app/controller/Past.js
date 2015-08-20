@@ -235,6 +235,6 @@ toggleView: function(){
    //Returning back to Past Events list view
    returnToPast: function(){
        Ext.Viewport.animateActiveItem(this.getReturnToPast(), {type: 'slide', direction: 'right'});
-       document.removeEventListener("backbutton", Ext.bind(this.onBack, this), false);
+       document.addEventListener("backbutton", Ext.bind(this.onBack, this), false);
    }
 });
