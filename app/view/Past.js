@@ -78,7 +78,7 @@ items: [
                            '   </tpl>',
                            '<tpl if="priority==\'Low\'">',
                            '          <div class="event-category">{category}</div>',
-                           '          <div><span class="pictos-icon"></span><span class="event-date">{[(new Date(values.date)).toDateString()]}</span></div>',
+                           '          <div><span class="pictos-icon">\\\\ </span><span class="event-date">{[(new Date(values.date)).toDateString()]}</span></div>',
                            '          <div><span class="pictos-icon">t</span><span>  {alertTime}</span></div>',
                            '          <span class="pictos-icon">U</span><span class="event-people">  {people}</span>',
                            '          <p class="event-message"><span class="pictos-icon">q</span>  {message}</p>',

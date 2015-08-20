@@ -56,6 +56,9 @@ Ext.define('EventReminder.controller.EditEvent', {
             this.fireEvent("filterPastCommand", this);
          }
 
+     //Get back to Main
+      Ext.Viewport.animateActiveItem(back, {type: 'slide', direction: 'right'});
+
     //Clear the adhoc store
         Ext.getStore('EventPeople').removeAll();
         Ext.getStore('EventPeople').sync();
@@ -67,8 +70,7 @@ Ext.define('EventReminder.controller.EditEvent', {
         Ext.getStore('Activity').sync();
         this.getEditEventActivities().refresh();
 
-    //Get back to Main
-       Ext.Viewport.animateActiveItem(back, {type: 'slide', direction: 'right'});
+
     },
 
     //Adding people from a popup
@@ -216,6 +218,29 @@ Ext.define('EventReminder.controller.EditEvent', {
             //Passing the Updated Event Object to be updated
             dbutils.updateEvent(event);
 
+
+            //Set the alert for this reminder
+            //First create a settings config for the event reminder
+            //Message to be displayed in the Phone's Notification bar
+            var message = "with "+event.people+" \n Message: "+event.message;
+            var options = {
+                title: event.category,
+                message: message,
+                seconds: Math.floor(((new Date(event.date)) - (new Date))/1000),
+                badge: 1
+            }
+            //Create a Reminder notification
+            window.localNotification.add(
+                    event.EventID,
+                    options,
+                    function(){
+                       console.log("Notification set");
+                    },
+                    function(){
+                        console.log("Error in setting Notification");
+                    }
+            );
+
             //Event Edited Successfully
              Ext.Msg.alert("Changes Saved");
         }
@@ -237,6 +262,10 @@ Ext.define('EventReminder.controller.EditEvent', {
 
     //Code for traversing back to the Main View
     Ext.Msg.alert("Event Deleted");
+
+    //Also cancel the reminder created
+    window.localNotification.cancel(parseInt(this.getEditEventID().getValue()));
+
     this.onBack();
     },
 

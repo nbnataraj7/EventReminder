@@ -197,6 +197,7 @@ toggleView: function(){
 
         //Apply this grouper to the store
         eventStore.setGrouper(grouper);
+        eventStore.load();
     }
     else
     {
@@ -206,7 +207,7 @@ toggleView: function(){
         this.getViewSwitcher().setIconCls("calendar");
 
         //Switch to the Monthly view
-            //Create a grouper for the Monthly view
+            //Create a grouper for the Daily view
             var grouper = Ext.create("Ext.util.Grouper",{
                 groupFn: function(record){
                     return (new Date(record.get('date'))).toDateString();
@@ -215,7 +216,6 @@ toggleView: function(){
 
             //Apply this grouper to the store
             eventStore.setGrouper(grouper);
-
     }
 }
 });

@@ -204,9 +204,31 @@ else{
     //this.getNewEventActivity().setValue("none");
     this.getNewEventRecurrence().setValue("none");
 
-    //Destroying the loader mask
-    //loader.destroy();
+    //Alert message
     Ext.Msg.alert("Event Saved");
+
+    //Set the alert for this reminder
+    //First create a settings config for the event reminder
+    //Message to be displayed in the Phone's Notification bar
+    var message = " With "+event.get('people')+" \n Message: "+event.get('message');
+    var options = {
+        title: event.get('category'),
+        message: message,
+        seconds: Math.floor(((new Date(event.get('date'))) - (new Date))/1000),
+        badge: 1
+    };
+    //Create a Reminder notification
+    window.localNotification.add(
+            event.get('EventID'),
+            options,
+            function(){
+               console.log("Notification set");
+            },
+            function(){
+                console.log("Error in setting Notification");
+            }
+    );
+
 }
 },
 
@@ -270,5 +292,11 @@ onRemoveActivity: function(index){
     var store = Ext.getStore('Activity');
     store.removeAt(index);
     store.sync();
-}
+},
+
+
+//Implementing the device back button functionality in the launch function
+launch: function(){
+    }
+
 });

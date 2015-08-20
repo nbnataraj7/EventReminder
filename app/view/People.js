@@ -61,7 +61,6 @@ Ext.define('EventReminder.view.People', {
                 store: 'Person',
                 grouped: true,
                 indexBar: true
-
             },
             {
                 xtype: 'button',

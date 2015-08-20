@@ -40,6 +40,7 @@ Ext.define('EventReminder.view.Recurrence', {
                 xtype: 'selectfield',
                 itemId: 'selectType',
                 label: 'Recurrence Type',
+                labelWidth: '50%',
                 options: [
                     {text: 'Daily', value: 'Daily'},
                     {text: 'Weekly', value: 'Weekly'},

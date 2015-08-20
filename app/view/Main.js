@@ -11,7 +11,8 @@ Ext.define('EventReminder.view.Main', {
             {
                 xtype: 'titlebar',
                 itemId: 'MainTitle',
-                title: 'Event Reminder'
+                title: 'Event Reminder',
+                docked: 'top'
             },
             {
                 xtype: 'button',

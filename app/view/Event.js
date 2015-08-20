@@ -13,6 +13,7 @@ Ext.define('EventReminder.view.Event', {
         modal: true,
         styleHtmlContent: true,
         hidden: true,
+        scrollable: true,
         defaults: {
             xtype: 'panel'
         },
