@@ -53,6 +53,11 @@ this.getSearchField().setValue("");
 Ext.Viewport.animateActiveItem(this.getMain(), {type: 'slide', direction: 'right'});
 },
 onEditEvent: function(record){
+
+    //Give the Handler for device back button
+    document.addEventListener("backbutton", Ext.bind(this.returnToPast, this), false);
+
+    //Proceed with editing event
     var editEventScreen = this.getEditEvent();
 
     //Setting the Default values of the form fields
@@ -224,5 +229,12 @@ toggleView: function(){
             //Apply this grouper to the store
             eventStore.setGrouper(grouper);
     }
+   },
+
+
+   //Returning back to Past Events list view
+   returnToPast: function(){
+       Ext.Viewport.animateActiveItem(this.getReturnToPast(), {type: 'slide', direction: 'right'});
+       document.removeEventListener("backbutton", Ext.bind(this.onBack, this), false);
    }
 });

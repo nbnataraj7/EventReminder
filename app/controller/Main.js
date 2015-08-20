@@ -25,21 +25,26 @@ control: {
 launch: function(){
     this.callParent();
     //console.log("Main controller");
+    //Attach a menubutton handler
+    document.addEventListener("menubutton", Ext.bind(this.returnToMain, this), false);
 },
 
 //Function for opening Upcoming events view
 onUpComing: function(){
         Ext.Viewport.animateActiveItem(this.getUpcoming(), {type: 'slide', direction: 'left'});
+        document.addEventListener("backbutton", Ext.bind(this.returnToMain, this), false);
     },
 
 //Function for opening Past events view
 onPast:function(){
         Ext.Viewport.animateActiveItem(this.getPast(), {type: 'slide', direction: 'left'});
+        document.addEventListener("backbutton", Ext.bind(this.returnToMain, this), false);
     },
 
 //Function for opening a view for New Event Creation
 onNew: function(){
         Ext.Viewport.animateActiveItem(this.getNewEvent(), {type: 'slide', direction: 'left'});
+        document.addEventListener("backbutton", Ext.bind(this.returnToMain, this), false);
 },
 
 //Function to switch the DND mode
@@ -54,5 +59,13 @@ onNewCategory: function(){
     //console.log("Adding a New Category");
     //Launch a form for creating a new category
     Ext.Viewport.animateActiveItem(this.getCategory(), {type: 'slide', direction: 'left'});
+    document.addEventListener("backbutton", Ext.bind(this.returnToMain, this), false);
+},
+
+returnToMain: function(){
+     Ext.Viewport.animateActiveItem(this.getMain(), {type: 'slide', direction: 'right'});
+
+     //Remove the event handler from backbutton
+     document.removeEventListener("backbutton", Ext.bind(this.returnToMain, this), false);
 }
 });

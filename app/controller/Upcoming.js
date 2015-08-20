@@ -57,6 +57,9 @@ onBack: function(){
 //Also set the values of the fields
 onEditEvent: function(record){
 
+    //Adding device back button handler
+    document.addEventListener("backbutton", Ext.bind(this.returnToUpcoming, this), false);
+
     //Setting the Default values of the form fields
     //Saving data in a variable
     var data = record.getData();
@@ -217,5 +220,11 @@ toggleView: function(){
             //Apply this grouper to the store
             eventStore.setGrouper(grouper);
     }
+},
+
+//Function for Device back button
+returnToUpcoming: function(){
+    Ext.Viewport.animateActiveItem(this.getUpcoming(), {type: 'slide', direction: 'right'});
+    document.addEventListener("backbutton", Ext.bind(this.onBack, this), false);
 }
 });

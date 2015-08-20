@@ -292,11 +292,5 @@ onRemoveActivity: function(index){
     var store = Ext.getStore('Activity');
     store.removeAt(index);
     store.sync();
-},
-
-
-//Implementing the device back button functionality in the launch function
-launch: function(){
-    }
-
+}
 });
