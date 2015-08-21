@@ -3,7 +3,7 @@ extend: 'Ext.data.Model',
 config: {
     fields: [
         {name: "category", type: 'string'},
-        {name: "date", type: 'string'},
+        {name: "date", type: 'date'},
         {name: "eventTime", type: 'string'},
         {name: "alertTime", type: 'string'},
         {name: "message", type: 'string'},

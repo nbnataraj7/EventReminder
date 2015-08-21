@@ -190,8 +190,12 @@ var event = Ext.create('EventReminder.model.Event', {
 
 
 //Checking The presence of People if Activities are involved
-if(Ext.getStore("Activity").getCount != 0 ^ Ext.getStore("EventPeople").getCount == 0)
+if(Ext.getStore("Activity").getCount() != 0 && Ext.getStore("EventPeople").getCount() == 0)
 {
+    Ext.Msg.alert("Insufficient Inputs");
+    return;
+}
+if(Ext.getStore("Activity").getCount() == 0 && Ext.getStore("EventPeople").getCount() != 0){
     Ext.Msg.alert("Insufficient Inputs");
     return;
 }
