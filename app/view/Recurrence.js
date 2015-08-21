@@ -12,7 +12,7 @@ Ext.define('EventReminder.view.Recurrence', {
         modal: true,
         styleHtmlContent: true,
         hidden: true,
-
+         hideOnMaskTap: true,
         items: [
             {
                 xtype: 'toolbar',

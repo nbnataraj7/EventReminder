@@ -1,7 +1,7 @@
 Ext.define('EventReminder.controller.NewEvent', {
 extend: 'Ext.app.Controller',
 xtype: 'neweventctr',
-requires: ['Ext.LoadMask', 'Ext.MessageBox'],
+requires: ['Ext.LoadMask', 'Ext.MessageBox', 'EventReminder.view.People', 'EventReminder.view.Event', 'EventReminder.view.Recurrence', 'EventReminder.view.Activity'],
 config: {
 refs: {
     newevent : 'newEvent',
@@ -19,7 +19,9 @@ refs: {
     newEventActivity: 'newEvent #activity',
     newEventHidden: 'newEvent #hiddenField',
     recurrence: 'recurrence',
-    newEventRecurrence: 'newEvent #recurrence'
+    newEventRecurrence: 'newEvent #recurrence',
+    event: 'event',
+    maindnd: 'main #dndmode'
 },
 control: {
     newevent: {
@@ -132,10 +134,16 @@ var minutes = parseInt((time.split(" ")[0]).split(":")[1]);
 var hours;
 if(ampm == "PM")
 {
-    hours = (parseInt((time.split(" ")[0]).split(":")[0])+12)%24;
+    if(parseInt((time.split(" ")[0]).split(":")[0]) != 12)
+        hours = (parseInt((time.split(" ")[0]).split(":")[0])+12)%24;
+    else
+        hours = (parseInt((time.split(" ")[0]).split(":")[0])+12);
 }
 else{
-    hours = parseInt((time.split(" ")[0]).split(":")[0]);
+    if(parseInt((time.split(" ")[0]).split(":")[0]) != 12)
+        hours = parseInt((time.split(" ")[0]).split(":")[0]);
+    else
+        hours = (parseInt((time.split(" ")[0]).split(":")[0])+12);
 }
 
 //creating the new date
@@ -181,6 +189,13 @@ var event = Ext.create('EventReminder.model.Event', {
 });
 
 
+//Checking The presence of People if Activities are involved
+if(Ext.getStore("Activity").getCount != 0 ^ Ext.getStore("EventPeople").getCount == 0)
+{
+    Ext.Msg.alert("Insufficient Inputs");
+    return;
+}
+
 //Validating against the Event model
 var errors = event.validate();
 
@@ -207,14 +222,14 @@ else{
     //Alert message
     Ext.Msg.alert("Event Saved");
 
-    //Set the alert for this reminder
+    //Set the Notification alert for this reminder
     //First create a settings config for the event reminder
     //Message to be displayed in the Phone's Notification bar
     var message = " With "+event.get('people')+" \n Message: "+event.get('message');
     var options = {
         title: event.get('category'),
         message: message,
-        seconds: Math.floor(((new Date(event.get('date'))) - (new Date))/1000),
+        seconds: Math.ceil(((new Date(event.get('date'))) - (new Date))/1000),
         badge: 1
     };
     //Create a Reminder notification
@@ -230,12 +245,95 @@ else{
     );
 
      //Attach a Local Notification event handler
+     var me = this;
      document.addEventListener("receivedLocalNotification", function(){
 
-        //Synthesize the speech stating the event details
+        //Once the Notification fires, open up the popup view
+        Ext.Viewport.animateActiveItem(this.getEvent(), {type: 'slide', direction: 'left'});
+
+         //Synthesize the speech stating the event details
         TTS.speak(event.get('message'), function(){console.log("Truth was spoken!")}, function(){console.log("Why you no speak?")});
         console.log("Speak");
+
+        //Carry out the activities listed in the activities variable
+        //Check for call, email or text activity
+        var call = new RegExp("Call");
+        var text = new RegExp("Text");
+        var email = new RegExp("Email");
+        if(call.test(activities))
+        {
+            //Call the People involved in the event
+            //Get all the people and their phone numbers
+            var personStore = Ext.create("Person");
+            var eventPeople = people.split(", ");
+            eventPeople = eventPeople.substring(0, eventPeople.length-2);
+            for(var i=0; i<eventPeople.length; i++){
+                var index = personStore.findExact("name", eventPeople[i]);
+                var record = personStore.getAt(index);
+                var phoneNumber = record.get('contact');
+                window.plugins.CallNumber.callNumber(function(){console.log("Calling Successfully")}, function(){console.log("Error in calling the phone number")}, phoneNumber);
+            }
+        }
+        else if(text.test(activities)){
+            //Send a text to the people involved in the event
+            var personStore = Ext.create("Person");
+            var eventPeople = people.split(", ");
+            eventPeople = eventPeople.substring(0, eventPeople.length-2);
+            for(var i=0; i<eventPeople.length; i++){
+                var index = personStore.findExact("name", eventPeople[i]);
+                var record = personStore.getAt(index);
+                var phoneNumber = record.get('contact');
+                //configuration for sms
+                var options = {
+                            replaceLineBreaks: false,
+                            android: {
+                                intent: '' // App sends an sms without Opening the Native Text messaging app
+                            }
+                };
+              sms.send(phoneNumber, event.get('message'), options, function(){console.log("Message Sent");}, function(){console.log("Message not Sent");});
+
+            }
+        }
+        else if(email.test(activities)){
+            //Send an email to all the people involved in the event
+            var personStore = Ext.create("Person");
+            var eventPeople = people.split(", ");
+            eventPeople = eventPeople.substring(0, eventPeople.length-2);
+            for(var i=0; i<eventPeople.length; i++){
+                var index = personStore.findExact("name", eventPeople[i]);
+                var record = personStore.getAt(index);
+                var emailId = record.get('contact');
+
+              //Send an email to this person
+              cordova.plugins.email.open({
+                  to:          emailId, // email addresses for TO field
+                  subject:    event.get('category'), // subject of the email
+                  body:       event.get('message'), // email body (for HTML, set isHtml to true)
+              }, function(){console.log("Email sent successfully");}, this);
+            }
+        }
+
      }, false);
+
+     //Set the alarm for this event
+     window.wakeuptimer.wakeup(
+        function(res){
+            console.log(res.get('type'))
+        },
+        function(){
+            console.log("Error")
+        },
+
+        // a list of alarms to set
+        {
+             alarms : [{
+                 type : 'onetime',
+                 time : { hour : hours, minute : minutes},
+                 extra : { message : 'json containing app-specific information to be posted when alarm triggers' },
+                 message : 'Alarm has expired!'
+            }]
+        }
+     );
 
 }
 },

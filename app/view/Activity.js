@@ -16,6 +16,7 @@ Ext.define('EventReminder.view.Activity', {
         styleHtmlContent: true,
         hidden: true,
         styleHtmlContent: true,
+        hideOnMaskTap: true,
         items: [
             {
                 xtype: 'titlebar',
