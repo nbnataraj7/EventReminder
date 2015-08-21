@@ -229,6 +229,14 @@ else{
             }
     );
 
+     //Attach a Local Notification event handler
+     document.addEventListener("receivedLocalNotification", function(){
+
+        //Synthesize the speech stating the event details
+        TTS.speak(event.get('message'), function(){console.log("Truth was spoken!")}, function(){console.log("Why you no speak?")});
+        console.log("Speak");
+     }, false);
+
 }
 },
 

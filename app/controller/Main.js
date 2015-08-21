@@ -25,8 +25,10 @@ control: {
 launch: function(){
     this.callParent();
     //console.log("Main controller");
+    //Attaching various default event handlers
     //Attach a menubutton handler
     document.addEventListener("menubutton", Ext.bind(this.returnToMain, this), false);
+
 },
 
 //Function for opening Upcoming events view
