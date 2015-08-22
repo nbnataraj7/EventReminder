@@ -1,7 +1,7 @@
 Ext.define('EventReminder.controller.EditEvent', {
     extend: 'Ext.app.Controller',
     xtype: 'editeventctr',
-    requires: ['Ext.LoadMask', 'Ext.MessageBox', 'EventReminder.view.People', 'EventReminder.view.Event', 'EventReminder.view.Recurrence', 'EventReminder.view.Activity'],
+    requires: ['Ext.LoadMask', 'Ext.MessageBox', 'EventReminder.utils.Dbutils', 'EventReminder.utils.Utilities', 'EventReminder.view.People', 'EventReminder.view.Event', 'EventReminder.view.Recurrence', 'EventReminder.view.Activity'],
     config: {
         refs: {
             main: 'main',
@@ -19,6 +19,7 @@ Ext.define('EventReminder.controller.EditEvent', {
             upcoming: 'upcoming',
             upcomingEventList: 'upcoming #upcomingEventList',
             people: 'people',
+            peopleList: 'people #PeopleList',
             editPrev : 'editevent #prev',
             past: 'past',
             recurrence: 'recurrence',
@@ -222,7 +223,7 @@ Ext.define('EventReminder.controller.EditEvent', {
                 activities : activities,
                 EventID : this.getEditEventID().getValue()
             };
-            console.log(event);
+            //console.log(event);
 
             //Passing the Updated Event Object to be updated
             dbutils.updateEvent(event);
@@ -230,27 +231,29 @@ Ext.define('EventReminder.controller.EditEvent', {
 
             //Set the Notification Alert for the Event
             //First create a settings config for the event reminder
-            //Message to be displayed in the Phone's Notification bar
-            var message = "with "+event.people+" \n Message: "+event.message;
-            var options = {
+            //Set the Notification alert for this reminder
+            //First create a settings config for the event reminder
+
+            //Set the phone LED lights for different priorities
+            var led;
+            if(event.priority == "High")
+                led = "FF0000";
+            else if(event.priority == "Medium")
+                led = "00FF00";
+            else
+                led = "0000FF";
+
+            //Update the Reminder notification
+            cordova.plugins.notification.local.update({
+                id: event.EventID,
                 title: event.category,
-                message: message,
-                seconds: Math.floor(((new Date(event.date)) - (new Date))/1000),
-                badge: 1
-            }
-            //Create a Reminder notification
-            window.localNotification.add(
-                    event.EventID,
-                    options,
-                    function(){
-                       console.log("Notification set");
-                    },
-                    function(){
-                        console.log("Error in setting Notification");
-                    }
-            );
+                text: event.message,
+                at: newDate,
+                led: led
+            });
 
 
+        /*
              //Attach a Local Notification event handler
              var me = this;
              document.addEventListener("receivedLocalNotification", function(){
@@ -320,27 +323,7 @@ Ext.define('EventReminder.controller.EditEvent', {
             }
 
              }, false);
-
-             //Set the alarm for this event
-
-             window.wakeuptimer.wakeup(
-                function(res){
-                    console.log(res.get('type'))
-                },
-                function(){
-                    console.log("Error")
-                },
-
-                // a list of alarms to set
-                {
-                     alarms : [{
-                         type : 'onetime',
-                         time : { hour : hours, minute : minutes},
-                         extra : { message : 'json containing app-specific information to be posted when alarm triggers' },
-                         message : 'Alarm has expired!'
-                    }]
-                }
-             );
+*/
 
             //Event Edited Successfully
              Ext.Msg.alert("Changes Saved");

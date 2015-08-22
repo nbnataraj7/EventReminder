@@ -7,6 +7,7 @@ refs: {
     newevent : 'newEvent',
     main: 'main',
     people: 'people',
+    peopleList: 'people #PeopleList',
     activity: 'activity',
     activityList: 'activity #ActivityList',
     newEventCategory: 'newEvent #selectCategory',
@@ -59,8 +60,8 @@ onBack: function(){
 
 //Adding people Popup
 onAddPeople:function(){
-    //Uncomment the following lines for showing a people popup
 
+    //
     var peoplePopup = this.getPeople();
     //Add animation afterwards
     peoplePopup.show();
@@ -228,26 +229,27 @@ else{
 
     //Set the Notification alert for this reminder
     //First create a settings config for the event reminder
-    //Message to be displayed in the Phone's Notification bar
-    var message = " With "+event.get('people')+" \n Message: "+event.get('message');
-    var options = {
-        title: event.get('category'),
-        message: message,
-        seconds: Math.ceil(((new Date(event.get('date'))) - (new Date))/1000),
-        badge: 1
-    };
-    //Create a Reminder notification
-    window.localNotification.add(
-            event.get('EventID'),
-            options,
-            function(){
-               console.log("Notification set");
-            },
-            function(){
-                console.log("Error in setting Notification");
-            }
-    );
 
+    //Set the phone LED lights for different priorities
+    var led;
+    if(event.get('priority') == "High")
+        led = "FF0000";
+    else if(event.get('priority') == "Medium")
+        led = "00FF00";
+    else
+        led = "0000FF";
+
+    //Create a Reminder notification
+    cordova.plugins.notification.local.schedule({
+        id: event.get('EventID'),
+        title: event.get('category'),
+        text: event.get('message'),
+        at: newDate,
+        led: led
+    });
+
+
+ /*
      //Attach a Local Notification event handler
      var me = this;
      document.addEventListener("receivedLocalNotification", function(){
@@ -319,25 +321,16 @@ else{
 
      }, false);
 
-     //Set the alarm for this event
-     window.wakeuptimer.wakeup(
-        function(res){
-            console.log(res.get('type'))
-        },
-        function(){
-            console.log("Error")
-        },
+*/
 
-        // a list of alarms to set
-        {
-             alarms : [{
-                 type : 'onetime',
-                 time : { hour : hours, minute : minutes},
-                 extra : { message : 'json containing app-specific information to be posted when alarm triggers' },
-                 message : 'Alarm has expired!'
-            }]
-        }
-     );
+    //Attach a trigger handler
+    cordova.plugins.notification.local.on("trigger", function(notification) {
+         //Synthesize the speech stating the event details
+          TTS.speak("You have a "+event.get('category')+" ahead and the message is : "+event.get('message'), function(){console.log("Truth was spoken!")}, function(){console.log("Why you no speak?")});
+          console.log("Speak");
+
+    });
+
 
 }
 },
