@@ -13,6 +13,8 @@ refs: {
     newEventId: 'newEvent #ID',
     newEventCategory: 'newEvent #selectCategory',
     newEventPeopleList: 'newEvent #peopleList',
+    peopleName: 'people #personName',
+    peopleContact: 'people #personContact',
     newEventSelectDate: 'newEvent #selectDate',
     newEventTimeSelect: 'newEvent #eventTimeSelect',
     newAlertTimeSelect: 'newEvent #alertTimeSelect',
@@ -62,10 +64,18 @@ onBack: function(){
 //Adding people Popup
 onAddPeople:function(){
 
-    //
+
+    //Clearing the text in search field
+    this.getPeopleName().setValue("");
+    this.getPeopleContact().setValue("");
     var peoplePopup = this.getPeople();
     //Add animation afterwards
     peoplePopup.show();
+
+/*
+    var peoplePopup = Ext.create('EventReminder.view.People');
+    peoplePopup.show();
+    */
 
 },
 
@@ -248,89 +258,78 @@ else{
         title: event.get('category'),
         text: event.get('message'),
         at: newDate,
-        led: led
+        led: led,
+        badge: 1
     });
 
 
- /*
-     //Attach a Local Notification event handler
-     var me = this;
-     document.addEventListener("receivedLocalNotification", function(){
-
-        //Once the Notification fires, open up the popup view
-        Ext.Viewport.animateActiveItem(this.getEvent(), {type: 'slide', direction: 'left'});
-
-         //Synthesize the speech stating the event details
-        TTS.speak(event.get('message'), function(){console.log("Truth was spoken!")}, function(){console.log("Why you no speak?")});
-        console.log("Speak");
-
-        //Carry out the activities listed in the activities variable
-        //Check for call, email or text activity
-        var call = new RegExp("Call");
-        var text = new RegExp("Text");
-        var email = new RegExp("Email");
-        if(call.test(activities))
-        {
-            //Call the People involved in the event
-            //Get all the people and their phone numbers
-            var personStore = Ext.create("Person");
-            var eventPeople = people.split(", ");
-            eventPeople = eventPeople.substring(0, eventPeople.length-2);
-            for(var i=0; i<eventPeople.length; i++){
-                var index = personStore.findExact("name", eventPeople[i]);
-                var record = personStore.getAt(index);
-                var phoneNumber = record.get('contact');
-                window.plugins.CallNumber.callNumber(function(){console.log("Calling Successfully")}, function(){console.log("Error in calling the phone number")}, phoneNumber);
-            }
-        }
-        else if(text.test(activities)){
-            //Send a text to the people involved in the event
-            var personStore = Ext.create("Person");
-            var eventPeople = people.split(", ");
-            eventPeople = eventPeople.substring(0, eventPeople.length-2);
-            for(var i=0; i<eventPeople.length; i++){
-                var index = personStore.findExact("name", eventPeople[i]);
-                var record = personStore.getAt(index);
-                var phoneNumber = record.get('contact');
-                //configuration for sms
-                var options = {
-                            replaceLineBreaks: false,
-                            android: {
-                                intent: '' // App sends an sms without Opening the Native Text messaging app
-                            }
-                };
-              sms.send(phoneNumber, event.get('message'), options, function(){console.log("Message Sent");}, function(){console.log("Message not Sent");});
-
-            }
-        }
-        else if(email.test(activities)){
-            //Send an email to all the people involved in the event
-            var personStore = Ext.create("Person");
-            var eventPeople = people.split(", ");
-            eventPeople = eventPeople.substring(0, eventPeople.length-2);
-            for(var i=0; i<eventPeople.length; i++){
-                var index = personStore.findExact("name", eventPeople[i]);
-                var record = personStore.getAt(index);
-                var emailId = record.get('contact');
-
-              //Send an email to this person
-              cordova.plugins.email.open({
-                  to:          emailId, // email addresses for TO field
-                  subject:    event.get('category'), // subject of the email
-                  body:       event.get('message'), // email body (for HTML, set isHtml to true)
-              }, function(){console.log("Email sent successfully");}, this);
-            }
-        }
-
-     }, false);
-
-*/
 
     //Attach a trigger handler
     cordova.plugins.notification.local.on("trigger", function(notification) {
          //Synthesize the speech stating the event details
           TTS.speak("You have a "+event.get('category')+" ahead and the message is : "+event.get('message'), function(){console.log("Truth was spoken!")}, function(){console.log("Why you no speak?")});
           console.log("Speak");
+
+        //Carry out the activities listed in the activities variable
+            //Check for call, email or text activity
+            var call = new RegExp("Call");
+            var text = new RegExp("Text");
+            var email = new RegExp("Email");
+            if(call.test(activities))
+            {
+                //Call the People involved in the event
+                //Get all the people and their phone numbers
+                var personStore = Ext.create("Person");
+                var eventPeople = people.split(", ");
+                eventPeople = eventPeople.substring(0, eventPeople.length-2);
+                for(var i=0; i<eventPeople.length; i++){
+                    var index = personStore.findExact("name", eventPeople[i]);
+                    var record = personStore.getAt(index);
+                    var phoneNumber = record.get('contact');
+                    window.plugins.CallNumber.callNumber(function(){console.log("Calling Successfully")}, function(){console.log("Error in calling the phone number")}, phoneNumber);
+                }
+            }
+            else if(text.test(activities)){
+                //Send a text to the people involved in the event
+                var personStore = Ext.create("Person");
+                var eventPeople = people.split(", ");
+                eventPeople = eventPeople.substring(0, eventPeople.length-2);
+                for(var i=0; i<eventPeople.length; i++){
+                    var index = personStore.findExact("name", eventPeople[i]);
+                    var record = personStore.getAt(index);
+                    var phoneNumber = record.get('contact');
+                    //configuration for sms
+                    var options = {
+                                replaceLineBreaks: false,
+                                android: {
+                                    intent: '' // App sends an sms without Opening the Native Text messaging app
+                                }
+                    };
+                     sms.send(phoneNumber, event.message, options, function(){console.log("Message Sent");}, function(){console.log("Message not Sent");});
+                }
+            }
+            else if(email.test(activities)){
+                //Send an email to all the people involved in the event
+                var personStore = Ext.create("Person");
+                var eventPeople = people.split(", ");
+                eventPeople = eventPeople.substring(0, eventPeople.length-2);
+                for(var i=0; i<eventPeople.length; i++){
+                    var index = personStore.findExact("name", eventPeople[i]);
+                    var record = personStore.getAt(index);
+                    var emailId = record.get('contact');
+
+                  //Send an email to this person
+                  cordova.plugins.email.open({
+                      to:          emailId, // email addresses for TO field
+                      subject:    event.get('category'), // subject of the email
+                      body:       event.get('message'), // email body (for HTML, set isHtml to true)
+                  }, function(){console.log("Email sent successfully");}, this);
+                }
+            }
+
+
+     //Once the Notification fires, open up the popup view
+      Ext.Viewport.animateActiveItem(this.getEvent(), {type: 'slide', direction: 'left'});
 
     });
 
@@ -388,6 +387,7 @@ onDefaults: function(value){
 
 //Adding Multiple activities for an event
 onAddActivity: function(){
+    this.getActivity().setHidden(false);
     this.getActivity().show({type: 'slide', direction: 'left'});
 },
 

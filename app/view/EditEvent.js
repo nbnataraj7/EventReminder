@@ -72,7 +72,7 @@ Ext.define('EventReminder.view.EditEvent', {
             items: [
             {
                 xtype: 'hiddenfield',
-                itemId: 'hiddenField'
+                itemId: 'ID'
             },
             {
                 xtype: 'hiddenfield',

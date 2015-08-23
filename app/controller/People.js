@@ -159,7 +159,7 @@ Ext.define('EventReminder.controller.People', {
         for(var i=0; i<item.length; i++){
             var name = item[i].displayName;
             var contact = item[i].phoneNumbers[0]==null?"":item[i].phoneNumbers[0].value;
-            var email = item[i].emails==null?"":item[i].emails[0];
+            var email = item[i].emails==null?"":item[i].emails[0].value;
             var contactModel = Ext.create('EventReminder.model.Person', {
                 name: name,
                 contact: contact,

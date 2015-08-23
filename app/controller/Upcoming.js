@@ -13,7 +13,7 @@ refs: {
     editList: 'editevent #peopleList',
     editMessage: 'editevent #message',
     editActivity: 'editevent #activity',
-    editHidden: 'editevent #hiddenField',
+    editHidden: 'editevent #ID',
     editPrev : 'editevent #prev',
     editRecurrence: 'editevent #recurrence',
     searchField: 'upcoming #search',

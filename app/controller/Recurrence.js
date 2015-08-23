@@ -79,6 +79,42 @@ Ext.define('EventReminder.controller.Recurrence', {
 
             //Hide
             this.getRecurrence().hide();
+
+            //Schedule recurrent Event
+            //Get the event corresponding to this recurrence
+            var eventID = Ext.Viewport.getActiveItem().down('#ID');
+            var eventStore = Ext.getStore('Upcoming');
+            var index = eventStore.findExact(eventID);
+            var record = eventStore.getAt(index);
+
+            //Get the frequency
+            var frequency = this.getRecurrenceType().getValue();
+            if(frequency == 'Daily')
+                frequency = 'day';
+            else if(frequency == 'Weekly')
+                frequency = 'week';
+            else
+                frequency = 'month';
+
+
+            //Set the phone LED lights for different priorities
+            var led;
+            if(event.get('priority') == "High")
+                led = "FF0000";
+            else if(event.get('priority') == "Medium")
+                led = "00FF00";
+            else
+                led = "0000FF";
+
+            cordova.plugins.notification.local.update({
+                id: record.get('EventID'),
+                title: record.get('category'),
+                text: record.get('message'),
+                at: record.get('date'),
+                every: frequency,
+                badge: 1,
+                led: led
+            });
         }
     }
 });

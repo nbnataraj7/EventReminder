@@ -17,6 +17,7 @@ Ext.define('EventReminder.view.Activity', {
         hidden: true,
         styleHtmlContent: true,
         hideOnMaskTap: true,
+        isComponent: true,
         items: [
             {
                 xtype: 'toolbar',
