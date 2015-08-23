@@ -19,9 +19,10 @@ Ext.define('EventReminder.view.Activity', {
         hideOnMaskTap: true,
         items: [
             {
-                xtype: 'titlebar',
+                xtype: 'toolbar',
                 docked: 'top',
-                title: 'Add Activity'
+                title: 'Add Activity',
+                cls: 'blue-tile'
             },
             {
                 xtype: 'toolbar',

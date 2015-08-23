@@ -9,16 +9,18 @@ layout: {
 },
 items: [
 {
-    xtype: 'titlebar',
+    xtype: 'toolbar',
     itemId: 'NewEventTitle',
     title: 'New Event',
     docked: 'top',
+    cls: 'blue-tile',
     items: [
         {
             xtype: 'button',
             itemId: 'back',
             iconCls: 'arrow_left',
-            ui: 'back'
+            //ui: 'back',
+            cls: 'back-button'
         }
     ]
 },
@@ -26,6 +28,7 @@ items: [
     xtype: 'toolbar',
     itemId: 'title',
     docked: 'top',
+    cls: 'blue-tile',
 items: [
 {
     xtype: 'button',

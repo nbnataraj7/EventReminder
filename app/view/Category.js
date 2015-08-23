@@ -8,6 +8,7 @@ config: {
         itemId: 'newCategory',
         title: 'New Category',
         docked: 'top',
+        cls: 'blue-tile',
         newEventCategory: 'newEvent #category',
         editEventCategory: 'editevent #category',
         items: [
@@ -15,7 +16,7 @@ config: {
                 xtype: 'button',
                 itemId: 'back',
                 iconCls: 'arrow_left',
-                ui: 'back'
+                cls: 'back-button'
             },
             {
                 xtype: 'spacer'
@@ -61,6 +62,7 @@ config: {
                     xtype: 'sliderfield',
                     itemId: 'priority',
                     label: 'Default Priority',
+                    labelWidth: '50%',
                     minValue: 0,
                     maxValue: 100
                }

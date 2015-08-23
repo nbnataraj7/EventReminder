@@ -197,3 +197,52 @@ padding: 0px;
 .x-panel.x-floating > .x-dock.x-sized{
 margin: 0px;
 }
+
+.x-container.x-toolbar-dark.x-toolbar.blue-tile.x-dock-item.x-docked-top.x-stretched{
+background-image: none;
+background-color: #6DB0DE;
+border: none;
+}
+
+.x-button-normal.x-button.x-iconalign-center.back-button.x-layout-box-item.x-stretched{
+background-color: #6DB0DE;
+background-image: none;
+border:none;
+}
+
+.x-button.x-button-action{
+background-color: #6DB0DE;
+background-image: none;
+border: none;
+
+}
+
+.x-container.x-panel.blank-panel.x-layout-box-item.x-sized{
+text-align: center;
+font-size: 1.5em;
+font-weight: bolder;
+}
+
+.dnd{
+padding: 10%;
+color: rgb(91, 131, 158);
+}
+
+.display-date{
+padding: 5%;
+color: rgb(91, 131, 158);
+margin: 2px;
+}
+
+.x-container.x-field.x-label-align-left.dnd.x-form-label-nowrap.x-layout-box-item.x-stretched.x-field-labeled{
+    background-color: rgb(238, 238, 238);
+}
+
+.x-form-label{
+background:none;
+color: rgb(91, 131, 158);
+}
+
+.image-icon{
+margin: 4px;
+}

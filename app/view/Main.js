@@ -9,10 +9,17 @@ Ext.define('EventReminder.view.Main', {
         scrollable: true,
         items: [
             {
-                xtype: 'titlebar',
+                xtype: 'toolbar',
                 itemId: 'MainTitle',
                 title: 'Event Reminder',
-                docked: 'top'
+                docked: 'top',
+                cls: 'blue-tile'
+            },
+            {
+                xtype: 'panel',
+                height: '100px',
+                html: "<div class='display-date'><span class='image-icon'><img height='32px' width='32px' src='resources/icons/calendar.png'></span>"+(new Date()).toDateString()+"</div>",
+                cls: 'blank-panel'
             },
             {
                 xtype: 'button',

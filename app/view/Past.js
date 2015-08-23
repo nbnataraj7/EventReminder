@@ -12,11 +12,12 @@ items: [
     xtype: 'toolbar',
     docked: 'top',
     title: 'Past Events',
+    cls: 'blue-tile',
     items: [
         {
             xtype: 'button',
             itemId: 'back',
-            ui:'back',
+            cls: 'back-button',
             iconCls: 'arrow_left'
         },
         {
