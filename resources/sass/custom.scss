@@ -189,3 +189,11 @@ font-size: 25px;
 padding: 10px;
 text-align: center;
 }
+
+.x-panel.x-floating .x-panel-inner{
+padding: 0px;
+}
+
+.x-panel.x-floating > .x-dock.x-sized{
+margin: 0px;
+}

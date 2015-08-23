@@ -126,7 +126,7 @@ if(activityStore.getCount() != 0){
 //Calculating the Date and time at which the alert is been created
 var date = this.getNewEventSelectDate().getValue();
 //adding hours and minute details
-var year = parseInt(20+""+date.getYear()%100);
+var year = date.getFullYear();
 var month = date.getMonth();
 var day = date.getDate();
 var time = this.getNewAlertTimeSelect().getValue();
@@ -138,13 +138,13 @@ if(ampm == "PM")
     if(parseInt((time.split(" ")[0]).split(":")[0]) != 12)
         hours = (parseInt((time.split(" ")[0]).split(":")[0])+12)%24;
     else
-        hours = (parseInt((time.split(" ")[0]).split(":")[0])+12);
+        hours = 12;
 }
 else{
     if(parseInt((time.split(" ")[0]).split(":")[0]) != 12)
-        hours = parseInt((time.split(" ")[0]).split(":")[0]);
+        hours = parseInt((time.split(" ")[0]).split(":")[0])%24;
     else
-        hours = (parseInt((time.split(" ")[0]).split(":")[0])+12);
+        hours = 0;
 }
 
 //creating the new date
