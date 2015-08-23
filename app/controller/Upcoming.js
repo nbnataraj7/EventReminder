@@ -94,17 +94,19 @@ onEditEvent: function(record){
     this.getEditList().setHeight(this.getEditList().getItemHeight()*Ext.getStore('EventPeople').getData().getCount());
 
     //Adding the activities
-    var allActivities = data.activities.split(", ");
-    var activityStore = Ext.getStore('Activity');
-    for(var i=0; i<allActivities.length; i++){
-        var activityModel = Ext.create('EventReminder.model.Activity', {
-            text: allActivities[i],
-            value: allActivities[i]
-        });
-        activityStore.add(activityModel);
-        activityStore.sync();
+    if(data.activities != 'none')
+    {
+        var allActivities = data.activities.split(", ");
+        var activityStore = Ext.getStore('Activity');
+        for(var i=0; i<allActivities.length; i++){
+            var activityModel = Ext.create('EventReminder.model.Activity', {
+                text: allActivities[i],
+                value: allActivities[i]
+            });
+            activityStore.add(activityModel);
+            activityStore.sync();
+        }
     }
-
 
     //Setting the value of previous screen
      this.getEditPrev().setValue("Upcoming");
