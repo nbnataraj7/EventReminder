@@ -10,6 +10,7 @@ refs: {
     peopleList: 'people #PeopleList',
     activity: 'activity',
     activityList: 'activity #ActivityList',
+    newEventId: 'newEvent #ID',
     newEventCategory: 'newEvent #selectCategory',
     newEventPeopleList: 'newEvent #peopleList',
     newEventSelectDate: 'newEvent #selectDate',
@@ -178,7 +179,7 @@ else{
 //setting the values to the NewEvent Store
 var event = Ext.create('EventReminder.model.Event', {
     Recur: this.getNewEventRecurrence().getValue(),
-    EventID: (new Date()).getTime(),
+    EventID: this.getNewEventId().getValue(),
     category: this.getNewEventCategory().getValue(),
     date: newDate,
     eventTime: this.getNewEventTimeSelect().getValue(),
@@ -223,6 +224,8 @@ else{
     this.getNewEventPriority().setValue("");
     //this.getNewEventActivity().setValue("none");
     this.getNewEventRecurrence().setValue("none");
+    //Replenish the ID
+    this.getNewEventId().setValue((new Date()).getTime());
 
     //Alert message
     Ext.Msg.alert("Event Saved");

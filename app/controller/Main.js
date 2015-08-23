@@ -6,6 +6,7 @@ refs: {
     main: 'main',
     upcoming: 'upcoming',
     newEvent: 'newEvent',
+    newEventId: 'newEvent #ID',
     past: 'past',
     maindnd: 'main #dndmode',
     category: 'category'
@@ -45,8 +46,12 @@ onPast:function(){
 
 //Function for opening a view for New Event Creation
 onNew: function(){
-        Ext.Viewport.animateActiveItem(this.getNewEvent(), {type: 'slide', direction: 'left'});
-        document.addEventListener("backbutton", Ext.bind(this.returnToMain, this), false);
+
+    //Generate a new ID for the event
+    var ID = (new Date()).getTime();
+    this.getNewEventId().setValue(ID);
+    Ext.Viewport.animateActiveItem(this.getNewEvent(), {type: 'slide', direction: 'left'});
+    document.addEventListener("backbutton", Ext.bind(this.returnToMain, this), false);
 },
 
 //Function to switch the DND mode
