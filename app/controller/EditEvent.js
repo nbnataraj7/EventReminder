@@ -334,10 +334,6 @@ Ext.define('EventReminder.controller.EditEvent', {
     //Deleting the Event from Upcoming Events List
     onTrashEvent: function(){
 
-
-    //Move to previous screen
-    this.onBack();
-
     //Code for Deleting this record
     var dbutils = Ext.create("EventReminder.utils.Dbutils");
     dbutils.deleteRecord(parseInt(this.getEditEventID().getValue()));
@@ -351,8 +347,8 @@ Ext.define('EventReminder.controller.EditEvent', {
     //Code for traversing back to the Main View
     Ext.Msg.alert("Event Deleted");
 
-    //Also cancel the reminder created
-    window.localNotification.cancel(parseInt(this.getEditEventID().getValue()));
+    //Move to previous screen
+    this.onBack();
 
     },
 

@@ -41,22 +41,26 @@ Ext.define('EventReminder.view.EditEvent', {
         {
             delegate: 'button',
             iconCls: 'organize',
-            itemId: 'activityButton'
+            itemId: 'activityButton',
+            cls:'normal-button-style'
         },
         {
             xtype: 'button',
             iconCls: 'user',
-            itemId: 'addPeople'
+            itemId: 'addPeople',
+            cls:'normal-button-style'
         },
         {
             xtype: 'button',
             iconCls: 'settings',
-            itemId: 'addRecurrence'
+            itemId: 'addRecurrence',
+            cls:'normal-button-style'
         },
         {
             xtype: 'button',
             iconCls: 'trash',
-            itemId: 'trashEvent'
+            itemId: 'trashEvent',
+            cls:'normal-button-style'
         },
         ]
     },

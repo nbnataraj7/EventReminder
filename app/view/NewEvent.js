@@ -43,17 +43,20 @@ items: [
 {
     xtype: 'button',
     itemId: 'activityButton',
-    iconCls: 'organize'
+    iconCls: 'organize',
+    cls: 'normal-button-style'
 },
 {
     xtype: 'button',
     iconCls: 'user',
     itemId: 'addPeople',
+    cls: 'normal-button-style'
 },
 {
      xtype: 'button',
     iconCls: 'settings',
-    itemId: 'addRecurrence'
+    itemId: 'addRecurrence',
+    cls: 'normal-button-style'
 },
 ]
 },

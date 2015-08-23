@@ -26,13 +26,15 @@ items: [
         {
             xtype: 'button',
             itemId: 'viewSwitcher',
-            iconCls: 'calendar'
+            iconCls: 'calendar',
+            cls: 'normal-button-style'
         }
     ]
 },
 {
     xtype: 'toolbar',
     itemId: 'title',
+    cls: 'normal-blue-tile',
     items: [
     {
         xtype: 'searchfield',
