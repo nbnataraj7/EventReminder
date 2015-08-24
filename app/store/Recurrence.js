@@ -7,7 +7,7 @@ Ext.define('EventReminder.store.Recurrence', {
         storeId: 'Recurrence',
         proxy: {
             type: 'sql',
-            database: 'EventReminder',
+            database: 'Reminder',
             table: 'Recurrence'
         }
     }

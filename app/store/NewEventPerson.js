@@ -7,7 +7,7 @@ config: {
     storeId: 'Person',
     proxy: {
         type: 'sql',
-        database: 'EventReminder',
+        database: 'Reminder',
         table: 'People'
     },
     sorters: [{property: 'name', direction: 'ASC'}],

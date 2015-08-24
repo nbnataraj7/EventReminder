@@ -8,7 +8,7 @@ Ext.define('EventReminder.store.Category', {
         storeId: 'Category',
         proxy: {
             type: 'sql',
-            database: 'EventReminder',
+            database: 'Reminder',
             table: 'Category'
         }
     }

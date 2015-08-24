@@ -19,6 +19,10 @@ Ext.define('EventReminder.view.Event', {
         },
         items: [
             {
+                xtype: 'hiddenfield',
+                itemId: 'ID'
+            },
+            {
                 xtype: 'titlebar',
                 itemId: 'date',
                 docked: 'top'

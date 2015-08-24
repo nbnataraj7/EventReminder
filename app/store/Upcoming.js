@@ -7,7 +7,7 @@ Ext.define('EventReminder.store.Upcoming', {
         model: 'EventReminder.model.Event',
         proxy: {
             type: 'sql',
-            database: 'EventReminder',
+            database: 'Reminder',
             table: 'NewEvents'
         },
         sorters: [

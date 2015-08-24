@@ -7,7 +7,7 @@ Ext.define('EventReminder.store.Past', {
         proxy: {
             model: 'EventReminder.model.Event',
             type: 'sql',
-            database: 'EventReminder',
+            database: 'Reminder',
             table: 'PastEvents'
         },
         sorters: [{property: 'date', direction: 'ASC'}]

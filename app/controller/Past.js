@@ -30,8 +30,8 @@ refs: {
     recurrence: 'event #Recurrence',
     people: 'event #People',
     editActivity: 'editevent activity',
-    viewSwitcher: 'past #viewSwitcher'
-
+    viewSwitcher: 'past #viewSwitcher',
+    eventID: 'event #ID'
 },
 control: {
     past: {
@@ -145,6 +145,7 @@ var utils = Ext.create('EventReminder.utils.Utilities');
 //Show the event in the event popup
 onShowCommand: function(record){
 
+    this.getEventID().setValue(record.get('EventID'));
     this.getEventCategory().setHtml(record.get('category'));
     this.getEventTime().setHtml("Event Starts at: "+record.get('eventTime'));
     this.getAlertTime().setHtml("Alert is set at: "+record.get('alertTime'));

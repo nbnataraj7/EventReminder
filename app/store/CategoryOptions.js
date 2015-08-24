@@ -7,7 +7,7 @@ Ext.define('EventReminder.store.CategoryOptions', {
         model: 'EventReminder.model.CategoryOptions',
         proxy : {
             type: 'sql',
-            database: 'EventReminder',
+            database: 'Reminder',
             table: 'CategoryOptions'
         }
     }

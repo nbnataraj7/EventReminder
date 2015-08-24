@@ -24,9 +24,9 @@ refs: {
     newEventHidden: 'newEvent #hiddenField',
     recurrence: 'recurrence',
     newEventRecurrence: 'newEvent #recurrence',
-    event: 'event',
+    event:'event',
     maindnd: 'main #dndmode'
-},
+    },
 control: {
     newevent: {
         backCommand: 'onBack',
@@ -64,18 +64,12 @@ onBack: function(){
 //Adding people Popup
 onAddPeople:function(){
 
-
     //Clearing the text in search field
     this.getPeopleName().setValue("");
     this.getPeopleContact().setValue("");
     var peoplePopup = this.getPeople();
     //Add animation afterwards
     peoplePopup.show();
-
-/*
-    var peoplePopup = Ext.create('EventReminder.view.People');
-    peoplePopup.show();
-    */
 
 },
 
@@ -326,6 +320,55 @@ else{
                   }, function(){console.log("Email sent successfully");}, this);
                 }
             }
+
+
+     //Open up the Event
+     cordova.plugins.notification.local.on("click", function (notification, state) {
+        //Display Event Details
+            console.log("Notification clicked");
+            this.getEventID().setValue(event.get('EventID'));
+            this.getEventCategory().setHtml(event.get('category'));
+            this.getEventTime().setHtml("Event Starts at: "+event.get('eventTime'));
+            this.getAlertTime().setHtml("Alert is set at: "+event.get('alertTime'));
+            this.getEventMessage().setHtml("Message: "+event.get('message'));
+            this.getEventPriority().setHtml(event.get('priority')+" Priority");
+            this.getActivity().setHtml("Follow up with "+event.get('activities'));
+            this.getEventDate().setTitle("Dated : "+(new Date(event.get('date'))).toDateString());
+
+            //Adding the people
+            this.getPeople().setHtml("With : "+event.get('people'));
+
+
+            //Calculating recurrence
+            var recurrence = event.get('Recur')=="none"?"Recurrence Not Set":event.get('Recur');
+            //console.log(recurrence);
+            if(recurrence != 'Recurrence Not Set'){
+                var recurrenceStore = Ext.getStore('Recurrence');
+                var index = recurrenceStore.findExact('RecurrenceId', parseInt(recurrence));
+                //console.log(index);
+                var RecurRecord = recurrenceStore.getAt(index);
+
+                var type = RecurRecord.get('Type');
+                var interval;
+                if(type == 'Daily'){
+                    type = "Days"
+                }
+                else if(type == 'Weekly'){
+                    type = "Weeks"
+                }
+                else{
+                    type = "Months"
+                }
+
+                recurrence = "Repeat every "+RecurRecord.get('Interval')+" "+type+" "+RecurRecord.get('Count')+" times";
+            }
+
+            this.getRecurrence().setHtml(recurrence);
+
+            // Show the event with some animation
+            this.getEvent().show({type: 'flip'});
+
+     }, this);
 
 
      //Once the Notification fires, open up the popup view
